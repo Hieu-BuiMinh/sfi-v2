@@ -6,11 +6,11 @@ export const corporateApplicationSchema = z.object({
 	business_registration_number: z.string().optional(),
 	nature_of_business: z.string().min(1, 'Nature of business is required'),
 	business_address: z.string().optional(),
-	estimated_annual_revenue: z.string().optional(),
-	contact_full_name: z.string().min(1, 'Full name is required'),
-	contact_position: z.string().min(1, 'Position or title is required'),
-	contact_email: z.string().min(1, 'Email address is required').email('Email address is invalid'),
-	contact_phone: z.string().min(1, 'Phone number is required'),
+	estimated_annual_revenue_range: z.string().optional(),
+	full_name: z.string().min(1, 'Full name is required'),
+	position_title: z.string().min(1, 'Position or title is required'),
+	email_address: z.string().min(1, 'Email address is required').email('Email address is invalid'),
+	mobile_number: z.string().min(1, 'Phone number is required'),
 	preferred_contact_method: z.string().min(1, 'Preferred contact method is required'),
 })
 

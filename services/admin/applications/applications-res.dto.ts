@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { TApplication as TCustomerApplication } from '@/services/customer/applications/applications-res.dto'
+import { CreateCorporateManualRequest } from './applications-req.dto'
 
 export interface TApplication extends Omit<TCustomerApplication, 'user'> {
 	user?: {
@@ -22,6 +23,14 @@ export interface TApplication extends Omit<TCustomerApplication, 'user'> {
 		is_ekyc?: number
 		is_ekyc_status?: string
 	}
+}
+
+export interface CreateCorporateManualResponse {
+	status: string
+	code: number
+	message: string
+	messageSlug: string
+	data: CreateCorporateManualRequest & { lang: string }
 }
 
 export interface TWorksheet {

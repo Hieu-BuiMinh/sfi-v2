@@ -74,6 +74,11 @@ function OnboardingRegisterPageView() {
 	}
 
 	const handleSubmit = async () => {
+		if (selectedType === 'corporate') {
+			handleContinue()
+			return
+		}
+
 		if (currentStatus.isContinue) {
 			setOpenModal(true)
 		} else if (currentStatus.latest?.id) {

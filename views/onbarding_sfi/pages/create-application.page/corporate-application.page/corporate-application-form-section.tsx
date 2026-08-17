@@ -46,7 +46,7 @@ function CorporateApplicationFormSection() {
 					placeholder="Number/Block/Street Name"
 				/>
 				<RfhSfiSingleSelect
-					name="estimated_annual_revenue"
+					name="estimated_annual_revenue_range"
 					control={control}
 					label="Estimated Annual Revenue Range (Optional)"
 					options={ANNUAL_REVENUE_OPTIONS}
@@ -60,10 +60,10 @@ function CorporateApplicationFormSection() {
 					Primary Contact Person Details
 				</Typography>
 
-				<RfhSfiTextField name="contact_full_name" control={control} label="Full Name" />
-				<RfhSfiTextField name="contact_position" control={control} label="Position / Title" />
-				<RfhSfiTextField name="contact_email" control={control} label="Email Address" type="email" />
-				<RhfPhoneInput name="contact_phone" control={control} label="Phone Number" />
+				<RfhSfiTextField name="full_name" control={control} label="Full Name" />
+				<RfhSfiTextField name="position_title" control={control} label="Position / Title" />
+				<RfhSfiTextField name="email_address" control={control} label="Email Address" type="email" />
+				<RhfPhoneInput name="mobile_number" control={control} label="Phone Number" />
 
 				<div className="lg:col-span-2">
 					<RfhSfiSingleSelect

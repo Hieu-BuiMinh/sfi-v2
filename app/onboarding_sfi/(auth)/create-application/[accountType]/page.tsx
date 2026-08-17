@@ -18,11 +18,7 @@ export default async function CreateApplicationPage({ params }: PageProps) {
 				</CustomerApplicationProvider>
 			)
 		case 'corporate':
-			return (
-				<CustomerApplicationProvider>
-					<CorporateApplicationPageView />
-				</CustomerApplicationProvider>
-			)
+			return <CorporateApplicationPageView />
 
 		default:
 			redirect('/register')

@@ -10,6 +10,10 @@ export const clientApi = new AxiosBuilder()
 			const appConfig = getAppConfig()
 			const isBFF = appConfig.isBFF ?? true
 
+			if (appConfig.entity) {
+				config.headers.Entity = appConfig.entity
+			}
+
 			if (isBFF) {
 				// BFF Mode: Route through Next.js server proxy '/proxy'.
 				// Token is attached securely on the server side; NO client-side getAccessToken() call is made!

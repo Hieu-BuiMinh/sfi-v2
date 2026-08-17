@@ -1,66 +1,48 @@
 'use client'
 
 import SfiCommonModal from '@/components/modals/common-modal'
-import { APPLICATION_STATUS } from '@/dto/enums/application'
-import { getAppConfig } from '@/utils/get-app-config'
-import { useCustomerApplication } from '@/views/onbarding_sfi/components/customer-application-provider'
+import { adminApplicationService } from '@/services/admin/applications'
+import toastUtil from '@/utils/toast'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, CircularProgress, Typography } from '@mui/material'
+import { useMutation } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import CorporateApplicationFormSection from './corporate-application-form-section'
 import { CorporateApplicationFormData, corporateApplicationSchema } from './form-validate/schema'
 
-const getDefaultValues = (
-	corporateInformation?: Partial<CorporateApplicationFormData>
-): CorporateApplicationFormData => ({
-	company_name: corporateInformation?.company_name || '',
-	country_of_incorporation: corporateInformation?.country_of_incorporation || '',
-	business_registration_number: corporateInformation?.business_registration_number || '',
-	nature_of_business: corporateInformation?.nature_of_business || '',
-	business_address: corporateInformation?.business_address || '',
-	estimated_annual_revenue: corporateInformation?.estimated_annual_revenue || '',
-	contact_full_name: corporateInformation?.contact_full_name || '',
-	contact_position: corporateInformation?.contact_position || '',
-	contact_email: corporateInformation?.contact_email || '',
-	contact_phone: corporateInformation?.contact_phone || '',
-	preferred_contact_method: corporateInformation?.preferred_contact_method || '',
-})
-
 function CorporateApplicationPageView() {
-	const config = getAppConfig()
 	const router = useRouter()
-	const { currentCorpApp, updateApplicationMutation } = useCustomerApplication()
 	const [showSuccessModal, setShowSuccessModal] = useState(false)
-	const corporateInformation = currentCorpApp?.content?.corporate_information
 
 	const methods = useForm<CorporateApplicationFormData>({
 		resolver: zodResolver(corporateApplicationSchema),
-		defaultValues: getDefaultValues(corporateInformation),
+		mode: 'onChange',
+		defaultValues: {
+			company_name: '',
+			country_of_incorporation: '',
+			business_registration_number: '',
+			nature_of_business: '',
+			business_address: '',
+			estimated_annual_revenue_range: '',
+			full_name: '',
+			position_title: '',
+			email_address: '',
+			mobile_number: '',
+			preferred_contact_method: '',
+		},
 	})
-	const { reset } = methods
 
-	useEffect(() => {
-		if (corporateInformation) reset(getDefaultValues(corporateInformation))
-	}, [corporateInformation, reset])
+	const createCorporateMutation = useMutation({
+		mutationKey: adminApplicationService.createCorporateManual.key(),
+		mutationFn: adminApplicationService.createCorporateManual.post,
+		onSuccess: () => setShowSuccessModal(true),
+		onError: () => toastUtil.error('Failed to submit corporate registration'),
+	})
 
 	const onSubmit = (data: CorporateApplicationFormData) => {
-		if (!currentCorpApp) return
-
-		updateApplicationMutation.mutate(
-			{
-				data: {
-					...currentCorpApp,
-					status: APPLICATION_STATUS.STATUS_PENDING,
-					content: {
-						...currentCorpApp.content,
-						corporate_information: data,
-					},
-				},
-			},
-			{ onSuccess: () => setShowSuccessModal(true) }
-		)
+		createCorporateMutation.mutate(data)
 	}
 
 	return (
@@ -84,8 +66,8 @@ function CorporateApplicationPageView() {
 							<Button variant="outlined" type="button" onClick={() => router.push('/register')}>
 								Back
 							</Button>
-							<Button type="submit" variant="contained" disabled={updateApplicationMutation.isPending}>
-								{updateApplicationMutation.isPending ? (
+							<Button type="submit" variant="contained" disabled={createCorporateMutation.isPending}>
+								{createCorporateMutation.isPending ? (
 									<CircularProgress size={24} color="inherit" />
 								) : (
 									'Next'
@@ -98,20 +80,17 @@ function CorporateApplicationPageView() {
 
 			<SfiCommonModal
 				open={showSuccessModal}
-				onClose={() => {}}
-				title="Application Submitted Successfully"
+				onClose={() => router.push('/register')}
+				title="Registration Submitted Successfully"
 				hideCloseButton
 				confirmBtn={{
-					label: 'Confirm',
-					onClick: () => {
-						const tradingUrl = config.pages?.trading_page || config.trading_page
-						if (tradingUrl) window.location.assign(tradingUrl)
-					},
+					label: 'OK',
+					onClick: () => router.push('/register'),
 				}}
 			>
-				<Typography>
-					Your corporate account request has been submitted. We will contact you to guide you through the
-					account opening process.
+				<Typography className="text-mui-text-secondary">
+					Thank you for registering your interest in opening a Corporate Account. We will contact you within 1
+					business day to assist with the onboarding process and required documentation.
 				</Typography>
 			</SfiCommonModal>
 		</div>

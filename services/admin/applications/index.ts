@@ -1,7 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TApplication, TApplicationDetailResponse } from './applications-res.dto'
+import { CreateCorporateManualResponse, TApplication, TApplicationDetailResponse } from './applications-res.dto'
 import {
 	CreateApplicationRequest,
+	CreateCorporateManualRequest,
 	GetApplicationsRequest,
 	GetUserApplicationsParams,
 	UploadDocumentsRequest,
@@ -23,6 +24,18 @@ const TYPE_MAP: Record<string, string> = {
 }
 
 export const adminApplicationService = {
+	createCorporateManual: {
+		key: () => ['post_admin_create_corporate_manual'] as const,
+		post: async (data: CreateCorporateManualRequest) => {
+			const res = await clientApi.post<CreateCorporateManualResponse>(
+				'/api/v1/applications/corporate/manual',
+				data,
+				{ params: { lang: 'en' } }
+			)
+			return res.data
+		},
+	},
+
 	getApplicationsByAuth0Id: {
 		key: ({ auth0Id }: GetUserApplicationsParams) => ['get_admin_applications_by_auth0_id', auth0Id] as const,
 		get: async ({ auth0Id }: GetUserApplicationsParams) => {
