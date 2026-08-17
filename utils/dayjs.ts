@@ -1,0 +1,82 @@
+// https://day.js.org/docs/en/i18n/i18n // all locales
+// https://cdn.jsdelivr.net/npm/dayjs@1/locale.json // all locales
+import 'dayjs/locale/vi'
+import 'dayjs/locale/en'
+import 'dayjs/locale/id'
+import 'dayjs/locale/zh-cn'
+
+import dayjs, { type Dayjs as DJS, type OpUnitType } from 'dayjs'
+import advancedFormat from 'dayjs/plugin/advancedFormat'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+import duration from 'dayjs/plugin/duration'
+import isBetween from 'dayjs/plugin/isBetween'
+import isSameOrAfter from 'dayjs/plugin/isSameOrAfter'
+import isSameOrBefore from 'dayjs/plugin/isSameOrBefore'
+import localizedFormat from 'dayjs/plugin/localizedFormat'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import timezone from 'dayjs/plugin/timezone'
+import utc from 'dayjs/plugin/utc'
+import weekOfYear from 'dayjs/plugin/weekOfYear'
+
+dayjs.extend(utc)
+dayjs.extend(timezone)
+dayjs.extend(localizedFormat)
+dayjs.extend(relativeTime)
+dayjs.extend(customParseFormat)
+dayjs.extend(advancedFormat)
+dayjs.extend(isBetween)
+dayjs.extend(isSameOrAfter)
+dayjs.extend(isSameOrBefore)
+dayjs.extend(weekOfYear)
+dayjs.extend(duration)
+
+dayjs.locale('en')
+dayjs.tz.setDefault('Asia/Ho_Chi_Minh')
+
+type DateInput = string | number | Date | DJS | null | undefined
+type Dayjs = DJS
+
+const d = dayjs
+
+const setLocale = (locale: string) => dayjs.locale(locale)
+
+const formatDate = (input: DateInput, fmt = 'MM/DD/YYYY', tz?: string): string => {
+	if (input == null) return ''
+	const inst = tz ? dayjs(input).tz(tz) : dayjs(input)
+	return inst.isValid() ? inst.format(fmt) : ''
+}
+
+const parseAndFormat = (input: string, parseFmt: string, outFmt = 'MM/DD/YYYY', tz?: string): string => {
+	const base = dayjs(input, parseFmt, true)
+	const inst = tz ? base.tz(tz) : base
+	return inst.isValid() ? inst.format(outFmt) : ''
+}
+
+const fromNow = (input: DateInput): string => {
+	if (input == null) return ''
+	const inst = dayjs(input)
+	return inst.isValid() ? inst.fromNow() : ''
+}
+
+const toISO = (input: DateInput): string => {
+	if (input == null) return ''
+	const inst = dayjs(input)
+	return inst.isValid() ? inst.toDate().toISOString() : ''
+}
+
+const clampTo = (input: DateInput, unit: OpUnitType, edge: 'start' | 'end' = 'start', tz?: string): DJS | null => {
+	if (input == null) return null
+	const base = tz ? dayjs(input).tz(tz) : dayjs(input)
+	if (!base.isValid()) return null
+	return edge === 'start' ? base.startOf(unit) : base.endOf(unit)
+}
+
+const parse = (input: string, parseFmt?: string, tz?: string): DJS | null => {
+	const base = parseFmt ? dayjs(input, parseFmt, true) : dayjs(input)
+	if (!base.isValid()) return null
+	return tz ? base.tz(tz) : base
+}
+
+export { clampTo, d, formatDate, fromNow, parse, parseAndFormat, setLocale, toISO }
+export type { DateInput, Dayjs }
+export default dayjs

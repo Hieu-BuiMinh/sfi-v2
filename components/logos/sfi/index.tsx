@@ -1,0 +1,308 @@
+import * as React from 'react'
+
+export type SfiLogoVariant = 'short-negative' | 'short-positive' | 'full-negative' | 'full-positive'
+
+type SfiLogoProps = {
+	variant?: SfiLogoVariant
+} & React.SVGProps<SVGSVGElement>
+
+function SfiLogo({ variant = 'full-positive', ...props }: SfiLogoProps) {
+	switch (variant) {
+		case 'short-negative':
+			return (
+				<svg
+					width="43"
+					height="43"
+					viewBox="0 0 43 43"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					{...props}
+				>
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M0.846436 32.9451L4.28448 27.7377H10.9696L7.52148 32.9451H0.846436Z"
+						fill="white"
+					/>
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M15.3123 25.6768L18.7605 20.4695H25.4456L21.9975 25.6768H15.3123Z"
+						fill="white"
+					/>
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M5.51099 25.6769L15.8553 10.0548H42.1534L31.8191 25.6769H25.134L32.0302 15.2622H19.0923L12.1961 25.6769H5.51099Z"
+						fill="white"
+					/>
+				</svg>
+			)
+
+		case 'short-positive':
+			return (
+				<svg
+					width="43"
+					height="43"
+					viewBox="0 0 43 43"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					{...props}
+				>
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M0.846436 32.9451L4.28448 27.7377H10.9696L7.52148 32.9451H0.846436Z"
+						fill="url(#paint0_linear_short_pos)"
+					/>
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M15.3123 25.6768L18.7605 20.4695H25.4456L21.9975 25.6768H15.3123Z"
+						fill="url(#paint1_linear_short_pos)"
+					/>
+					<path
+						fillRule="evenodd"
+						clipRule="evenodd"
+						d="M5.51099 25.6769L15.8553 10.0548H42.1534L31.8191 25.6769H25.134L32.0302 15.2622H19.0923L12.1961 25.6769H5.51099Z"
+						fill="url(#paint2_linear_short_pos)"
+					/>
+					<defs>
+						<linearGradient
+							id="paint0_linear_short_pos"
+							x1="0.817282"
+							y1="33.2839"
+							x2="10.6669"
+							y2="27.5968"
+							gradientUnits="userSpaceOnUse"
+						>
+							<stop stopColor="#009B97" stopOpacity="0" />
+							<stop offset="1" stopColor="#158084" />
+						</linearGradient>
+						<linearGradient
+							id="paint1_linear_short_pos"
+							x1="15.2892"
+							y1="26.0136"
+							x2="25.1389"
+							y2="20.3265"
+							gradientUnits="userSpaceOnUse"
+						>
+							<stop stopColor="#009B97" stopOpacity="0" />
+							<stop offset="1" stopColor="#158084" />
+						</linearGradient>
+						<linearGradient
+							id="paint2_linear_short_pos"
+							x1="6.13426"
+							y1="28.0885"
+							x2="40.3815"
+							y2="8.3164"
+							gradientUnits="userSpaceOnUse"
+						>
+							<stop stopColor="#009B97" stopOpacity="0" />
+							<stop offset="0.15" stopColor="#009B97" stopOpacity="0" />
+							<stop offset="0.69" stopColor="#158084" />
+							<stop offset="1" stopColor="#015D60" />
+						</linearGradient>
+					</defs>
+				</svg>
+			)
+
+		case 'full-negative':
+			return (
+				<svg
+					width="188"
+					height="24"
+					viewBox="0 0 188 24"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					{...props}
+				>
+					<g clipPath="url(#clip0_full_neg)">
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M0 23.4532L3.43804 18.2458H10.1232L6.67504 23.4532H0Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M14.4658 16.185L17.914 10.9777H24.5991L21.151 16.185H14.4658Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M4.66455 16.1851L15.0089 0.562988H41.307L30.9727 16.1851H24.2876L31.1838 5.77033H18.2459L11.3497 16.1851H4.66455Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M58.7385 0.462402C60.9434 0.462402 62.7998 1.20298 64.3077 2.68409C65.8157 4.17191 66.5696 5.99479 66.5696 8.15279C66.5696 10.3175 65.8157 12.1404 64.3077 13.6215C62.7998 15.1093 60.9434 15.8532 58.7385 15.8532H54.7174V23.3828H50.1936V0.462402H58.7385ZM58.7385 11.621C59.6969 11.621 60.4944 11.2893 61.1311 10.6258C61.761 9.96232 62.076 9.13796 62.076 8.15279C62.076 7.14751 61.761 6.31986 61.1311 5.66978C60.4944 5.01299 59.6969 4.68459 58.7385 4.68459H54.7073V11.621H58.7385Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M82.2621 23.3828L80.8044 19.2511H71.3849L70.0077 23.3828H65.1321L73.1542 0.462402H78.7536L86.8361 23.3828H82.2621ZM72.8627 15.0289H79.3166L76.0092 5.66978L72.8627 15.0289Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M102.328 0.462402H106.851V23.3828H103.413L93.5816 9.3692V23.3828H89.0679V0.462402H92.4959L102.328 14.4258V0.462402Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M134.356 23.3828L132.898 19.2511H123.488L122.111 23.3828H117.226L125.258 0.462402H130.857L138.94 23.3828H134.356ZM124.956 15.0289H131.41L128.103 5.66978L124.956 15.0289Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M148.47 23.8452C146.198 23.8452 144.288 23.3359 142.74 22.3172C141.191 21.3053 140.099 19.9246 139.462 18.1755L143.333 15.9136C144.224 18.2525 145.98 19.422 148.6 19.422C149.867 19.422 150.795 19.1908 151.385 18.7284C151.975 18.2726 152.27 17.6963 152.27 16.9993C152.27 16.1884 151.911 15.5584 151.194 15.1094C150.47 14.667 149.18 14.1811 147.324 13.6517C146.298 13.3501 145.43 13.0452 144.72 12.7369C144.01 12.4353 143.299 12.0265 142.589 11.5105C141.878 11.0011 141.339 10.351 140.97 9.56022C140.602 8.77611 140.417 7.86129 140.417 6.8158C140.417 4.73822 141.155 3.08286 142.629 1.84971C144.097 0.616568 145.869 0 147.947 0C149.803 0 151.435 0.452382 152.843 1.35713C154.25 2.26189 155.346 3.52182 156.13 5.13697L152.34 7.33853C151.422 5.37489 149.958 4.39307 147.947 4.39307C147.009 4.39307 146.271 4.60418 145.735 5.0264C145.199 5.45532 144.931 6.00822 144.931 6.68511C144.931 7.40221 145.233 7.98529 145.836 8.43431C146.432 8.88334 147.585 9.36921 149.294 9.89195C149.991 10.1064 150.52 10.274 150.882 10.3946C151.238 10.5152 151.727 10.7029 152.35 10.9575C152.973 11.2055 153.456 11.4401 153.798 11.6613C154.133 11.8757 154.518 12.1706 154.954 12.5459C155.389 12.9145 155.721 13.2965 155.949 13.6919C156.184 14.0806 156.381 14.5531 156.542 15.1094C156.71 15.6656 156.793 16.2721 156.793 16.9289C156.793 19.0467 156.023 20.7289 154.481 21.9754C152.94 23.222 150.936 23.8452 148.47 23.8452Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M159.568 0.462402H164.092V23.3828H159.568V0.462402Z"
+							fill="white"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M183.413 23.3828L181.956 19.2511H172.546L171.169 23.3828H166.283L174.315 0.462402H179.915L187.997 23.3828H183.413ZM174.014 15.0289H180.468L177.16 5.66978L174.014 15.0289Z"
+							fill="white"
+						/>
+					</g>
+					<defs>
+						<clipPath id="clip0_full_neg">
+							<rect width="188" height="24" fill="white" />
+						</clipPath>
+					</defs>
+				</svg>
+			)
+
+		case 'full-positive':
+		default:
+			return (
+				<svg
+					width="188"
+					height="24"
+					viewBox="0 0 188 24"
+					fill="none"
+					xmlns="http://www.w3.org/2000/svg"
+					{...props}
+				>
+					<g clipPath="url(#clip0_full_pos)">
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M0 23.4532L3.43804 18.2458H10.1232L6.67504 23.4532H0Z"
+							fill="url(#paint0_linear_full_pos)"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M14.4658 16.185L17.914 10.9777H24.5991L21.151 16.185H14.4658Z"
+							fill="url(#paint1_linear_full_pos)"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M4.66455 16.1851L15.0089 0.562988H41.307L30.9727 16.1851H24.2876L31.1838 5.77033H18.2459L11.3497 16.1851H4.66455Z"
+							fill="url(#paint2_linear_full_pos)"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M58.7385 0.462402C60.9434 0.462402 62.7998 1.20298 64.3077 2.68409C65.8157 4.17191 66.5696 5.99479 66.5696 8.15279C66.5696 10.3175 65.8157 12.1404 64.3077 13.6215C62.7998 15.1093 60.9434 15.8532 58.7385 15.8532H54.7174V23.3828H50.1936V0.462402H58.7385ZM58.7385 11.621C59.6969 11.621 60.4944 11.2893 61.1311 10.6258C61.761 9.96232 62.076 9.13796 62.076 8.15279C62.076 7.14751 61.761 6.31986 61.1311 5.66978C60.4944 5.01299 59.6969 4.68459 58.7385 4.68459H54.7073V11.621H58.7385Z"
+							fill="#158084"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M82.2621 23.3828L80.8044 19.2511H71.3849L70.0077 23.3828H65.1321L73.1542 0.462402H78.7536L86.8361 23.3828H82.2621ZM72.8627 15.0289H79.3166L76.0092 5.66978L72.8627 15.0289Z"
+							fill="#158084"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M102.328 0.462402H106.851V23.3828H103.413L93.5816 9.3692V23.3828H89.0679V0.462402H92.4959L102.328 14.4258V0.462402Z"
+							fill="#158084"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M134.356 23.3828L132.898 19.2511H123.488L122.111 23.3828H117.226L125.258 0.462402H130.857L138.94 23.3828H134.356ZM124.956 15.0289H131.41L128.103 5.66978L124.956 15.0289Z"
+							fill="#158084"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M148.47 23.8452C146.198 23.8452 144.288 23.3359 142.74 22.3172C141.191 21.3053 140.099 19.9246 139.462 18.1755L143.333 15.9136C144.224 18.2525 145.98 19.422 148.6 19.422C149.867 19.422 150.795 19.1908 151.385 18.7284C151.975 18.2726 152.27 17.6963 152.27 16.9993C152.27 16.1884 151.911 15.5584 151.194 15.1094C150.47 14.667 149.18 14.1811 147.324 13.6517C146.298 13.3501 145.43 13.0452 144.72 12.7369C144.01 12.4353 143.299 12.0265 142.589 11.5105C141.878 11.0011 141.339 10.351 140.97 9.56022C140.602 8.77611 140.417 7.86129 140.417 6.8158C140.417 4.73822 141.155 3.08286 142.629 1.84971C144.097 0.616568 145.869 0 147.947 0C149.803 0 151.435 0.452382 152.843 1.35713C154.25 2.26189 155.346 3.52182 156.13 5.13697L152.34 7.33853C151.422 5.37489 149.958 4.39307 147.947 4.39307C147.009 4.39307 146.271 4.60418 145.735 5.0264C145.199 5.45532 144.931 6.00822 144.931 6.68511C144.931 7.40221 145.233 7.98529 145.836 8.43431C146.432 8.88334 147.585 9.36921 149.294 9.89195C149.991 10.1064 150.52 10.274 150.882 10.3946C151.238 10.5152 151.727 10.7029 152.35 10.9575C152.973 11.2055 153.456 11.4401 153.798 11.6613C154.133 11.8757 154.518 12.1706 154.954 12.5459C155.389 12.9145 155.721 13.2965 155.949 13.6919C156.184 14.0806 156.381 14.5531 156.542 15.1094C156.71 15.6656 156.793 16.2721 156.793 16.9289C156.793 19.0467 156.023 20.7289 154.481 21.9754C152.94 23.222 150.936 23.8452 148.47 23.8452Z"
+							fill="#158084"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M159.568 0.462402H164.092V23.3828H159.568V0.462402Z"
+							fill="#158084"
+						/>
+						<path
+							fillRule="evenodd"
+							clipRule="evenodd"
+							d="M183.413 23.3828L181.956 19.2511H172.546L171.169 23.3828H166.283L174.315 0.462402H179.915L187.997 23.3828H183.413ZM174.014 15.0289H180.468L177.16 5.66978L174.014 15.0289Z"
+							fill="#158084"
+						/>
+					</g>
+					<defs>
+						<linearGradient
+							id="paint0_linear_full_pos"
+							x1="-0.0291532"
+							y1="23.792"
+							x2="9.8205"
+							y2="18.1049"
+							gradientUnits="userSpaceOnUse"
+						>
+							<stop stopColor="#009B97" stopOpacity="0" />
+							<stop offset="1" stopColor="#158084" />
+						</linearGradient>
+						<linearGradient
+							id="paint1_linear_full_pos"
+							x1="14.4427"
+							y1="16.5218"
+							x2="24.2924"
+							y2="10.8347"
+							gradientUnits="userSpaceOnUse"
+						>
+							<stop stopColor="#009B97" stopOpacity="0" />
+							<stop offset="1" stopColor="#158084" />
+						</linearGradient>
+						<linearGradient
+							id="paint2_linear_full_pos"
+							x1="5.28782"
+							y1="18.5967"
+							x2="39.5351"
+							y2="-1.17542"
+							gradientUnits="userSpaceOnUse"
+						>
+							<stop stopColor="#009B97" stopOpacity="0" />
+							<stop offset="0.15" stopColor="#009B97" stopOpacity="0" />
+							<stop offset="0.69" stopColor="#158084" />
+							<stop offset="1" stopColor="#015D60" />
+						</linearGradient>
+						<clipPath id="clip0_full_pos">
+							<rect width="188" height="24" fill="white" />
+						</clipPath>
+					</defs>
+				</svg>
+			)
+	}
+}
+
+export default SfiLogo

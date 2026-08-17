@@ -1,0 +1,92 @@
+{
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": "explicit",
+		"source.fixAll.format": "explicit"
+	},
+	"editor.fontFamily": "JetBrains Mono",
+	"editor.fontLigatures": true,
+	"editor.letterSpacing": 2,
+	"editor.fontSize": 12,
+	"editor.lineHeight": 27,
+	"editor.cursorWidth": 1,
+	"window.zoomLevel": -1,
+	"editor.cursorBlinking": "smooth",
+	"editor.guides.bracketPairsHorizontal": true,
+	"editor.guides.bracketPairs": true,
+	"diffEditor.ignoreTrimWhitespace": false,
+	"typescript.updateImportsOnFileMove.enabled": "always",
+	"typescript.preferences.importModuleSpecifier": "non-relative",
+	"errorLens.codeLensEnabled": true,
+	"eslint.useESLintClass": true,
+	"javascript.updateImportsOnFileMove.enabled": "always",
+	"editor.renderWhitespace": "none",
+	"editor.wordWrap": "on",
+	"workbench.editor.wrapTabs": true,
+	// "tailwindCSS.experimental.classRegex": [
+	//   ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+	//   ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+	//   ["className\\s*:\\s*['\"]([^'\"]*)['\"]"],
+	//   ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+	//   ["clsx\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+	//   ["classnames\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+	//   ["twMerge\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+	// ],
+	"javascript.preferences.importModuleSpecifier": "non-relative",
+	"css.lint.unknownAtRules": "ignore",
+	"prettier.endOfLine": "crlf",
+	"terminal.integrated.profiles.windows": {
+		"PowerShell": {
+			"source": "PowerShell",
+			"icon": "terminal-powershell"
+		},
+		"Command Prompt": {
+			"path": ["${env:windir}\\Sysnative\\cmd.exe", "${env:windir}\\System32\\cmd.exe"],
+			"args": [],
+			"icon": "terminal-cmd"
+		},
+		"Git Bash": {
+			"source": "Git Bash"
+		},
+		"Ubuntu (WSL)": {
+			"path": "C:\\WINDOWS\\System32\\wsl.exe",
+			"args": ["-d", "Ubuntu"]
+		}
+	},
+	"terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+	"tailwindCSS.emmetCompletions": true,
+	"tailwindCSS.includeLanguages": {
+		"javascript": "javascript",
+		"typescript": "typescript",
+		"javascriptreact": "javascriptreact",
+		"typescriptreact": "typescriptreact",
+		"html": "html",
+		"plaintext": "mdx",
+		"markdown": "mdx"
+	},
+	"workbench.colorCustomizations": {},
+	"comments.thread.confirmOnCollapse": "never",
+	"remote.autoForwardPortsSource": "hybrid",
+	"workbench.editorAssociations": {
+		"*.svg": "default"
+	},
+	"git.autofetch": true,
+	"gitlens.ai.model": "vscode",
+	"gitlens.ai.vscode.model": "copilot:gpt-4.1",
+	"editor.inlineSuggest.enabled": true,
+	"editor.inlineSuggest.suppressSuggestions": false,
+	"editor.acceptSuggestionOnEnter": "on",
+	"editor.tabCompletion": "on",
+	"svg-inline-preview.backgroundColor": "#FFFFFF",
+	"chat.mcp.serverSampling": {
+		"Figma": {
+			"url": "https://mcp.figma.com/mcp"
+		}
+	},
+	"terminal.integrated.enableMultiLinePasteWarning": "never",
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
+}

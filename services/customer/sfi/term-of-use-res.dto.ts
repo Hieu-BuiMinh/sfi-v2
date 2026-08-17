@@ -1,0 +1,1 @@
+export type TermOfUsePdfResponse = Blob

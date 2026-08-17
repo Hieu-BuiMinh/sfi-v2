@@ -1,0 +1,274 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where([data-mui-color-scheme="dark"], [data-mui-color-scheme="dark"] *));
+
+:root {
+	--font-roboto: 'Inter', sans-serif;
+
+	/* token */
+	--token-dark: #111928;
+	--token-dark-2: #1f2a37;
+	--token-dark-3: #374151;
+	--token-dark-4: #4b5563;
+	--token-dark-5: #6b7280;
+	--token-dark-6: #9ca3af;
+	--token-dark-7: #d1d5db;
+	--token-dark-8: #e5e7eb;
+
+	--token-gray: #f9fafb;
+	--token-gray-2: #f3f4f6;
+	--token-gray-3: #e5e7eb;
+	--token-gray-4: #dee2e6;
+	--token-gray-5: #ced4da;
+	--token-gray-6: #ced4da;
+	--token-gray-7: #ced4da;
+
+	--token-yellow: #fbbf24;
+	--token-yellow-1: #fcd34d;
+	--token-yellow-2: #fde68a;
+	--token-yellow-3: #fef3c7;
+	--token-yellow-4: #fffbeb;
+
+	--token-red: #f23030;
+	--token-red-1: #f56060;
+	--token-red-2: #f89090;
+	--token-red-3: #fbc0c0;
+	--token-red-4: #fdd8d8;
+	--token-red-5: #feebeb;
+	--token-red-6: #fef3f3;
+
+	--token-pink: #d345f8;
+	--token-pink-1: #df76fa;
+	--token-pink-2: #eaa7fc;
+	--token-pink-3: #f6d8fe;
+	--token-pink-4: #fcf1fe;
+
+	--token-purple: #8646f4;
+	--token-purple-1: #a78bfa;
+	--token-purple-2: #c4b5fd;
+	--token-purple-3: #ddd6fe;
+	--token-purple-4: #ede9fe;
+	--token-purple-5: #f5f3ff;
+
+	--token-blue: #2d68f8;
+	--token-blue-1: #5475e5;
+	--token-blue-2: #8099ec;
+	--token-blue-3: #adbcf2;
+	--token-blue-4: #c3cef6;
+	--token-blue-5: #e1e8ff;
+
+	--token-cyan: #01a9db;
+	--token-cyan-1: #18bfff;
+	--token-cyan-2: #77d1f3;
+	--token-cyan-3: #d0f0fd;
+
+	--token-teal: #02aaa4;
+	--token-teal-1: #20d9d2;
+	--token-teal-2: #72ddc3;
+	--token-teal-3: #c2f5e9;
+
+	--token-green: #22ad5c;
+	--token-green-1: #2cd673;
+	--token-green-2: #57de8f;
+	--token-green-3: #82e6ac;
+	--token-green-4: #acefc8;
+	--token-green-5: #c2f3d6;
+	--token-green-6: #daf8e6;
+
+	/* token-by-mode */
+	--token-background: #ffffff;
+	--token-foreground: #111928;
+	--token-muted-foreground: #637381;
+	--token-container-background: #f8f8f8;
+	--token-input-background: #ffffff;
+	--token-border: #dfe4ea;
+
+	--mui-palette-background-paper: var(--token-background);
+}
+
+[data-mui-color-scheme='dark'] {
+	--token-yellow-1: #f59e0b;
+	--token-yellow-2: #d97706;
+
+	--token-red-1: #e10e0e;
+
+	--token-pink-1: #c814f6;
+
+	--token-purple-1: #6d28d9;
+	--token-purple-2: #5b21b6;
+
+	--token-blue-1: #1c3fb7;
+
+	--token-cyan-1: #0b76b7;
+
+	--token-teal-1: #06a09b;
+
+	--token-green-1: #1a8245;
+
+	/* token-by-mode */
+	--token-background: #1a222c;
+	--token-foreground: #ffffff;
+	--token-muted-foreground: #8899a8;
+	--token-container-background: #1f2a37;
+	--token-input-background: #11192880;
+	--token-border: #374151;
+
+	--mui-palette-background-paper: var(--token-background);
+}
+
+@theme {
+	--font-sans: 'Open Sans', var(--font-gt-america), Inter, sans-serif;
+
+	/* Token Palette Mapping for Tailwind v4 Auto-completion */
+	--color-token-bg: var(--token-background);
+	--color-token-foreground: var(--token-foreground);
+	--color-token-muted-foreground: var(--token-muted-foreground);
+	--color-token-container: var(--token-container-background);
+	--color-token-border: var(--token-border);
+
+	/* Dark Tokens */
+	--color-token-dark: var(--token-dark);
+	--color-token-dark-2: var(--token-dark-2);
+	--color-token-dark-3: var(--token-dark-3);
+	--color-token-dark-4: var(--token-dark-4);
+	--color-token-dark-5: var(--token-dark-5);
+	--color-token-dark-6: var(--token-dark-6);
+	--color-token-dark-7: var(--token-dark-7);
+	--color-token-dark-8: var(--token-dark-8);
+
+	/* Gray Tokens */
+	--color-token-gray: var(--token-gray);
+	--color-token-gray-2: var(--token-gray-2);
+	--color-token-gray-3: var(--token-gray-3);
+	--color-token-gray-4: var(--token-gray-4);
+	--color-token-gray-5: var(--token-gray-5);
+	--color-token-gray-6: var(--token-gray-6);
+	--color-token-gray-7: var(--token-gray-7);
+
+	/* Yellow Tokens */
+	--color-token-yellow: var(--token-yellow);
+	--color-token-yellow-1: var(--token-yellow-1);
+	--color-token-yellow-2: var(--token-yellow-2);
+	--color-token-yellow-3: var(--token-yellow-3);
+	--color-token-yellow-4: var(--token-yellow-4);
+
+	/* Red Tokens */
+	--color-token-red: var(--token-red);
+	--color-token-red-1: var(--token-red-1);
+	--color-token-red-2: var(--token-red-2);
+	--color-token-red-3: var(--token-red-3);
+	--color-token-red-4: var(--token-red-4);
+	--color-token-red-5: var(--token-red-5);
+	--color-token-red-6: var(--token-red-6);
+
+	/* Pink Tokens */
+	--color-token-pink: var(--token-pink);
+	--color-token-pink-1: var(--token-pink-1);
+	--color-token-pink-2: var(--token-pink-2);
+	--color-token-pink-3: var(--token-pink-3);
+	--color-token-pink-4: var(--token-pink-4);
+
+	/* Purple Tokens */
+	--color-token-purple: var(--token-purple);
+	--color-token-purple-1: var(--token-purple-1);
+	--color-token-purple-2: var(--token-purple-2);
+	--color-token-purple-3: var(--token-purple-3);
+	--color-token-purple-4: var(--token-purple-4);
+	--color-token-purple-5: var(--token-purple-5);
+
+	/* Blue Tokens */
+	--color-token-blue: var(--token-blue);
+	--color-token-blue-1: var(--token-blue-1);
+	--color-token-blue-2: var(--token-blue-2);
+	--color-token-blue-3: var(--token-blue-3);
+	--color-token-blue-4: var(--token-blue-4);
+	--color-token-blue-5: var(--token-blue-5);
+
+	/* Cyan Tokens */
+	--color-token-cyan: var(--token-cyan);
+	--color-token-cyan-1: var(--token-cyan-1);
+	--color-token-cyan-2: var(--token-cyan-2);
+	--color-token-cyan-3: var(--token-cyan-3);
+
+	/* Teal Tokens */
+	--color-token-teal: var(--token-teal);
+	--color-token-teal-1: var(--token-teal-1);
+	--color-token-teal-2: var(--token-teal-2);
+	--color-token-teal-3: var(--token-teal-3);
+
+	/* Green Tokens */
+	--color-token-green: var(--token-green);
+	--color-token-green-1: var(--token-green-1);
+	--color-token-green-2: var(--token-green-2);
+	--color-token-green-3: var(--token-green-3);
+	--color-token-green-4: var(--token-green-4);
+	--color-token-green-5: var(--token-green-5);
+	--color-token-green-6: var(--token-green-6);
+
+	/* MUI Palette Variables for Tailwind v4 Auto-completion */
+	--color-mui-white: var(--mui-palette-white-main, #ffffff);
+
+	--color-mui-bg-default: var(--mui-palette-background-default);
+	--color-mui-bg-paper: var(--mui-palette-background-paper);
+
+	--color-mui-text-primary: var(--mui-palette-text-primary);
+	--color-mui-text-secondary: var(--mui-palette-text-secondary);
+	--color-mui-text-disabled: var(--mui-palette-text-disabled);
+
+	--color-mui-primary: var(--mui-palette-primary-main);
+	--color-mui-primary-light: var(--mui-palette-primary-light);
+	--color-mui-primary-dark: var(--mui-palette-primary-dark);
+	--color-mui-primary-contrast: var(--mui-palette-primary-contrastText);
+
+	--color-mui-secondary: var(--mui-palette-secondary-main);
+	--color-mui-secondary-light: var(--mui-palette-secondary-light);
+	--color-mui-secondary-dark: var(--mui-palette-secondary-dark);
+	--color-mui-secondary-contrast: var(--mui-palette-secondary-contrastText);
+
+	--color-mui-error: var(--mui-palette-error-main);
+	--color-mui-error-light: var(--mui-palette-error-light);
+	--color-mui-error-dark: var(--mui-palette-error-dark);
+	--color-mui-error-contrast: var(--mui-palette-error-contrastText);
+
+	--color-mui-warning: var(--mui-palette-warning-main);
+	--color-mui-warning-light: var(--mui-palette-warning-light);
+	--color-mui-warning-dark: var(--mui-palette-warning-dark);
+	--color-mui-warning-contrast: var(--mui-palette-warning-contrastText);
+
+	--color-mui-info: var(--mui-palette-info-main);
+	--color-mui-info-light: var(--mui-palette-info-light);
+	--color-mui-info-dark: var(--mui-palette-info-dark);
+	--color-mui-info-contrast: var(--mui-palette-info-contrastText);
+
+	--color-mui-success: var(--mui-palette-success-main);
+	--color-mui-success-light: var(--mui-palette-success-light);
+	--color-mui-success-dark: var(--mui-palette-success-dark);
+	--color-mui-success-contrast: var(--mui-palette-success-contrastText);
+
+	--color-mui-divider: var(--mui-palette-divider);
+}
+
+@layer base {
+	*,
+	::before,
+	::after {
+		border-color: var(--mui-palette-divider);
+	}
+}
+
+html,
+body {
+	min-height: 100vh;
+	background-color: var(--mui-palette-background-default);
+	color: var(--mui-palette-text-primary);
+}
+
+[data-mui-color-scheme='dark'] {
+	color-scheme: dark;
+	background-color: var(--token-background);
+}
+
+[data-mui-color-scheme='light'] {
+	color-scheme: light;
+	background-color: var(--token-background);
+}

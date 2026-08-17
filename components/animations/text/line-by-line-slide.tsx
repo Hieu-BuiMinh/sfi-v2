@@ -1,0 +1,93 @@
+// https://smoothui.dev/docs/components/line-by-line-slide
+
+'use client'
+
+import { motion, useInView, useReducedMotion } from 'motion/react'
+import React, { useRef } from 'react'
+
+export interface LineByLineSlideProps {
+	/** Text content or ReactNode element. Use "\n" to separate string lines, or pass `lines` instead. */
+	children?: React.ReactNode
+	className?: string
+	/** Delay before the animation starts, in milliseconds. */
+	delay?: number
+	/** Explicit line array. Takes precedence over children. */
+	lines?: string[]
+	/** Per-line stagger, in milliseconds. */
+	stagger?: number
+	/** Animate only once the text scrolls into view. */
+	triggerOnView?: boolean
+}
+
+const DURATION_S = 0.9
+const MS = 1000
+const EASE = [0.22, 1, 0.36, 1] as const
+
+export default function LineByLineSlide({
+	children,
+	lines: linesProp,
+	className = '',
+	delay = 0,
+	stagger = 120,
+	triggerOnView = false,
+}: LineByLineSlideProps) {
+	const ref = useRef<HTMLSpanElement>(null)
+	const inView = useInView(ref, { once: true })
+	const shouldReduceMotion = useReducedMotion()
+	const play = (!triggerOnView || inView) && !shouldReduceMotion
+
+	const lines = linesProp ?? (typeof children === 'string' ? children.split('\n') : children ? [children] : [])
+	const label = typeof children === 'string' ? children : undefined
+
+	return (
+		<span aria-label={label} className={className} ref={ref} style={{ display: 'block' }}>
+			{lines.map((line, index) => (
+				<motion.span
+					animate={play ? { opacity: 1, x: 0 } : undefined}
+					aria-hidden="true"
+					initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, x: -48 }}
+					// biome-ignore lint/suspicious/noArrayIndexKey: lines have no stable id
+					key={index}
+					style={{ display: 'block' }}
+					transition={
+						shouldReduceMotion
+							? { duration: 0 }
+							: {
+									duration: DURATION_S,
+									delay: delay / MS + (index * stagger) / MS,
+									ease: EASE,
+								}
+					}
+				>
+					{line}
+				</motion.span>
+			))}
+		</span>
+	)
+}
+
+/**
+ * Usage Examples:
+ *  1. Basic paragraph reveal with lines prop (best):
+ *     import LineByLineSlide from '@/components/animations/text/line-by-line-slide'
+ *
+ *     <LineByLineSlide
+ *       lines={[
+ *         'Monitor trade limits and margin requirements in real time.',
+ *         'Stay perfectly compliant while retaining full manual control over customer orders.',
+ *       ]}
+ *       delay={300}
+ *       stagger={100}
+ *       className="text-base text-zinc-300"
+ *     />
+ *
+ *  2. Using children with \n or JSX element:
+ *     <LineByLineSlide delay={200}>
+ *       {"First line\nSecond line"}
+ *     </LineByLineSlide>
+ *
+ *  3. Trigger on scroll (default is false):
+ *     <LineByLineSlide triggerOnView delay={200}>
+ *       {"Only animate when visible"}
+ *     </LineByLineSlide>
+ */

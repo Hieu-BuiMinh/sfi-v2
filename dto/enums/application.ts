@@ -1,0 +1,29 @@
+/* eslint-disable @typescript-eslint/no-duplicate-enum-values */
+export enum APPLICATION_STATUS {
+	STATUS_NOT_STARTED = 0,
+	STATUS_FILLING = 3,
+	STATUS_PENDING = 3,
+	STATUS_PROCESSING = 4,
+	STATUS_APPROVE = 1,
+	STATUS_REJECT = 2,
+}
+
+export enum APPLICATION_TYPE {
+	INDIVIDUAL = '1',
+	CORPORATE = '2',
+	INSTITUTIONAL = '3',
+	IRA = '4',
+	JOINT = '5',
+	LLC = '6',
+	PARTNERSHIP = '7',
+	SOLE_PROPRIETORSHIP = '8',
+	TRUST = '9',
+}
+
+export enum KYC_STATUS {
+	STATUS_NOT_STARTED = 0,
+	STATUS_PASSED = 1,
+	STATUS_FAILED = 2,
+	STATUS_PENDING = 3,
+	STATUS_PROCESSING = 4,
+}

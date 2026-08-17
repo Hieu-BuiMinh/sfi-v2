@@ -1,0 +1,42 @@
+export interface OrderHistoryResponse {
+  total: number
+  list: {
+    order: string
+    externalID: string
+    login: string
+    dealer: string
+    symbol: string
+    digits: number
+    digitsCurrency: number
+    contractSize: number
+    state: number
+    reason: number
+    timeSetup: number
+    timeExpiration: number
+    timeDone: number
+    type: number
+    typeFill: number
+    typeTime: number
+    priceOrder: number
+    priceTrigger: number
+    priceCurrent: number
+    priceSL: number
+    priceTP: number
+    volumeInitial: number
+    volumeInitialExt: number
+    volumeCurrent: number
+    volumeCurrentExt: number
+    expertID: number
+    positionID: number
+    positionByID: number
+    comment: string
+    timeSetupMsc: number
+    timeDoneMsc: number
+    rateMargin: number
+    createdAt: number
+    updatedAt: number
+    counterParty: string
+    platform: string
+  }[]
+  symbolList: string[]
+}
