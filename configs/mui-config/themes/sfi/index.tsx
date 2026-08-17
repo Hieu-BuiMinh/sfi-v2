@@ -132,7 +132,7 @@ export const sfiOnboardTheme = createTheme({
 		},
 	},
 	typography: {
-		fontFamily: '"Open Sans", var(--font-gt-america), var(--font-roboto), Inter, sans-serif',
+		fontFamily: 'var(--font-montserrat), Montserrat, sans-serif',
 	},
 	spacing: 4,
 	shape: { borderRadius: 6 },

@@ -117,7 +117,7 @@
 }
 
 @theme {
-	--font-sans: 'Open Sans', var(--font-gt-america), Inter, sans-serif;
+	--font-sans: var(--font-montserrat), Montserrat, sans-serif;
 
 	/* Token Palette Mapping for Tailwind v4 Auto-completion */
 	--color-token-bg: var(--token-background);
