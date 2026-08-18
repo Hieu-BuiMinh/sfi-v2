@@ -1,23 +1,28 @@
 /* eslint-disable @next/next/no-img-element */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react'
-import { Control } from 'react-hook-form'
-
-import { cn } from '@/utils/cn'
-import { FILE_ACCEPT_PRESETS, MAX_FILE_SIZE } from '@/constants/file-upload.const'
-import RfhFileUpload from '@/components/rhf-inputs/rhf-file-upload'
+import { Control, FieldValues, Path } from 'react-hook-form'
 import { SvgIconProps } from '@mui/material'
+import RfhFileUpload from '@/components/rhf-inputs/rhf-file-upload'
+import { FILE_ACCEPT_PRESETS, MAX_FILE_SIZE } from '@/constants/file-upload.const'
+import { cn } from '@/utils/cn'
 
-interface PassportUploadProps {
-	name: string
-	control: Control<any>
+interface DocumentUploadProps<T extends FieldValues> {
+	name: Path<T>
+	control: Control<T>
 	label: string
 	placeholder?: React.ReactNode
 	onFileSelect?: (data: { file: File; previewUrl: string; base64: string }) => void
 	disabled?: boolean
 }
 
-export const PassportUpload = ({ name, control, label, placeholder, onFileSelect, disabled }: PassportUploadProps) => {
+export const DocumentUpload = <T extends FieldValues>({
+	name,
+	control,
+	label,
+	placeholder,
+	onFileSelect,
+	disabled,
+}: DocumentUploadProps<T>) => {
 	return (
 		<RfhFileUpload
 			name={name}
@@ -27,19 +32,13 @@ export const PassportUpload = ({ name, control, label, placeholder, onFileSelect
 			label={label}
 			onFileSelect={onFileSelect}
 			disabled={disabled}
+			containerClassName="h-full !m-0"
 		>
-			{({
-				getInputProps,
-				getRootProps,
-				isDragActive,
-				preview,
-				// removePreview,
-				error: isError,
-			}) => (
+			{({ getInputProps, getRootProps, isDragActive, preview, error: isError }) => (
 				<div
 					{...getRootProps()}
 					className={cn(
-						'w-full cursor-pointer rounded-lg border p-8 text-center transition-colors',
+						'w-full flex-1 cursor-pointer rounded-lg border p-8 text-center transition-colors',
 						isDragActive
 							? 'border-mui-primary bg-mui-primary/10'
 							: isError
@@ -50,17 +49,15 @@ export const PassportUpload = ({ name, control, label, placeholder, onFileSelect
 					<input {...getInputProps()} />
 					<div className="relative">
 						{preview && (
-							<>
-								<div className="flex h-48 w-full items-center justify-center overflow-hidden rounded">
-									<img src={preview} alt="Preview" className="size-full rounded object-cover" />
-								</div>
-							</>
+							<div className="flex h-44 w-full items-center justify-center overflow-hidden rounded">
+								<img src={preview} alt="Preview" className="size-full rounded object-cover" />
+							</div>
 						)}
-						{!preview && <div className="bg-mui-action-hover h-48 w-full rounded" />}
+						{!preview && <div className="bg-mui-action-hover h-44 w-full rounded" />}
 						<div className="flex flex-col items-center gap-2">
 							{placeholder || (
 								<>
-									<Upload className="text-mui-text-secondary" />
+									<UploadIcon className="text-mui-text-secondary" />
 									<p className="text-mui-text-primary font-medium">Drag & drop your file here</p>
 									<p className="text-mui-text-secondary text-sm">or click to browse</p>
 								</>
@@ -73,7 +70,7 @@ export const PassportUpload = ({ name, control, label, placeholder, onFileSelect
 	)
 }
 
-const Upload = (props: SvgIconProps) => (
+const UploadIcon = (props: SvgIconProps) => (
 	<svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
 		<path d="M12 16V8M12 8L9 11M12 8L15 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
 		<path

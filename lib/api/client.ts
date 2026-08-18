@@ -3,10 +3,16 @@ import toastUtil from '@/utils/toast'
 import { getAppConfig } from '@/utils/get-app-config'
 import { AxiosBuilder } from '@/lib/api/axios-builder'
 import { tokenManager } from '@/lib/api/token-manager'
+import { getClientApiLanguage } from '@/utils/get-language'
 
 export const clientApi = new AxiosBuilder()
 	.addRequestInterceptor(async (config) => {
 		if (typeof window !== 'undefined') {
+			config.params = {
+				...config.params,
+				lang: getClientApiLanguage(),
+			}
+
 			const appConfig = getAppConfig()
 			const isBFF = appConfig.isBFF ?? true
 

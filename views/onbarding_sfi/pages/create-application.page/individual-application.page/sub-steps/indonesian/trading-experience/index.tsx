@@ -13,8 +13,8 @@ import {
 import TradingExperienceFormSection from './trading-experience-form-section'
 
 function IndoTradingExperienceFormStep() {
-	const { currentIndiApp, updateApplicationMutation } = useCustomerApplication()
-	const isReadOnly = false
+	const { currentIndiApp, updateApplicationMutation, isApplicationProcessing } = useCustomerApplication()
+	const isReadOnly = isApplicationProcessing
 	const [, setSubStep] = useQueryState('subStep')
 	const tradingExperience = currentIndiApp?.content?.customer_particular?.trading_experience
 
@@ -62,22 +62,25 @@ function IndoTradingExperienceFormStep() {
 			<form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6">
 				<fieldset disabled={isReadOnly} className="flex flex-col gap-6">
 					<TradingExperienceFormSection />
-
-					<div className="mt-4 flex justify-end">
-						<Button
-							type="submit"
-							variant="contained"
-							size="large"
-							disabled={updateApplicationMutation.isPending || isReadOnly}
-						>
-							{updateApplicationMutation.isPending ? (
-								<CircularProgress size={24} color="inherit" />
-							) : (
-								'Save & Continue'
-							)}
-						</Button>
-					</div>
 				</fieldset>
+
+				<div className="mt-4 flex justify-end">
+					<Button
+						type={isApplicationProcessing ? 'button' : 'submit'}
+						variant="contained"
+						size="large"
+						onClick={isApplicationProcessing ? () => setSubStep('bank_account') : undefined}
+						disabled={updateApplicationMutation.isPending}
+					>
+						{updateApplicationMutation.isPending ? (
+							<CircularProgress size={24} color="inherit" />
+						) : isApplicationProcessing ? (
+							'Continue'
+						) : (
+							'Save & Continue'
+						)}
+					</Button>
+				</div>
 			</form>
 		</FormProvider>
 	)

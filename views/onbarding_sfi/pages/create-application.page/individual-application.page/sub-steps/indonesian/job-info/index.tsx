@@ -17,8 +17,8 @@ import {
 import JobInformationFormSection from './job-information-form-section'
 
 function IndoJobInfoFormStep() {
-	const { currentIndiApp, updateApplicationMutation } = useCustomerApplication()
-	const isReadOnly = false
+	const { currentIndiApp, updateApplicationMutation, isApplicationProcessing } = useCustomerApplication()
+	const isReadOnly = isApplicationProcessing
 	const [, setSubStep] = useQueryState('subStep')
 	const jobDetails = currentIndiApp?.content?.customer_particular?.job_details
 
@@ -73,22 +73,25 @@ function IndoJobInfoFormStep() {
 			<form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6">
 				<fieldset disabled={isReadOnly} className="flex flex-col gap-6">
 					<JobInformationFormSection />
-
-					<div className="mt-4 flex justify-end">
-						<Button
-							type="submit"
-							variant="contained"
-							size="large"
-							disabled={updateApplicationMutation.isPending || isReadOnly}
-						>
-							{updateApplicationMutation.isPending ? (
-								<CircularProgress size={24} color="inherit" />
-							) : (
-								'Save & Continue'
-							)}
-						</Button>
-					</div>
 				</fieldset>
+
+				<div className="mt-4 flex justify-end">
+					<Button
+						type={isApplicationProcessing ? 'button' : 'submit'}
+						variant="contained"
+						size="large"
+						onClick={isApplicationProcessing ? () => setSubStep('trading_experience') : undefined}
+						disabled={updateApplicationMutation.isPending}
+					>
+						{updateApplicationMutation.isPending ? (
+							<CircularProgress size={24} color="inherit" />
+						) : isApplicationProcessing ? (
+							'Continue'
+						) : (
+							'Save & Continue'
+						)}
+					</Button>
+				</div>
 			</form>
 		</FormProvider>
 	)

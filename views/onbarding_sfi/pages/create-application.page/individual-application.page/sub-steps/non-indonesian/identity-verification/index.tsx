@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { identityVerificationSchema, IdentityVerificationFormData } from './form-validate/schema'
@@ -11,8 +11,9 @@ import IdentityVerificationFormSection from './identity-verification-form-sectio
 import { getAppConfig } from '@/utils/get-app-config'
 
 function NonIndoIdentityVerificationFormStep() {
-	const { currentIndiApp, updateApplicationMutation } = useCustomerApplication()
-	const isReadOnly = false
+	const { currentIndiApp, updateApplicationMutation, isApplicationProcessing } = useCustomerApplication()
+	const isReadOnly = isApplicationProcessing
+	const [isDocumentProcessing, setIsDocumentProcessing] = useState(false)
 
 	const [, setStep] = useQueryState('step', parseAsInteger)
 	const [, setSubStep] = useQueryState('subStep')
@@ -20,7 +21,9 @@ function NonIndoIdentityVerificationFormStep() {
 	const methods = useForm<IdentityVerificationFormData>({
 		resolver: zodResolver(identityVerificationSchema),
 		defaultValues: {
-			verification_document: 'passport',
+			verification_document:
+				currentIndiApp?.content?.customer_particular?.identify_verification?.verification_document ||
+				'passport',
 			front: { file: null, previewUrl: '', base64: '' },
 			selfie: { file: null, previewUrl: '', base64: '' },
 		},
@@ -41,6 +44,7 @@ function NonIndoIdentityVerificationFormStep() {
 							customer_particular: {
 								...currentIndiApp.content?.customer_particular,
 								identify_verification: {
+									...currentIndiApp.content?.customer_particular?.identify_verification,
 									...identify_verification,
 									...(front?.previewUrl && {
 										front: front.previewUrl.replace(`${apiBase}/storage/`, ''),
@@ -67,23 +71,26 @@ function NonIndoIdentityVerificationFormStep() {
 		<FormProvider {...methods}>
 			<form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6">
 				<fieldset disabled={isReadOnly} className="flex flex-col gap-6">
-					<IdentityVerificationFormSection />
-
-					<div className="mt-4 flex justify-end">
-						<Button
-							type="submit"
-							variant="contained"
-							size="large"
-							disabled={updateApplicationMutation.isPending || isReadOnly}
-						>
-							{updateApplicationMutation.isPending ? (
-								<CircularProgress size={24} color="inherit" />
-							) : (
-								'Save & Continue'
-							)}
-						</Button>
-					</div>
+					<IdentityVerificationFormSection onProcessingChange={setIsDocumentProcessing} />
 				</fieldset>
+
+				<div className="mt-4 flex justify-end">
+					<Button
+						type={isApplicationProcessing ? 'button' : 'submit'}
+						variant="contained"
+						size="large"
+						onClick={isApplicationProcessing ? () => setSubStep('personal_information') : undefined}
+						disabled={updateApplicationMutation.isPending || isDocumentProcessing}
+					>
+						{updateApplicationMutation.isPending ? (
+							<CircularProgress size={24} color="inherit" />
+						) : isApplicationProcessing ? (
+							'Continue'
+						) : (
+							'Save & Continue'
+						)}
+					</Button>
+				</div>
 			</form>
 		</FormProvider>
 	)

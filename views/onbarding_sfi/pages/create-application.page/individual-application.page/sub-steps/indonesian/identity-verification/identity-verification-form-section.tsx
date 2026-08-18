@@ -1,32 +1,38 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 
 import RfhSfiRadioGroup from '@/components/rhf-inputs/rfh-sfi-radio-group'
-import RfhSfiTextField from '@/components/rhf-inputs/rfh-sfi-textfield'
 import { SFI_DOCUMENT_TYPES } from '@/constants/sfi/document-types.const'
 import { getAppConfig } from '@/utils/get-app-config'
 import { useCustomerApplication } from '@/views/onbarding_sfi/components/customer-application-provider'
-import { CameraCapture } from '@/views/onbarding_sfi/pages/create-application.page/components/selfie/camera-capture'
-import { PassportUpload } from '@/views/onbarding_sfi/pages/create-application.page/components/selfie/passport-upload'
-import { useEffect } from 'react'
-
-import { Button } from '@mui/material'
-import { IdentityVerificationFormData } from './form-validate/schema'
+import { useEffect, useState } from 'react'
 import { useFormContext } from 'react-hook-form'
-import RfhSfiPatternInput from '@/components/rhf-inputs/rfh-sfi-pattern-input'
+import { IdentityVerificationFormData } from './form-validate/schema'
+import PrivyLivenessDialog from './liveness/privy-liveness-dialog'
+import PrivyLivenessUpload from './liveness/privy-liveness-upload'
+import { usePrivyLiveness } from './liveness/use-privy-liveness'
+import { IndonesianOcrTarget, useIndonesianOcr } from './ocr/use-indonesian-ocr'
+import VerificationDocumentUpload, { VerificationDocumentData } from './verification-document-upload'
 
-function IdentityVerificationFormSection() {
-	const appConfig = getAppConfig()
-	const baseImgPath = (img?: string) => (img ? `${appConfig?.api}/storage/${img}` : undefined)
+interface IdentityVerificationFormSectionProps {
+	onProcessingChange: (isProcessing: boolean) => void
+}
 
+type UploadTarget = 'front' | 'selfie' | 'npwp'
+
+function IdentityVerificationFormSection({ onProcessingChange }: IdentityVerificationFormSectionProps) {
+	const apiBase = getAppConfig()?.api
 	const { control, setValue, watch } = useFormContext<IdentityVerificationFormData>()
-	const { currentIndiApp, uploadApplicationDocumentMutation } = useCustomerApplication()
-
+	const { currentIndiApp, uploadApplicationDocumentMutation, deleteApplicationDocumentMutation } =
+		useCustomerApplication()
+	const { attemptId, isAnyOcrLoading, isOcrLoading, runOcr } = useIndonesianOcr()
+	const [uploadingTargets, setUploadingTargets] = useState<Partial<Record<UploadTarget, boolean>>>({})
 	const verificationDocument = watch('verification_document')
-
+	const selfie = watch('selfie')
+	const { closeLiveness, isLivenessProcessing, livenessUrl, startLiveness } = usePrivyLiveness({
+		attemptId,
+		onSelfieUploaded: (data) => setValue('selfie', data, { shouldValidate: true }),
+	})
 	const existingDocuments = currentIndiApp?.application_documents || []
-
 	const existingFront = existingDocuments.find((doc) => doc.type_id === SFI_DOCUMENT_TYPES.KTP_FRONT.toString())
 	const existingPassportFront = existingDocuments.find(
 		(doc) => doc.type_id === SFI_DOCUMENT_TYPES.PASSPORT_FRONT.toString()
@@ -37,69 +43,94 @@ function IdentityVerificationFormSection() {
 	const existingNpwpPhoto = existingDocuments.find((doc) => doc.type_id === SFI_DOCUMENT_TYPES.NPWP.toString())
 
 	useEffect(() => {
-		const frontKTPPath = existingFront?.path
-		const frontPassportPath = existingPassportFront?.path
-		const selfiePath = existingSelfie?.path
-		const npwpPath = existingNpwpPhoto?.path
+		const getDocumentUrl = (path?: string) => (path ? `${apiBase}/storage/${path}` : '')
 
-		const activeFrontPath = verificationDocument === 'ktp' ? frontKTPPath : frontPassportPath
 		setValue('front', {
 			file: null,
-			previewUrl: baseImgPath(activeFrontPath) || '',
+			previewUrl: getDocumentUrl(
+				verificationDocument === 'ktp' ? existingFront?.path : existingPassportFront?.path
+			),
 			base64: '',
 		})
-
 		setValue('selfie', {
 			file: null,
-			previewUrl: baseImgPath(selfiePath) || '',
+			previewUrl: getDocumentUrl(existingSelfie?.path),
 			base64: '',
 		})
-
 		setValue('npwp_photo', {
 			file: null,
-			previewUrl: baseImgPath(npwpPath) || '',
+			previewUrl: getDocumentUrl(existingNpwpPhoto?.path),
 			base64: '',
 		})
 	}, [
+		apiBase,
 		existingFront?.path,
+		existingNpwpPhoto?.path,
 		existingPassportFront?.path,
 		existingSelfie?.path,
-		existingNpwpPhoto?.path,
 		setValue,
 		verificationDocument,
 	])
 
-	const handleFileSelect = async (
-		type: 'front' | 'selfie' | 'npwp',
-		data: { file: File; previewUrl: string; base64: string }
-	) => {
+	const handleFileSelect = async (type: UploadTarget, data: VerificationDocumentData) => {
+		if (!currentIndiApp) return
+		setUploadingTargets((current) => ({ ...current, [type]: true }))
+
 		try {
-			let typeProof: string
+			let documentType: number
+			let replacedDocumentTypes: number[]
+			let ocrTarget: IndonesianOcrTarget | undefined
+
 			if (type === 'front') {
-				typeProof =
-					verificationDocument === 'ktp'
-						? SFI_DOCUMENT_TYPES.KTP_FRONT.toString()
-						: SFI_DOCUMENT_TYPES.PASSPORT_FRONT.toString()
+				const isKtp = verificationDocument === 'ktp'
+				documentType = isKtp ? SFI_DOCUMENT_TYPES.KTP_FRONT : SFI_DOCUMENT_TYPES.PASSPORT_FRONT
+				replacedDocumentTypes = [SFI_DOCUMENT_TYPES.KTP_FRONT, SFI_DOCUMENT_TYPES.PASSPORT_FRONT]
+				ocrTarget = isKtp ? 'ktp' : 'passport'
 			} else if (type === 'selfie') {
-				typeProof = SFI_DOCUMENT_TYPES.PASSPORT_SELFIE.toString()
+				documentType = SFI_DOCUMENT_TYPES.PASSPORT_SELFIE
+				replacedDocumentTypes = [SFI_DOCUMENT_TYPES.PASSPORT_SELFIE]
 			} else {
-				typeProof = SFI_DOCUMENT_TYPES.NPWP.toString()
+				documentType = SFI_DOCUMENT_TYPES.NPWP
+				replacedDocumentTypes = [SFI_DOCUMENT_TYPES.NPWP]
+				ocrTarget = 'npwp'
 			}
 
+			await Promise.all(
+				existingDocuments
+					.filter((document) => replacedDocumentTypes.includes(Number(document.type_id)))
+					.map((document) => deleteApplicationDocumentMutation.mutateAsync({ documentId: document.id }))
+			)
+
+			if (ocrTarget) void runOcr(ocrTarget, data.file)
+
 			await uploadApplicationDocumentMutation.mutateAsync({
-				applicationId: currentIndiApp?.id || '',
-				typeProof,
+				applicationId: currentIndiApp.id,
+				typeProof: documentType.toString(),
 				files: [data.file],
 			})
 
-			const fieldName = type === 'front' ? 'front' : type === 'selfie' ? 'selfie' : 'npwp_photo'
-			setValue(fieldName, data)
-		} catch (error) {
-			console.error('Upload failed:', error)
+			setValue(type === 'npwp' ? 'npwp_photo' : type, data)
+		} catch (error: unknown) {
+			console.error('Document upload failed:', error)
+		} finally {
+			setUploadingTargets((current) => {
+				const next = { ...current }
+				delete next[type]
+				return next
+			})
 		}
 	}
 
 	const identityLabel = verificationDocument === 'ktp' ? 'KTP' : 'Passport'
+	const frontOcrTarget = verificationDocument === 'ktp' ? 'ktp' : 'passport'
+	const isFrontProcessing = Boolean(uploadingTargets.front) || isOcrLoading(frontOcrTarget)
+	const isSelfieProcessing = Boolean(uploadingTargets.selfie)
+	const isNpwpProcessing = Boolean(uploadingTargets.npwp) || isOcrLoading('npwp')
+	const isProcessing = Object.values(uploadingTargets).some(Boolean) || isAnyOcrLoading || isLivenessProcessing
+
+	useEffect(() => {
+		onProcessingChange(isProcessing)
+	}, [isProcessing, onProcessingChange])
 
 	return (
 		<div className="flex flex-col gap-6">
@@ -111,10 +142,10 @@ function IdentityVerificationFormSection() {
 				</p>
 			</div>
 
-			{/* ID Type Selection */}
 			<RfhSfiRadioGroup
 				name="verification_document"
 				control={control}
+				disabled={isProcessing}
 				row
 				className="gap-8"
 				options={[
@@ -123,108 +154,56 @@ function IdentityVerificationFormSection() {
 				]}
 			/>
 
-			{/* KTP/Passport Number */}
-			<div className="grid grid-cols-1 gap-4">
-				<RfhSfiTextField name="ktp_or_passport" control={control} label={`${identityLabel} Number`} />
-			</div>
-
-			{/* Upload ID Documents */}
 			<div>
 				<p className="text-mui-text-primary mb-4 text-base font-semibold">
 					Upload {verificationDocument === 'ktp' ? 'Indonesian Identity(KTP)' : 'Passport'}
 				</p>
 
-				<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-					{/* Front KTP Side */}
-					<PassportUpload
+				<div className="grid grid-cols-1 items-stretch gap-4 lg:grid-cols-2">
+					<VerificationDocumentUpload
 						name="front"
-						control={control as any}
+						control={control}
 						label="Front Side"
 						onFileSelect={(data) => handleFileSelect('front', data)}
-						disabled={uploadApplicationDocumentMutation.isPending}
-						placeholder={
-							<div className="text-mui-text-secondary flex flex-col gap-1 text-xs">
-								<p className="text-mui-text-secondary my-3 text-base">Front Side</p>
-								<p>Supported files: .png, .jpg</p>
-								<p>Maximum file size: 10.0 MB</p>
-								<div className="mt-2 flex items-center justify-center gap-3">
-									<Button variant="contained" disabled={uploadApplicationDocumentMutation.isPending}>
-										{uploadApplicationDocumentMutation.isPending ? 'Uploading...' : 'Upload'}
-									</Button>
-									<CameraCapture onCapture={(data) => handleFileSelect('front', data)} />
-								</div>
-							</div>
-						}
+						disabled={isFrontProcessing}
 					/>
 
-					{/* Selfie with ID */}
-					<PassportUpload
-						name="selfie"
-						control={control as any}
-						label={`Selfie with your ${identityLabel}`}
-						onFileSelect={(data) => handleFileSelect('selfie', data)}
-						disabled={uploadApplicationDocumentMutation.isPending}
-						placeholder={
-							<div className="text-mui-text-secondary flex flex-col gap-1 text-xs">
-								<p className="text-mui-text-secondary my-3 text-base">
-									Selfie with your {identityLabel}
-								</p>
-								<p>Supported files: .png, .jpg</p>
-								<p>Maximum file size: 10.0 MB</p>
-								<div className="mt-2 flex items-center justify-center gap-3">
-									<Button variant="contained" disabled={uploadApplicationDocumentMutation.isPending}>
-										{uploadApplicationDocumentMutation.isPending ? 'Uploading...' : 'Upload'}
-									</Button>
-									<CameraCapture onCapture={(data) => handleFileSelect('selfie', data)} />
-								</div>
-							</div>
-						}
-					/>
+					{verificationDocument === 'ktp' ? (
+						<PrivyLivenessUpload
+							previewUrl={selfie.previewUrl}
+							disabled={isLivenessProcessing || Boolean(uploadingTargets.front) || isOcrLoading('ktp')}
+							onStart={startLiveness}
+						/>
+					) : (
+						<VerificationDocumentUpload
+							name="selfie"
+							control={control}
+							label={`Selfie with your ${identityLabel}`}
+							onFileSelect={(data) => handleFileSelect('selfie', data)}
+							disabled={isSelfieProcessing}
+						/>
+					)}
 				</div>
 			</div>
 
-			{/* NPWP Section */}
 			<div className="mt-4 flex flex-col gap-4">
 				<div className="flex flex-col gap-1">
 					<p className="text-mui-primary-main text-lg font-semibold">Tax Identification Number(NPWP)</p>
-					<p className="text-mui-text-secondary text-sm">NPWP consists of 15 numeric characters</p>
+					<p className="text-mui-text-secondary text-sm">Upload a clear photo of your NPWP</p>
 				</div>
 
 				<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-					<div className="col-span-1 lg:col-span-1">
-						<RfhSfiPatternInput
-							name="npwp_number"
-							control={control}
-							label="Indonesia identity number (NPWP)*"
-							format="##.###.###.#-###.###"
-							mask="_"
-						/>
-					</div>
-				</div>
-
-				<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
-					<PassportUpload
+					<VerificationDocumentUpload
 						name="npwp_photo"
-						control={control as any}
+						control={control}
 						label="NPWP photo"
 						onFileSelect={(data) => handleFileSelect('npwp', data)}
-						disabled={uploadApplicationDocumentMutation.isPending}
-						placeholder={
-							<div className="text-mui-text-secondary flex flex-col gap-1 text-xs">
-								<p className="text-mui-text-secondary my-3 text-base">NPWP photo</p>
-								<p>Supported files: .png, .jpg</p>
-								<p>Maximum file size: 10.0 MB</p>
-								<div className="mt-2 flex items-center justify-center gap-3">
-									<Button variant="contained" disabled={uploadApplicationDocumentMutation.isPending}>
-										{uploadApplicationDocumentMutation.isPending ? 'Uploading...' : 'Upload'}
-									</Button>
-									<CameraCapture onCapture={(data) => handleFileSelect('npwp', data)} />
-								</div>
-							</div>
-						}
+						disabled={isNpwpProcessing}
 					/>
 				</div>
 			</div>
+
+			<PrivyLivenessDialog url={livenessUrl} isProcessing={isLivenessProcessing} onClose={closeLiveness} />
 		</div>
 	)
 }

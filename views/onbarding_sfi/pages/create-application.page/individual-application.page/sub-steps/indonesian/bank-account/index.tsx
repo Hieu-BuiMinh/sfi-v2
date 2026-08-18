@@ -10,8 +10,8 @@ import BankAccountFormSection from './bank-account-form-section'
 import { BankAccountFormData, bankAccountSchema } from './form-validate/schema'
 
 function IndoBankAccountFormStep() {
-	const { currentIndiApp, updateApplicationMutation } = useCustomerApplication()
-	const isReadOnly = false
+	const { currentIndiApp, updateApplicationMutation, isApplicationProcessing } = useCustomerApplication()
+	const isReadOnly = isApplicationProcessing
 	const [, setStep] = useQueryState('step', parseAsInteger)
 	const bankAccount = currentIndiApp?.content?.customer_particular?.bank_account
 
@@ -53,22 +53,25 @@ function IndoBankAccountFormStep() {
 			<form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col gap-6">
 				<fieldset disabled={isReadOnly} className="flex flex-col gap-6">
 					<BankAccountFormSection />
-
-					<div className="mt-4 flex justify-end">
-						<Button
-							type="submit"
-							variant="contained"
-							size="large"
-							disabled={updateApplicationMutation.isPending || isReadOnly}
-						>
-							{updateApplicationMutation.isPending ? (
-								<CircularProgress size={24} color="inherit" />
-							) : (
-								'Complete Step 1'
-							)}
-						</Button>
-					</div>
 				</fieldset>
+
+				<div className="mt-4 flex justify-end">
+					<Button
+						type={isApplicationProcessing ? 'button' : 'submit'}
+						variant="contained"
+						size="large"
+						onClick={isApplicationProcessing ? () => setStep(1) : undefined}
+						disabled={updateApplicationMutation.isPending}
+					>
+						{updateApplicationMutation.isPending ? (
+							<CircularProgress size={24} color="inherit" />
+						) : isApplicationProcessing ? (
+							'Continue'
+						) : (
+							'Complete Step 1'
+						)}
+					</Button>
+				</div>
 			</form>
 		</FormProvider>
 	)

@@ -25,7 +25,14 @@ function VerifyEmailPageView() {
 						fullWidth
 						onClick={handleResend}
 						disabled={isSending || isChecking || cooldown > 0}
-						loading={isSending}
+						color="primary"
+						sx={{
+							'&.Mui-disabled': {
+								color: 'primary.main',
+								borderColor: 'primary.main',
+								opacity: 0.6,
+							},
+						}}
 					>
 						{isSending ? 'Resending...' : cooldown > 0 ? `Resend Email (${cooldown}s)` : 'Resend Email'}
 					</Button>
@@ -34,7 +41,13 @@ function VerifyEmailPageView() {
 						fullWidth
 						onClick={handleAlreadyVerified}
 						disabled={isChecking || isSending}
-						loading={isChecking}
+						sx={{
+							'&.Mui-disabled': {
+								color: 'primary.contrastText',
+								backgroundColor: 'primary.main',
+								opacity: 0.6,
+							},
+						}}
 					>
 						{isChecking ? 'Checking...' : "I've Verified My Email"}
 					</Button>

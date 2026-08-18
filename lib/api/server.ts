@@ -1,4 +1,5 @@
-import { AxiosBuilder } from '@/lib/api/client/axios-builder'
+import { AxiosBuilder } from '@/lib/api/axios-builder'
+import { getServerApiLanguage } from '@/utils/get-language'
 import { getAuth0ByHost } from '@/lib/auth0'
 import { NextRequest } from 'next/server'
 
@@ -6,6 +7,13 @@ import { NextRequest } from 'next/server'
 export async function createServerApi(request?: NextRequest) {
 	const serverApi = new AxiosBuilder()
 		.setBaseUrl(process.env.BE_API_URL || 'http://localhost:8080')
+		.addRequestInterceptor((config) => {
+			config.params = {
+				...config.params,
+				lang: getServerApiLanguage(request),
+			}
+			return config
+		})
 		.setApiResponseErrorInterceptor((error: import('axios').AxiosError) => {
 			console.error('[SERVER API ERROR]', error?.response?.status, error?.message)
 			return Promise.reject(error)

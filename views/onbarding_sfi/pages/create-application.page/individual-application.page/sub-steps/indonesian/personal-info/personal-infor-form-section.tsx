@@ -16,6 +16,7 @@ import RfhSfiCountrySelect from '@/components/rhf-inputs/rfh-sfi-country-select'
 import RfhSfiSingleAutocomplete from '@/components/rhf-inputs/rfh-sfi-single-autocomplete'
 import { Typography, Divider } from '@mui/material'
 import { CITY_OPTIONS } from '@/constants/sfi/indo-city.const'
+import RfhSfiCheckbox from '@/components/rhf-inputs/rfh-sfi-checkbox'
 
 function PersonalInforFormSection() {
 	const { control, setValue } = useFormContext<PersonalInformationFormData>()
@@ -24,12 +25,58 @@ function PersonalInforFormSection() {
 		control,
 		name: 'relationship_with_customer',
 	})
+	const isRegisteredAddressSame = useWatch({
+		control,
+		name: 'is_address_same',
+	})
+	const [
+		registeredAddress,
+		registeredVillage,
+		registeredSubDistrict,
+		registeredCity,
+		registeredProvince,
+		registeredPostalCode,
+		registeredCountry,
+	] = useWatch({
+		control,
+		name: [
+			'home_address',
+			'home_address_village',
+			'home_address_sub_district',
+			'home_address_regency_code',
+			'home_address_province',
+			'home_address_postal_code',
+			'home_address_country',
+		],
+	})
 
 	useEffect(() => {
-		if (relationshipValue !== 'Other') {
+		if (relationshipValue !== 'other') {
 			setValue('relationship_with_customer_other', '')
 		}
 	}, [relationshipValue, setValue])
+
+	useEffect(() => {
+		if (!isRegisteredAddressSame) return
+
+		setValue('current_address', registeredAddress)
+		setValue('current_address_village', registeredVillage)
+		setValue('current_address_sub_district', registeredSubDistrict)
+		setValue('current_address_regency_code', registeredCity)
+		setValue('current_address_province', registeredProvince)
+		setValue('current_address_postal_code', registeredPostalCode)
+		setValue('current_address_country', registeredCountry)
+	}, [
+		isRegisteredAddressSame,
+		registeredAddress,
+		registeredCity,
+		registeredCountry,
+		registeredPostalCode,
+		registeredProvince,
+		registeredSubDistrict,
+		registeredVillage,
+		setValue,
+	])
 
 	return (
 		<div className="flex flex-col gap-6">
@@ -38,8 +85,20 @@ function PersonalInforFormSection() {
 					Personal Information
 				</Typography>
 
-				{/* Full Name */}
 				<div className="col-span-1 lg:col-span-2">
+					<RfhSfiTextField name="ktp_or_passport" control={control} label="KTP or Passport Number" />
+				</div>
+
+				<div className="col-span-1 lg:col-span-2">
+					<RfhSfiTextField
+						name="npwp_number"
+						control={control}
+						label="Tax Identification Number (NPWP) (Optional)"
+					/>
+				</div>
+
+				{/* Full Name */}
+				<div className="col-span-1">
 					<RfhSfiTextField name="full_name" control={control} label="Full name (KTP/Passport)" />
 				</div>
 
@@ -101,21 +160,29 @@ function PersonalInforFormSection() {
 					/>
 				</div>
 
+				<RfhSfiTextField name="home_address_village" control={control} label="Suburb/Village (Optional)" />
+				<RfhSfiTextField name="home_address_sub_district" control={control} label="Sub-District (Optional)" />
+
+				<RfhSfiSingleAutocomplete
+					name="home_address_regency_code"
+					control={control}
+					label="City/Regency"
+					options={CITY_OPTIONS}
+					disableClearable
+				/>
+				<RfhSfiTextField name="home_address_province" control={control} label="Province (Optional)" />
+
 				{/* Registered Postal Code */}
 				<div className="col-span-1">
 					<RfhSfiTextField name="home_address_postal_code" control={control} label="Postal Code" />
 				</div>
 
-				{/* Registered City */}
-				<div className="col-span-1">
-					<RfhSfiSingleAutocomplete
-						name="home_address_regency_code"
-						control={control}
-						label="City"
-						options={CITY_OPTIONS}
-						disableClearable
-					/>
-				</div>
+				<RfhSfiCountrySelect
+					name="home_address_country"
+					control={control}
+					label="Country (Optional)"
+					containerClassName="w-full"
+				/>
 			</div>
 
 			<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
@@ -144,6 +211,12 @@ function PersonalInforFormSection() {
 
 			<Divider />
 
+			<RfhSfiCheckbox
+				name="is_address_same"
+				control={control}
+				label="Check this box if your ID registered address is the same as your residential address"
+			/>
+
 			<div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
 				<Typography variant="subtitle1" className="text-primary col-span-1 font-bold lg:col-span-2">
 					Current Address
@@ -157,24 +230,55 @@ function PersonalInforFormSection() {
 						label="Current Address"
 						multiline
 						rows={2}
+						disabled={isRegisteredAddressSame}
 					/>
 				</div>
+
+				<RfhSfiTextField
+					name="current_address_village"
+					control={control}
+					label="Suburb/Village (Optional)"
+					disabled={isRegisteredAddressSame}
+				/>
+				<RfhSfiTextField
+					name="current_address_sub_district"
+					control={control}
+					label="Sub-District (Optional)"
+					disabled={isRegisteredAddressSame}
+				/>
+
+				<RfhSfiSingleAutocomplete
+					name="current_address_regency_code"
+					control={control}
+					label="City/Regency"
+					options={CITY_OPTIONS}
+					disableClearable
+					disabled={isRegisteredAddressSame}
+				/>
+				<RfhSfiTextField
+					name="current_address_province"
+					control={control}
+					label="Province (Optional)"
+					disabled={isRegisteredAddressSame}
+				/>
 
 				{/* Current Postal Code */}
 				<div className="col-span-1">
-					<RfhSfiTextField name="current_address_postal_code" control={control} label="Postal Code" />
-				</div>
-
-				{/* Current City */}
-				<div className="col-span-1">
-					<RfhSfiSingleAutocomplete
-						name="current_address_regency_code"
+					<RfhSfiTextField
+						name="current_address_postal_code"
 						control={control}
-						label="City"
-						options={CITY_OPTIONS}
-						disableClearable
+						label="Postal Code"
+						disabled={isRegisteredAddressSame}
 					/>
 				</div>
+
+				<RfhSfiCountrySelect
+					name="current_address_country"
+					control={control}
+					label="Country (Optional)"
+					containerClassName="w-full"
+					disabled={isRegisteredAddressSame}
+				/>
 			</div>
 
 			<Divider />
@@ -206,7 +310,7 @@ function PersonalInforFormSection() {
 				</div>
 
 				{/* Relationship Other */}
-				{relationshipValue === 'Other' && (
+				{relationshipValue === 'other' && (
 					<div className="col-span-1">
 						<RfhSfiTextField
 							name="relationship_with_customer_other"
@@ -220,6 +324,15 @@ function PersonalInforFormSection() {
 				<div className="col-span-1">
 					<RfhSfiTextField name="mother_maiden_name" control={control} label="Mother's Maiden Name" />
 				</div>
+			</div>
+
+			<Divider />
+
+			<div className="flex flex-col gap-4">
+				<Typography variant="subtitle1" className="text-primary font-bold">
+					Referral Code
+				</Typography>
+				<RfhSfiTextField name="referral_code" control={control} label="Referral Code" />
 			</div>
 		</div>
 	)

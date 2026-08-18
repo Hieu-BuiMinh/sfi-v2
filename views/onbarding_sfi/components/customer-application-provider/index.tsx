@@ -7,7 +7,7 @@ import { TApplication } from '@/services/admin/applications/applications-res.dto
 import { useMutation, UseMutationResult, useQuery, useQueryClient, UseQueryResult } from '@tanstack/react-query'
 import { createContext, ReactNode, useContext } from 'react'
 
-import { APPLICATION_TYPE } from '@/dto/enums/application'
+import { APPLICATION_STATUS, APPLICATION_TYPE } from '@/dto/enums/application'
 import { customerApplicationService } from '@/services/customer/applications'
 import { TApplicationWorksheet } from '@/services/customer/applications/applications-res.dto'
 
@@ -44,6 +44,7 @@ interface CustomerApplicationContextType {
 	verifyKycMutation: UseMutationResult<TVerifyKycResponse, Error, { application_id: string }>
 	currentIndiApp?: TApplication
 	currentCorpApp?: TApplication
+	isApplicationProcessing: boolean
 }
 
 export const CustomerApplicationContext = createContext<CustomerApplicationContextType | undefined>(undefined)
@@ -77,6 +78,24 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 		enabled: !!id,
 	})
 
+	const applications = applicationsQuery?.data?.data
+	const individualAppsSorted = applications
+		?.filter((app: any) => app?.type_id === APPLICATION_TYPE.INDIVIDUAL)
+		?.sort((a: any, b: any) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+	const currentIndiApp = individualAppsSorted?.[individualAppsSorted.length - 1]
+	const isApplicationProcessing = currentIndiApp?.status === APPLICATION_STATUS.STATUS_PROCESSING
+
+	const corporateAppsSorted = applications
+		?.filter((app: any) => app?.type_id === APPLICATION_TYPE.CORPORATE)
+		?.sort((a: any, b: any) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+	const currentCorpApp = corporateAppsSorted?.[corporateAppsSorted.length - 1]
+
+	const preventProcessingApplicationMutation = () => {
+		if (isApplicationProcessing) {
+			throw new Error('Application is processing and cannot be modified')
+		}
+	}
+
 	// NOTE: adminApplicationService is used here as well due to the same Backend API limitation.
 	const createApplicationMutation = useMutation({
 		mutationFn: (data: { type: string; slug: string }) => adminApplicationService.createApplication.post(data),
@@ -94,7 +113,10 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 
 	// NOTE: adminApplicationService is used here as well due to the same Backend API limitation.
 	const updateApplicationMutation = useMutation({
-		mutationFn: (params: { data: TApplication }) => adminApplicationService.updateApplication.post(params),
+		mutationFn: (params: { data: TApplication }) => {
+			preventProcessingApplicationMutation()
+			return adminApplicationService.updateApplication.post(params)
+		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: adminApplicationService.getApplicationsByAuth0Id.key({
@@ -124,6 +146,7 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 			typeProof: string
 			files: File[]
 		}) => {
+			preventProcessingApplicationMutation()
 			const formData = new FormData()
 			files.forEach((file, index) => {
 				formData.append(`documents[${index}][file]`, file)
@@ -152,6 +175,7 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 
 	const deleteApplicationDocumentMutation = useMutation({
 		mutationFn: async ({ documentId }: { documentId: string }) => {
+			preventProcessingApplicationMutation()
 			return customerApplicationService.deleteDocument(documentId)
 		},
 		onSuccess: () => {
@@ -175,6 +199,7 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 
 	const deleteApplicationMutation = useMutation({
 		mutationFn: async ({ id }: { id: string | number }) => {
+			preventProcessingApplicationMutation()
 			return adminApplicationService.deleteDraft.delete({ id })
 		},
 		onSuccess: () => {
@@ -202,8 +227,10 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 	})
 
 	const uploadKycDocumentsMutation = useMutation({
-		mutationFn: (params: FormData | UploadKycDocumentsRequest | UploadKycJsonRequest) =>
-			adminKycService.uploadKycDocuments.post(params),
+		mutationFn: (params: FormData | UploadKycDocumentsRequest | UploadKycJsonRequest) => {
+			preventProcessingApplicationMutation()
+			return adminKycService.uploadKycDocuments.post(params)
+		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: adminKycService.getKycDocumentsByApplicationId.key({
@@ -229,7 +256,10 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 	})
 
 	const verifyKycMutation = useMutation({
-		mutationFn: (body: { application_id: string }) => adminKycService.verifyKyc.post(body),
+		mutationFn: (body: { application_id: string }) => {
+			preventProcessingApplicationMutation()
+			return adminKycService.verifyKyc.post(body)
+		},
 		onSuccess: () => {
 			queryClient.invalidateQueries({
 				queryKey: adminKycService.getKycDocumentsByApplicationId.key({
@@ -254,17 +284,6 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 		},
 	})
 
-	const applications = applicationsQuery?.data?.data
-	const individualAppsSorted = applications
-		?.filter((app: any) => app?.type_id === APPLICATION_TYPE.INDIVIDUAL)
-		?.sort((a: any, b: any) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
-	const currentIndiApp = individualAppsSorted?.[individualAppsSorted.length - 1]
-
-	const corporateAppsSorted = applications
-		?.filter((app: any) => app?.type_id === APPLICATION_TYPE.CORPORATE)
-		?.sort((a: any, b: any) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
-	const currentCorpApp = corporateAppsSorted?.[corporateAppsSorted.length - 1]
-
 	return (
 		<CustomerApplicationContext.Provider
 			value={{
@@ -280,6 +299,7 @@ export function CustomerApplicationProvider({ children, id }: { children: ReactN
 				verifyKycMutation,
 				currentIndiApp,
 				currentCorpApp,
+				isApplicationProcessing,
 			}}
 		>
 			{children}
