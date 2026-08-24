@@ -39,7 +39,7 @@ export const SfiDatePicker = React.forwardRef<HTMLDivElement, SfiDatePickerProps
 						...slotProps,
 						textField: {
 							...(slotProps?.textField as any),
-							margin: 'dense',
+							margin: 'none',
 							fullWidth: true,
 							helperText: helperText || (slotProps?.textField as any)?.helperText,
 						},

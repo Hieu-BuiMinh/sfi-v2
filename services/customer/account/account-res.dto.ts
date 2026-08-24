@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { TCurrency } from '@/utils/number-format'
+import { TCurrency } from '@/utils/money'
 
 export interface CustomerAccount {
 	id: string

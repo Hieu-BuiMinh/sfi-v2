@@ -1,4 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { PortalUserRole } from '@/dto/enums/user'
+import { UserRole } from '@/constants/sfi/user-roles.const'
+
 export enum USER_KYC_STATUS {
 	STATUS_NOT_STARTED = 0,
 	STATUS_PASSED = 1,
@@ -19,17 +22,12 @@ export type IUser = {
 	deleted_at?: string
 	phone_number?: string
 	auth0?: string
-	is_staff?: number
+	is_staff?: PortalUserRole
 	email_verified?: boolean
 	email_verified_at?: boolean
 	applications?: any
 	login?: any
-	roles?: {
-		id?: string
-		name?: string
-		isAssigned?: boolean
-		label?: string
-	}[]
+	roles?: UserRole[]
 	employee_profile?: {
 		department?: {
 			id?: number

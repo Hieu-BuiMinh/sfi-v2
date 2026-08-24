@@ -66,7 +66,7 @@ export function SfiMultiAutocomplete<
 					props.renderOption || ((optProps: any, option: any) => <li {...optProps}>{option.label}</li>)
 				}
 				renderInput={(params) => (
-					<TextField {...params} label={label as any} variant="outlined" error={error} />
+					<TextField {...params} label={label as any} variant="outlined" error={error} size={props.size} />
 				)}
 			/>
 			{helperText && <FormHelperText className="mx-0">{helperText}</FormHelperText>}

@@ -17,6 +17,42 @@ declare module '@mui/material/Button' {
 	}
 }
 
+declare module '@mui/material/InputBase' {
+	interface InputBasePropsSizeOverrides {
+		large: true
+	}
+}
+
+declare module '@mui/material/TextField' {
+	interface TextFieldPropsSizeOverrides {
+		large: true
+	}
+}
+
+declare module '@mui/material/FormControl' {
+	interface FormControlPropsSizeOverrides {
+		large: true
+	}
+}
+
+declare module '@mui/material/InputLabel' {
+	interface InputLabelPropsSizeOverrides {
+		large: true
+	}
+}
+
+declare module '@mui/material/Autocomplete' {
+	interface AutocompletePropsSizeOverrides {
+		large: true
+	}
+}
+
+const controlSizes = {
+	small: 32,
+	medium: 38,
+	large: 50,
+}
+
 export const sfiOnboardTheme = createTheme({
 	cssVariables: {
 		colorSchemeSelector: 'data-mui-color-scheme',
@@ -152,15 +188,15 @@ export const sfiOnboardTheme = createTheme({
 					'&:focus': { boxShadow: 'none' },
 				},
 				sizeLarge: {
-					height: 50,
+					height: controlSizes.large,
 					padding: '12px 24px',
 				},
 				sizeMedium: {
-					height: 38,
+					height: controlSizes.medium,
 					padding: '8px 16px',
 				},
 				sizeSmall: {
-					height: 32,
+					height: controlSizes.small,
 					padding: '4px 12px',
 				},
 			},
@@ -192,21 +228,97 @@ export const sfiOnboardTheme = createTheme({
 		MuiButtonGroup: { defaultProps: { size: 'medium' } },
 		MuiCheckbox: { defaultProps: { size: 'medium' } },
 		MuiFab: { defaultProps: { size: 'medium' } },
-		MuiFormControl: { defaultProps: { margin: 'dense', size: 'medium' } },
-		MuiFormHelperText: { defaultProps: { margin: 'dense' } },
+		MuiFormControl: { defaultProps: { margin: 'none', size: 'medium' } },
+		MuiFormHelperText: {},
 		MuiIconButton: { defaultProps: { size: 'medium' } },
 		MuiInputBase: {
-			defaultProps: { margin: 'dense' },
+			defaultProps: {},
 			styleOverrides: {
 				root: {
 					backgroundColor: 'var(--token-input-background)',
 				},
 			},
 		},
-		MuiInputLabel: { defaultProps: { margin: 'dense' } },
+		MuiOutlinedInput: {
+			variants: [
+				{
+					props: { size: 'small' },
+					style: {
+						'&:not(.MuiInputBase-multiline):not(.MuiAutocomplete-inputRoot)': {
+							height: controlSizes.small,
+						},
+						'& .MuiOutlinedInput-input': { padding: '4.5px 12px' },
+					},
+				},
+				{
+					props: { size: 'medium' },
+					style: {
+						'&:not(.MuiInputBase-multiline):not(.MuiAutocomplete-inputRoot)': {
+							height: controlSizes.medium,
+						},
+						'& .MuiOutlinedInput-input': { padding: '7.5px 14px' },
+					},
+				},
+				{
+					props: { size: 'large' },
+					style: {
+						'&:not(.MuiInputBase-multiline):not(.MuiAutocomplete-inputRoot)': {
+							height: controlSizes.large,
+						},
+						'& .MuiOutlinedInput-input': { padding: '13.5px 16px' },
+					},
+				},
+			],
+		},
+		MuiAutocomplete: {
+			defaultProps: { size: 'medium' },
+			variants: [
+				{
+					props: { size: 'small' },
+					style: { '& .MuiOutlinedInput-root': { minHeight: controlSizes.small } },
+				},
+				{
+					props: { size: 'medium' },
+					style: { '& .MuiOutlinedInput-root': { minHeight: controlSizes.medium } },
+				},
+				{
+					props: { size: 'large' },
+					style: { '& .MuiOutlinedInput-root': { minHeight: controlSizes.large } },
+				},
+			],
+		},
+		MuiInputLabel: {
+			defaultProps: {},
+			variants: [
+				{
+					props: { size: 'small' },
+					style: {
+						'&.MuiInputLabel-outlined:not(.MuiInputLabel-shrink)': {
+							transform: 'translate(14px, 5px) scale(1)',
+						},
+					},
+				},
+				{
+					props: { size: 'medium' },
+					style: {
+						'&.MuiInputLabel-outlined:not(.MuiInputLabel-shrink)': {
+							transform: 'translate(14px, 8px) scale(1)',
+						},
+					},
+				},
+				{
+					props: { size: 'large' },
+					style: {
+						'&.MuiInputLabel-outlined:not(.MuiInputLabel-shrink)': {
+							transform: 'translate(14px, 14px) scale(1)',
+						},
+					},
+				},
+			],
+		},
 		MuiRadio: { defaultProps: { size: 'medium' } },
 		MuiSwitch: { defaultProps: { size: 'medium' } },
-		MuiTextField: { defaultProps: { margin: 'dense' } },
+		MuiTextField: { defaultProps: { margin: 'none', size: 'medium' } },
 	},
 })
 

@@ -1,8 +1,21 @@
 import { clientApi } from '@/lib/api/client'
+import { TApiResponse } from '@/dto/types/api.type'
+import { ResetTrialBalanceResponse } from './reset-balance-res.dto'
 import { GetTermOfUsePdfParams } from './term-of-use-req.dto'
 import { TermOfUsePdfResponse } from './term-of-use-res.dto'
 
 export const customerSfiService = {
+	resetTrialBalance: {
+		key: () => ['post_customer_sfi_reset_trial_balance'] as const,
+		post: async () => {
+			const response = await clientApi.post<TApiResponse<ResetTrialBalanceResponse>>(
+				'/api/v2/sfi/account/reset-balance'
+			)
+
+			return response.data
+		},
+	},
+
 	getTermOfUsePdf: {
 		key: ({ userId, pdfType, lang = 'en' }: GetTermOfUsePdfParams) =>
 			['get_customer_sfi_term_of_use_pdf', userId, pdfType, lang] as const,

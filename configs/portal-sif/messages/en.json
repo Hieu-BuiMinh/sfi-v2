@@ -1,1 +1,1463 @@
-{}
+{
+	"common": {
+		"button_text": {
+			"submit": "Submit",
+			"cancel": "Cancel",
+			"confirm": "Confirm",
+			"logout": "Logout",
+			"login": "Login",
+			"register": "Register",
+			"go_to_dashboard": "Go to Dashboard",
+			"continue": "Continue",
+			"previous": "Previous",
+			"reset": "Reset"
+		},
+		"alert": {
+			"success": "Success",
+			"error": "Error",
+			"warning": "Warning",
+			"info": "Info"
+		}
+	},
+	"components": {
+		"navigation": {
+			"admin_nav_bar": {},
+			"customer_nav_bar": {},
+			"admin_side_bar": {
+				"dashboard": "Dashboard",
+				"applications": "Applications",
+				"customers_list": "Customers List",
+				"payments": "Payments",
+				"transactions": "Transactions",
+				"rates": "Rates",
+				"system_settings": "System settings",
+				"authority": "Authority"
+			},
+			"customer_side_bar": {
+				"dashboard": "Dashboard",
+				"applications": "Applications",
+				"accounts": "Accounts",
+				"positions": "Positions",
+				"deposit_withdrawal": "Deposit/Withdrawal"
+			}
+		},
+		"chip": {
+			"transaction_status": {
+				"pending": "Pending",
+				"approved": "Approved",
+				"processing": "Processing",
+				"rejected": "Rejected",
+				"unknown": "Unknown"
+			},
+			"staff_status": {
+				"active": "Active",
+				"inactive": "Inactive"
+			},
+			"rate_status": {
+				"enable": "Enable",
+				"disable": "Disable"
+			},
+			"application_status": {
+				"not_started": "Not Started",
+				"pending": "Pending",
+				"processing": "Processing",
+				"approved": "Approved",
+				"rejected": "Rejected",
+				"unknown": "Unknown"
+			},
+			"account_status": {
+				"active": "Active",
+				"inactive": "Inactive"
+			},
+			"account_type": {
+				"live": "LIVE",
+				"demo": "DEMO"
+			},
+			"application_type": {
+				"individual": "Individual",
+				"corporate": "Corporate"
+			},
+			"staff_log_event": {
+				"created": "Created",
+				"updated": "Updated",
+				"deleted": "Deleted"
+			}
+		},
+		"noti": {
+			"title": "Notifications",
+			"no_notifications": "There are no notifications",
+			"no_notifications_desc": "You don't have notifications, Please check again later."
+		},
+		"app_switcher": {
+			"aria_label": "Open app switcher",
+			"trade": {
+				"title": "Trade",
+				"description": "Trade contracts - Buy or Sell anytime"
+			},
+			"dashboard": {
+				"title": "Dashboard",
+				"description": "Track your activity and performance"
+			}
+		}
+	},
+	"admin": {
+		"dashboard": {
+			"title": "Straits Financial Overview",
+			"recent_applications": "Recent Applications",
+			"cards": {
+				"pending_review": {
+					"title": "Applications Pending Review",
+					"subtitle": "Total new pending application",
+					"button": "Pending Application"
+				},
+				"processing": {
+					"title": "Applications Under Processing",
+					"subtitle": "Total new processing application",
+					"button": "Processing Application"
+				},
+				"deposit": {
+					"title": "Deposit Request",
+					"subtitle": "Total new deposit request",
+					"button": "Deposit List"
+				},
+				"withdrawal": {
+					"title": "Withdrawal Request",
+					"subtitle": "Total new withdrawal request",
+					"button": "Withdrawal List"
+				},
+				"data_change_request": {
+					"title": "Data Change Request",
+					"subtitle": "Total pending data change request",
+					"button": "Customer List"
+				}
+			}
+		},
+		"applications": {
+			"title": "Applications",
+			"subtitle": "Manage all client applications",
+			"breadcrumb": {
+				"admin": "Admin",
+				"application_list": "Application List"
+			},
+			"filter": {
+				"search": {
+					"label": "Search",
+					"placeholder": "Search Application ID"
+				},
+				"status": {
+					"all": "All Status",
+					"not_started": "Not Started",
+					"approved": "Approved",
+					"rejected": "Rejected",
+					"pending": "Pending",
+					"processing": "Processing"
+				},
+				"date_range": {
+					"placeholder": "Select Date Range"
+				},
+				"reset": "Reset"
+			},
+			"table": {
+				"columns": {
+					"no": "No.",
+					"id": "ID",
+					"status": "Status",
+					"customer_name": "Customer Name",
+					"email": "Email",
+					"type": "Type",
+					"product": "Product",
+					"create_time": "Create Time",
+					"approved_time": "Approved Time",
+					"actions": "Actions"
+				},
+				"actions": {
+					"view": "View"
+				}
+			},
+			"detail": {
+				"title": "Application Detail",
+				"subtitle": "Manage application settings and details",
+				"breadcrumb": {
+					"admin": "Admin",
+					"application_list": "Application List",
+					"application_detail": "Application Detail",
+					"customer_particular": "Customer Particular",
+					"regulation_document": "Regulation Document",
+					"tax_compliance": "Tax Compliance Declaration",
+					"privy_ekyc": "Privy e-KYC Status & History"
+				},
+				"info": {
+					"application_id": "Application ID",
+					"email": "Email",
+					"trading_number": "Trading Number",
+					"product": "Product"
+				},
+				"messages": {
+					"submit_success": "Operation submitted successfully",
+					"submit_error": "Failed to submit operation",
+					"update_etp_success": "ETP ID updated successfully",
+					"update_etp_error": "Failed to update ETP ID"
+				},
+				"nav": {
+					"customer_particulars": "Customer Particulars",
+					"regulation_document": "Regulation document",
+					"tax_compliance": "Tax Compliance Declaration",
+					"privy_ekyc": "Privy e-KYC Status & History"
+				},
+				"privy_ekyc": {
+					"title": "Privy e-KYC Verification & History",
+					"subtitle": "Review live Privy verification details, documents, and attempt history",
+					"back": "Back to application detail",
+					"load_error": "Unable to load Privy e-KYC information",
+					"sync_error": "Unable to synchronize Privy e-KYC status",
+					"resend_error": "Unable to resend the e-KYC link",
+					"actions": {
+						"resend": "Resend e-KYC Link",
+						"sync": "Check / Sync Live Status",
+						"approve": "OPS Approve e-KYC",
+						"reject": "OPS Reject e-KYC"
+					},
+					"overview": {
+						"title": "e-KYC Status Overview",
+						"current_status": "Current Status",
+						"privy_id": "Privy ID",
+						"reference_id": "Reference Number (Attempt ID)",
+						"total_attempts": "Total Attempts",
+						"rejection_reason": "Rejection Reason"
+					},
+					"documents": {
+						"title": "Uploaded e-KYC Verification Documents",
+						"view_ktp": "View KTP Document",
+						"view_selfie": "View Liveness Selfie",
+						"ktp_title": "KTP Document",
+						"selfie_title": "Liveness Selfie"
+					},
+					"override_modal": {
+						"title": "OPS Override e-KYC Status ({action})",
+						"description": "As OPS/Admin, you are manually overriding the automated Privy e-KYC verification status.",
+						"note_label": "Override Note / Reason",
+						"note_required": "Please enter an override note or reason",
+						"submit_error": "Unable to override the e-KYC status",
+						"approve": {
+							"default_note": "Manually verified by OPS after physical document check."
+						},
+						"reject": {
+							"default_note": "Manually rejected by OPS (Invalid document or liveness photo)."
+						}
+					},
+					"history": {
+						"title": "e-KYC Attempt History",
+						"attempt": "Attempt #",
+						"date_time": "Date & Time",
+						"reference_id": "Reference ID",
+						"status": "Status",
+						"reason": "Reason / Note",
+						"processed_by": "Processed By / Source",
+						"empty": "No Privy e-KYC attempt is available"
+					}
+				},
+				"approval": {
+					"title": "Approval Details",
+					"date_time": "Date and Time",
+					"action_required": "Action required for {type}",
+					"approve_by_ops": "Approve by OPS",
+					"approve_by_risk": "Approve by Risk Team",
+					"options": {
+						"approve": "Approve",
+						"reject": "Reject",
+						"revision": "Revision Request",
+						"save": "Save"
+					},
+					"etp": {
+						"title": "Assign ETP account number",
+						"description": "Ensure the ETP ID is accurate before approving the customer's application, as it will be linked to their trading account records",
+						"label": "ETP ID number",
+						"placeholder": "Enter ETP ID...",
+						"validation_error": "Please enter a valid 11-character ETP ID",
+						"update": "Update"
+					},
+					"modals": {
+						"approval": {
+							"title": "Confirm {type} Approval",
+							"confirm": "Confirm Approve",
+							"message": "Upon approval, the customer's trading account will be activated, allowing them to begin trading. Please confirm that all information is correct before proceeding"
+						},
+						"reject": {
+							"title": "Confirm {type} Rejection",
+							"confirm": "Confirm Reject",
+							"message": "Warning: This action will permanently reject the customer's application at the {type} stage.",
+							"reason_label": "Rejection Reason",
+							"reason_placeholder": "Enter reason for rejection..."
+						},
+						"revision": {
+							"title": "Request Revision for {type}",
+							"confirm": "Send Revision Request",
+							"alert": "Please select the form steps you want to update",
+							"sections_title": "Sections to Revise:",
+							"instructions_label": "Revision Instructions (Required):",
+							"instructions_placeholder": "Explain what the user needs to correct..."
+						}
+					},
+					"revision_channels": {
+						"personal_info": "Personal Information",
+						"job_info": "Job Information",
+						"bank_account": "Bank Account",
+						"identity_verification": "Identity Verification",
+						"tax_compliance": "Tax Compliance Declaration",
+						"regulation_document": "Regulation document"
+					}
+				},
+				"customer_particulars": {
+					"title": "Customer Particular",
+					"tabs": {
+						"personal_information": "Personal Information",
+						"job_details": "Job details",
+						"bank_account": "Bank account",
+						"identity_verification": "Identity verification"
+					},
+					"sections": {
+						"basic_info": "Basic Personal Info",
+						"residence_info": "Residence Information",
+						"emergency_contact": "Emergency Contact",
+						"employment_info": "Employment Information",
+						"financial_info": "Financial / Trading Information",
+						"bank_account_info": "Bank Account Information",
+						"identity_verification_info": "ID/Passport for verification",
+						"verification_documents": "Verification Documents"
+					},
+					"fields": {
+						"full_name": "Full name (ID Card/Passport)",
+						"dob": "Date of Birth (DOB)",
+						"gender": "Gender",
+						"pob": "Place of Birth (POB)",
+						"email": "Email",
+						"phone_number": "Phone number",
+						"registered_address": "Registered Address (ID Card/Passport)",
+						"registered_city": "Registered City",
+						"registered_postal_code": "Registered Postal Code",
+						"marriage_status": "Marriage Status",
+						"residential_city": "Residential City",
+						"residential_postal_code": "Residential Postal Code",
+						"home_ownership": "Home Ownership Status",
+						"current_address": "Current Address",
+						"domicile_address": "Domicile Address",
+						"emergency_name": "Emergency Contact Name",
+						"emergency_phone": "Emergency Phone Number",
+						"relationship": "Relationship with Customer",
+						"mother_maiden_name": "Mother's Maiden Name",
+						"job_type": "Job Type",
+						"company_business": "Company Business Field",
+						"company_name": "Company Name",
+						"job_title": "Job Title",
+						"company_address": "Company Address",
+						"annual_income": "Annual Income",
+						"source_of_funds": "Source of Funds",
+						"trading_experience": "Trading Experience",
+						"trading_experience_years": "Years of Trading Experience",
+						"bank_name": "Bank Name",
+						"account_holder": "Account Holder Name",
+						"account_number": "Account Number",
+						"id_card_number": "ID Card Number",
+						"npwp_number": "Tax Identification Number (NPWP)",
+						"front_side": "Front Side",
+						"selfie": "Selfie with your Identification",
+						"selfie_full": "Selfie with Identification",
+						"npwp_photo": "NPWP photo",
+						"npwp_photo_full": "NPWP Photo"
+					},
+					"messages": {
+						"no_preview": "No preview available",
+						"file_preview": "File Preview"
+					},
+					"actions": {
+						"view": "View"
+					}
+				},
+				"regulation_document": {
+					"title": "Regulation Document",
+					"pdf": {
+						"loading": "Loading PDF...",
+						"error": "Failed to load PDF",
+						"no_url": "No PDF URL provided"
+					},
+					"declaration": "By filling in the 'Checklist' column below, I declare that I have read, understand and approved the rightfulness of all information and statements in this Form to create Commodity Trading Account in SFI. Thus, I make this statement in a state of awareness, physical and spiritual health and without any coercion from any party."
+				},
+				"tax_compliance_declaration": {
+					"title": "Tax Compliance Declaration",
+					"intro": "It is our policy to apply anti-money laundering and other integrity standards in our business. This includes compliance with the US Foreign Account Tax Compliance Act 'FATCA'. In line with such requirement, we are required to obtain information concerning the tax residency of our customers.",
+					"we": "We,",
+					"address": "At registered address",
+					"declare_confirm": "Hereby declare and confirm that:",
+					"residency_select": "1. We are the tax resident of (please select the country of tax residency):",
+					"options": {
+						"indonesia_only": "Indonesia only",
+						"us_only": "US only",
+						"neither": "Neither Indonesia nor US, please complete the section below"
+					},
+					"countries_indication": "We are a tax resident of the following countries (indicate the type and tax reference number applicable in each country)",
+					"table": {
+						"columns": {
+							"country": "Country/Jurisdiction of Tax Residence",
+							"tin": "Tax Identification Number (TIN) or equivalent",
+							"reason": "If TIN or equivalent is not available, please select reason A, B or C*"
+						}
+					},
+					"reasons": {
+						"a": "Reason A – The country/jurisdiction where the Account Holder is liable to pay tax does not issue TINs to its residents",
+						"b": "Reason B – The Account Holder is otherwise unable to obtain a TIN or equivalent number",
+						"c": "Reason C – No TIN is required (note: only select this reason if the authorities in the country of residence for tax purposes do not require the TIN to be disclosed)",
+						"explanation_b": "Please provide an explanation for Reason B (Jurisdiction {index})"
+					},
+					"declarations": {
+						"2": "We are responsible for our own tax affairs and ensuring that our account(s) maintained with SFI are compliant with the tax laws of the relevant jurisdiction(s) to which our permanent establishment belong, or where we are tax resident.",
+						"3": "To the best of our knowledge, the information provided in this form is true, correct, and complete.",
+						"4": "Upon SFI's request, we agree to provide all necessary documentation or information to SFI, including but not limited to date of establishment, country of establishment, country of tax residency, and the relevant tax payer identity number, which potentially required to enable SFI for making an inquiry of our tax status.",
+						"5": "We agree and consent that SFI may collect, process, use, and store Your Information for the purpose of running its obligations under FATCA or other applicable laws and for SFI's own internal management purposes.",
+						"6": "We acknowledge that SFI may take any action as SFI deems necessary to satisfy FATCA or other applicable requirements.",
+						"7": "We will immediately notify SFI of any changes to the circumstances stated above.",
+						"8": "We understand that SFI will rely on the information provided by us above when considering whether to accept our account application or continue a broker-customer relationship with us.",
+						"9": "We acknowledge and agree that SFI will not be responsible or liable to us for any loss, costs, expenses, or other liability that we may suffer or incur as a result of SFI taking any action as provided above."
+					},
+					"messages": {
+						"submit_success": "Operation submitted successfully",
+						"submit_error": "Failed to submit operation",
+						"update_etp_success": "ETP ID updated successfully",
+						"update_etp_error": "Failed to update ETP ID"
+					}
+				}
+			}
+		},
+		"customers": {
+			"list": {
+				"title": "Customers ({total})",
+				"subtitle": "Manage all customers",
+				"breadcrumb": {
+					"admin": "Admin",
+					"customer_list": "Customer List"
+				},
+				"filter": {
+					"search": {
+						"label": "Search",
+						"placeholder": "Search Name or Email"
+					},
+					"date_range": {
+						"label": "Date Range",
+						"placeholder": "Select Date Range"
+					},
+					"reset": "Reset"
+				},
+				"table": {
+					"columns": {
+						"no": "No.",
+						"email": "Email",
+						"type": "Type",
+						"name": "Name",
+						"nationality": "Nationality",
+						"status": "Application Status",
+						"create_time": "Create Time"
+					}
+				}
+			},
+			"detail": {
+				"title": "Customer Detail",
+				"subtitle": "Application ID: {id}",
+				"breadcrumb": {
+					"admin": "Admin",
+					"customer_list": "Customer List",
+					"customer_detail": "Customer Detail"
+				},
+				"sidebar": {
+					"general_info": "General Information",
+					"application": "Application",
+					"login_journal": "Login Journal",
+					"accounts": "Accounts",
+					"bind_account": "Bind Account"
+				},
+				"user_info": {
+					"joined": "Joined",
+					"application_id": "ID",
+					"unknown_user": "Unknown User",
+					"individual": "Individual"
+				}
+			},
+			"bind_account": {
+				"title": "Bind New Account",
+				"fields": {
+					"platform": "Platform",
+					"type": "Type",
+					"account_id": "Trading Account Number",
+					"email": "Customer Email",
+					"group": "Account Group",
+					"binding_account": "Binding Account"
+				},
+				"placeholders": {
+					"account_id": "Enter account number",
+					"group": "e.g. demo\\MAPS\\ACM\\TRIAL\\SFI",
+					"binding_account": "Enter binding account"
+				},
+				"validation": {
+					"platform_required": "Platform is required",
+					"type_required": "Type is required",
+					"account_id_required": "Account number is required",
+					"email_invalid": "Invalid email address",
+					"group_required": "Account group is required"
+				},
+				"messages": {
+					"success": "Trading account bound successfully",
+					"error": "Failed to bind account",
+					"group_not_found": "Can't find {type} group"
+				}
+			},
+			"tabs": {
+				"summary": "Summary",
+				"funds": "Funds",
+				"history": "History",
+				"summary_content": {
+					"account_name": "Account Name",
+					"account_number": "Account Number",
+					"account_type": "Account Type",
+					"equity": "Equity",
+					"balance": "Balance",
+					"deposit": "Deposit",
+					"withdrawal": "Withdrawal",
+					"credit_facility": "Credit Facility",
+					"commission": "Commission",
+					"swaps": "Swaps",
+					"account_status": "Account Status",
+					"leverage": "Leverage",
+					"platform": "Platform",
+					"total_profit": "Total Profit",
+					"profit": "Profit",
+					"volume_lots": "Volume(lots)",
+					"trades": "Trades",
+					"profitability": "Profitability(%)",
+					"average_profit": "Average Profit",
+					"average_loss": "Average Loss",
+					"timezone": "Timezone",
+					"created": "Created",
+					"server_name": "Server Name",
+					"floating_pl": "Floating P/L",
+					"closed_pl": "Closed P/L",
+					"margin_requirements": "Margin Requirements",
+					"free_margin": "Free Margin",
+					"margin_level": "Margin Level",
+					"last_trade": "Last Trade",
+					"active": "Active"
+				},
+				"funds_content": {
+					"table": {
+						"columns": {
+							"time_created": "Time created",
+							"id_transaction": "ID transaction",
+							"account": "Account",
+							"type": "Type",
+							"time_completed": "Time completed",
+							"amount": "Transfer Amount",
+							"status": "Status"
+						}
+					},
+					"options": {
+						"deposit": "Deposit",
+						"withdrawal": "Withdrawal",
+						"all": "All",
+						"pending": "Pending",
+						"approved": "Approved",
+						"processing": "Processing",
+						"rejected": "Rejected"
+					}
+				},
+				"history_content": {
+					"options": {
+						"order_list": "Order List",
+						"deal_list": "Deal List"
+					},
+					"search_placeholder": "Search Symbol",
+					"table": {
+						"columns": {
+							"symbol": "Symbol",
+							"ticket": "Ticket",
+							"direction": "Direction",
+							"time": "Time",
+							"open_time": "Open Time",
+							"closed_time": "Closed Time",
+							"type": "Type",
+							"volume": "Volume",
+							"open": "Open",
+							"close": "Close",
+							"price": "Price",
+							"sl": "S/L",
+							"tp": "T/P",
+							"commission": "Commission",
+							"swap": "Swap",
+							"chg_percent": "CHG%",
+							"closed_pl": "Closed P/L"
+						}
+					}
+				}
+			}
+		},
+		"payments": {
+			"list": {
+				"title": "Payment Method",
+				"add_new": "Add New Bank",
+				"breadcrumb": {
+					"admin": "Admin",
+					"customer_list": "Customer List"
+				},
+				"filter": {
+					"accepted_with": "Accepted payment account with:",
+					"status": "Status:",
+					"method_options": {
+						"all": "All Methods",
+						"wire": "Wire",
+						"domestic": "Domestic"
+					},
+					"account_type_options": {
+						"all": "All Types",
+						"individual": "Individual",
+						"corporate": "Corporate"
+					},
+					"status_options": {
+						"all": "All Status",
+						"active": "Active",
+						"inactive": "Inactive"
+					}
+				},
+				"empty": "No payment methods found",
+				"delete_dialog": {
+					"title": "Delete Payment Method",
+					"description": "Are you sure you want to delete this payment method?",
+					"description_footer": "This action cannot be undone.",
+					"confirm": "Delete",
+					"cancel": "Cancel"
+				},
+				"messages": {
+					"delete_success": "Payment method deleted successfully",
+					"delete_error": "Failed to delete payment method"
+				}
+			},
+			"card": {
+				"unknown": "Unknown",
+				"view_edit": "View / Edit",
+				"delete": "Delete",
+				"unknown_bank": "Unknown Bank",
+				"account_no": "Account No",
+				"branch": "Branch",
+				"swift": "SWIFT"
+			},
+			"form": {
+				"create_title": "Provide payment instructions",
+				"edit_title": "Edit Payment Instruction",
+				"sections": {
+					"beneficiary_info": "Beneficiary bank information",
+					"intermediary_info": "Intermediary/Correspondent bank information"
+				},
+				"fields": {
+					"account_type": {
+						"label": "Account Type",
+						"options": {
+							"all": "All",
+							"individual": "Individual",
+							"corporate": "Corporate"
+						}
+					},
+					"currency": "Currency",
+					"entity": "Entity",
+					"method": {
+						"label": "Method",
+						"options": {
+							"wire": "Wire",
+							"domestic": "Domestic"
+						}
+					},
+					"bank": "Bank",
+					"beneficiary_name": "Beneficiary account name",
+					"beneficiary_number": "Beneficiary account number",
+					"branch": "Beneficiary bank branch name",
+					"bank_code": "Bank code",
+					"bank_address": "Beneficiary bank address",
+					"swift_code": "Beneficiary BIC/SWIFT code",
+					"intermediary_bank_name": "Bank name",
+					"intermediary_account": "Account number/IBAN (Optional)",
+					"intermediary_swift": "BIC/SWIFT code",
+					"activation": "Bank activation"
+				},
+				"placeholders": {
+					"beneficiary_name": "Enter account name",
+					"beneficiary_number": "Enter account number",
+					"branch": "Enter branch name",
+					"bank_code": "Enter bank code",
+					"bank_address": "Enter bank address",
+					"swift_code": "Enter SWIFT code",
+					"intermediary_bank_name": "Enter intermediary bank name",
+					"intermediary_account": "Enter IBAN"
+				},
+				"validation": {
+					"account_type_required": "Account type is required",
+					"currency_required": "Currency is required",
+					"bank_required": "Bank is required",
+					"entity_required": "Entity is required",
+					"user_required": "User is required",
+					"beneficiary_name_required": "Beneficiary account name is required",
+					"beneficiary_number_required": "Beneficiary account number is required",
+					"branch_required": "Beneficiary bank branch name is required",
+					"bank_code_required": "Bank code is required",
+					"bank_address_required_wire": "Beneficiary bank address is required for Wire",
+					"swift_code_required_wire": "Beneficiary BIC/SWIFT code is required for Wire"
+				},
+				"messages": {
+					"create_success": "Bank account added successfully",
+					"create_error": "Failed to add bank account",
+					"update_success": "Bank account updated successfully",
+					"update_error": "Failed to update bank account",
+					"not_found": "Payment method not found"
+				},
+				"actions": {
+					"confirm": "Confirm",
+					"cancel": "Cancel",
+					"go_back": "Go back to list"
+				}
+			}
+		},
+		"transactions": {
+			"list": {
+				"title": "Transaction list",
+				"subtitle": "Manage customer transactions",
+				"breadcrumb": {
+					"admin": "Admin",
+					"transaction_list": "Transaction List"
+				},
+				"tabs": {
+					"deposit": "Deposit",
+					"withdrawal": "Withdrawal"
+				},
+				"filter": {
+					"search": {
+						"label": "Search",
+						"placeholder": "Search Transaction ID"
+					},
+					"status": {
+						"all": "All Status",
+						"pending": "Pending",
+						"approved": "Approved",
+						"processing": "Processing",
+						"rejected": "Rejected"
+					},
+					"date_range": {
+						"placeholder": "Select Date Range"
+					},
+					"reset": "Reset"
+				},
+				"table": {
+					"columns": {
+						"no": "No",
+						"tran_id": "TranID",
+						"date_time": "Date and time",
+						"status": "Status",
+						"request": "Request",
+						"process_by": "Process By",
+						"trading_account": "Trading account",
+						"beneficiary_bank": "Beneficiary Bank",
+						"deposit_amount": "Deposit amount",
+						"withdrawal_amount": "Withdrawal amount",
+						"verified_amount": "Verified Amount (USD)"
+					}
+				}
+			},
+			"detail": {
+				"title": "Transaction Detail",
+				"breadcrumb": {
+					"admin": "Admin",
+					"transaction_list": "Transaction List",
+					"deposit": "Deposit Detail",
+					"withdrawal": "Withdrawal Detail"
+				},
+				"header": {
+					"created_date": "Created date",
+					"request_type": "Request type",
+					"deposit": "Deposit",
+					"withdraw": "Withdraw",
+					"status": "Transaction status",
+					"approved_date": "Approved date",
+					"process_by": "Process by"
+				},
+				"sections": {
+					"customer_info": "1. Customer information",
+					"request_info": "2. Request information",
+					"beneficiary_info": "2. Beneficiary bank information",
+					"pod": "3. Proof of deposit (POD)",
+					"fund_info": "Fund information"
+				},
+				"fields": {
+					"email": "Customer email",
+					"name": "Customer name",
+					"trading_account": "Trading account number",
+					"account_type": "Account Type",
+					"bank_info_title": "Beneficiary bank information",
+					"bank_name": "Beneficiary bank name",
+					"beneficiary_name": "Beneficiary account name",
+					"beneficiary_number": "Beneficiary account number",
+					"beneficiary_swift": "Beneficiary BIC/SWIFT code",
+					"beneficiary_branch": "Beneficiary Bank Branch",
+					"pod_fallback": "Proof of Deposit",
+					"no_file": "No file uploaded",
+					"payment_details": "Payment details",
+					"deposit_amount": "Deposit amount",
+					"withdrawal_amount": "Withdrawal amount",
+					"amount_receive": "The amount the customer will receive in their trading account",
+					"verified_amount": "Verified amount (USD)"
+				},
+				"actions": {
+					"approve": {
+						"label": "Approve",
+						"modal_title": "Approve this transaction",
+						"description_deposit": "Once approved, the customer will be notified, and the incoming funds will appear in their trading account.",
+						"description_withdraw": "Once approved, the funds will be processed for transfer, and the user will be notified.",
+						"deposit_amount": "Deposit amount:",
+						"withdrawal_amount": "Withdrawal amount:",
+						"total_received": "Total amount received:",
+						"verified_amount": "Verified amount (USD):",
+						"success_deposit": "Deposit approved successfully",
+						"success_withdraw": "Withdrawal approved successfully",
+						"failed": "Failed to approve transaction"
+					},
+					"reject": {
+						"label": "Reject",
+						"modal_title": "Reject this transaction",
+						"description_deposit": "Once rejected, the transaction will not be processed further, and the user will be notified of the decision.",
+						"description_withdraw": "You are about to reject this transaction. This action will prevent further processing and notify the relevant parties.",
+						"reason_label": "Reason for rejection *",
+						"reason_placeholder": "Remark Reject *",
+						"reason_required": "Reason for rejection is required",
+						"success_deposit": "Deposit rejected successfully",
+						"success_withdraw": "Withdrawal rejected successfully",
+						"failed": "Failed to reject transaction"
+					},
+					"common": {
+						"confirm": "Confirm",
+						"cancel": "Cancel",
+						"something_wrong": "Something went wrong"
+					}
+				}
+			}
+		},
+		"rates": {
+			"title": "Rates",
+			"subtitle": "Manage rates for different currencies and payment methods",
+			"breadcrumb": {
+				"admin": "Admin",
+				"rates": "Rates"
+			},
+			"tabs": {
+				"deposit": "Deposit rate",
+				"withdrawal": "Withdrawal rate"
+			},
+			"filter": {
+				"view": {
+					"current": "Current Rate",
+					"history": "History Rate"
+				}
+			},
+			"table": {
+				"columns": {
+					"no": "No.",
+					"base_currency": "Base Currency",
+					"quote_currency": "Quote Currency",
+					"exchange_rate": "Exchange Rate",
+					"effective_date": "Effective Date",
+					"status": "Status",
+					"note": "Note",
+					"action": "Action"
+				},
+				"actions": {
+					"edit_rate": "Edit rate"
+				}
+			},
+			"dialog": {
+				"setup_rate": {
+					"title": {
+						"create": "Setup {type} rate",
+						"edit": "Edit rate"
+					},
+					"fields": {
+						"base_currency": {
+							"label": "Base Currency"
+						},
+						"quote_currency": {
+							"label": "Quote Currency"
+						},
+						"exchange_rate": {
+							"label": "Exchange Rate",
+							"placeholder": "0.00"
+						},
+						"effective_date": {
+							"label": "Effective Date"
+						},
+						"note": {
+							"label": "Note",
+							"placeholder": "Add some notes..."
+						},
+						"status": {
+							"label": "Status"
+						}
+					},
+					"validation": {
+						"required": "Required",
+						"must_be_greater_than_0": "Must be greater than 0"
+					},
+					"actions": {
+						"create": "Create",
+						"update": "Update",
+						"cancel": "Cancel"
+					}
+				}
+			},
+			"messages": {
+				"update_status_success": "Status updated successfully",
+				"update_status_error": "Failed to update status",
+				"update_rate_success": "Rate updated successfully",
+				"create_rate_success": "Rate created successfully",
+				"update_rate_error": "Failed to update rate",
+				"create_rate_error": "Failed to create rate"
+			}
+		},
+		"settings": {
+			"authority": {
+				"title": "Authority",
+				"subtitle": "Manage staff members and their roles/permissions",
+				"breadcrumb": {
+					"admin": "Admin",
+					"authority": "Authority",
+					"staff": "Staff",
+					"roles": "Roles",
+					"staff_list": "Staff List",
+					"staff_detail": "Staff Detail",
+					"activity_log": "Activity Log",
+					"permission": "Permission",
+					"permission_detail": "Permission Detail"
+				},
+				"tabs": {
+					"staff": "Staff",
+					"roles": "Roles"
+				},
+				"filter": {
+					"search": {
+						"label": "Search",
+						"placeholder": "Search Name or Email"
+					},
+					"department": {
+						"label": "Filter by Department"
+					},
+					"location": {
+						"label": "Filter by Location"
+					},
+					"actor": {
+						"label": "Actor",
+						"placeholder": "Search name or email actor"
+					},
+					"date_range": {
+						"label": "Date Range"
+					},
+					"event": {
+						"label": "Event",
+						"options": {
+							"created": "Created",
+							"updated": "Updated",
+							"deleted": "Deleted"
+						}
+					}
+				},
+				"table": {
+					"columns": {
+						"no": "No.",
+						"email": "Email",
+						"full_name": "Full Name",
+						"position": "Position",
+						"department": "Department",
+						"phone": "Phone",
+						"location": "Location",
+						"sales_code": "Sales code",
+						"status": "Status",
+						"created_time": "Created time",
+						"role": "Role",
+						"actor_id": "Actor ID",
+						"actor_name": "Actor Name",
+						"event": "Event",
+						"object_id": "Object ID",
+						"target": "Target",
+						"ip_address": "IP Address",
+						"timestamp": "Timestamp",
+						"old_value": "Old Value",
+						"new_value": "New Value"
+					},
+					"actions": {
+						"view": "View",
+						"edit": "Edit",
+						"view_log": "View Log",
+						"reset": "Reset",
+						"add_staff": "Staff",
+						"cancel": "Cancel"
+					}
+				},
+				"form": {
+					"add_staff": {
+						"title": "Add Staff",
+						"fields": {
+							"email_address": {
+								"label": "Email Address",
+								"placeholder": "Enter email address"
+							},
+							"first_name": {
+								"label": "First Name",
+								"placeholder": "Enter first name"
+							},
+							"last_name": {
+								"label": "Last Name",
+								"placeholder": "Enter last name"
+							},
+							"gender": {
+								"label": "Gender",
+								"options": {
+									"male": "Male",
+									"female": "Female",
+									"other": "Other"
+								}
+							},
+							"date_of_birth": {
+								"label": "Date of Birth"
+							},
+							"nationality": {
+								"label": "Nationality",
+								"placeholder": "Select nationality"
+							},
+							"phone_number": {
+								"label": "Phone Number",
+								"placeholder": "Enter phone number"
+							},
+							"positions": {
+								"label": "Positions",
+								"placeholder": "Select position"
+							},
+							"location": {
+								"label": "Location",
+								"placeholder": "Select location"
+							},
+							"department": {
+								"label": "Department",
+								"placeholder": "Select department",
+								"placeholder_select_location": "Select location first"
+							},
+							"manager": {
+								"label": "Manager",
+								"placeholder": "Select manager",
+								"placeholder_select_dept": "Select department first"
+							},
+							"manager_id": {
+								"label": "Manager ID",
+								"placeholder": "Auto-filled"
+							},
+							"manager_email": {
+								"label": "Manager Email",
+								"placeholder": "Auto-filled"
+							}
+						},
+						"validation": {
+							"invalid_email": "Invalid email address",
+							"first_name_required": "First name is required",
+							"last_name_required": "Last name is required",
+							"gender_required": "Gender is required",
+							"dob_required": "Date of birth is required",
+							"staff_min_age": "Staff must be at least 18 years old",
+							"nationality_required": "Nationality is required",
+							"phone_required": "Phone number is required",
+							"position_required": "Position is required",
+							"location_required": "Location is required",
+							"department_required": "Department is required"
+						}
+					}
+				},
+				"detail": {
+					"staff": {
+						"title": "Staff Detail",
+						"user_info": "User Information",
+						"management_info": "Management Information",
+						"no_managers": "No managers assigned",
+						"not_found": "Staff not found"
+					},
+					"edit_staff": {
+						"title": "Edit Staff",
+						"tabs": {
+							"information": "Information",
+							"permissions": "Permissions"
+						},
+						"fields": {
+							"status": "Status",
+							"update_button": "Update",
+							"assigned_roles": "Assigned Roles & Managers",
+							"manager_label": "Manager",
+							"no_managers_available": "No managers available for this role"
+						},
+						"messages": {
+							"update_success": "Staff updated successfully",
+							"update_error": "Failed to update staff",
+							"no_roles_found": "No roles found for this staff member."
+						}
+					},
+					"permission": {
+						"title": "Permission Detail",
+						"role_subtitle": "Role: {id}",
+						"save_changes": "Save Changes"
+					},
+					"staff_log": {
+						"title": "Staff Activity Log"
+					}
+				},
+				"permissions": {
+					"groups": {
+						"application": "Application",
+						"worksheet": "Worksheet",
+						"customer": "Customer",
+						"trading_account": "Trading Account",
+						"staff": "Staff",
+						"payment": "Payment"
+					},
+					"labels": {
+						"view_application": "View Application",
+						"add_application": "Add Application",
+						"edit_application": "Edit Application",
+						"approve_application": "Approve Application",
+						"reject_application": "Reject Application",
+						"request_application": "Request Application",
+						"view_sales": "View Sales",
+						"edit_sales": "Edit Sales",
+						"approve_sales": "Approve Sales",
+						"view_risk": "View Risk",
+						"edit_risk": "Edit Risk",
+						"approve_risk": "Approve Risk",
+						"view_onboarding": "View Onboarding",
+						"edit_onboarding": "Edit Onboarding",
+						"approve_onboarding": "Approve Onboarding",
+						"view_compliance": "View Compliance",
+						"edit_compliance": "Edit Compliance",
+						"approve_compliance": "Approve Compliance",
+						"view_customer": "View Customer",
+						"add_customer": "Add Customer",
+						"view_trading_account": "View Trading Account",
+						"edit_account": "Edit Account",
+						"view_staff": "View Staff",
+						"add_staff": "Add Staff",
+						"edit_staff": "Edit Staff",
+						"view_payment": "View Payment",
+						"add_payment": "Add Payment",
+						"edit_payment": "Edit Payment"
+					}
+				},
+				"messages": {
+					"create_staff_success": "Staff member created successfully",
+					"create_staff_error": "Failed to create staff",
+					"update_permission_success": "Permissions updated successfully",
+					"update_permission_error": "Failed to update permissions",
+					"error_occurred": "An error occurred",
+					"no_data": "No data",
+					"copied_to_clipboard": "Copied to clipboard",
+					"copy_json": "Copy JSON"
+				}
+			}
+		}
+	},
+	"customer": {
+		"applications": {
+			"title": "Applications",
+			"subtitle": "Manage your applications",
+			"new_application": "New Application",
+			"breadcrumb": {
+				"home": "Home",
+				"application_list": "Applications"
+			},
+			"table": {
+				"columns": {
+					"id": "ID",
+					"type": "Type",
+					"entity": "Entity",
+					"products": "Products",
+					"status": "Status",
+					"created_at": "Created At",
+					"actions": "Actions"
+				},
+				"actions": {
+					"view": "View"
+				}
+			}
+		},
+		"applications_detail": {
+			"title": "Application Detail",
+			"subtitle": "Manage application settings and details",
+			"breadcrumb": {
+				"home": "Home",
+				"application_list": "Applications",
+				"detail": "Application Detail"
+			},
+			"info": {
+				"application_id": "Application ID"
+			},
+			"meta": {
+				"email": "Email",
+				"trading_number": "Trading Number",
+				"product": "Product"
+			},
+			"sections": {
+				"customer_particulars": "Customer Particulars",
+				"regulation_document": "Regulation document",
+				"tax_compliance_declaration": "Tax Compliance Declaration"
+			}
+		},
+		"customer_particulars": {
+			"title": "Customer Particular",
+			"breadcrumb": {
+				"home": "Home",
+				"application_list": "Applications",
+				"application_detail": "Application Detail",
+				"current": "Customer Particular"
+			},
+			"tabs": {
+				"personal_information": "Personal Information",
+				"job_details": "Job details",
+				"bank_account": "Bank account",
+				"identity_verification": "Identity verification"
+			},
+			"sections": {
+				"basic_info": "Basic Personal Info",
+				"residence_info": "Residence Information",
+				"emergency_contact": "Emergency Contact",
+				"employment_info": "Employment Information",
+				"financial_info": "Financial / Trading Information",
+				"bank_account_info": "Bank Account Information",
+				"identity_verification_info": "KTP/Passport for verification",
+				"verification_documents": "Verification Documents"
+			},
+			"fields": {
+				"full_name": "Full name (KTP/Passport)",
+				"dob": "Date of Birth (DOB)",
+				"gender": "Gender",
+				"pob": "Place of Birth (POB)",
+				"email": "Email",
+				"phone_number": "Phone number",
+				"registered_address": "Registered Address (KTP/Passport)",
+				"registered_city": "Registered City",
+				"registered_postal_code": "Registered Postal Code",
+				"marriage_status": "Marriage Status",
+				"residential_city": "Residential City",
+				"residential_postal_code": "Residential Postal Code",
+				"home_ownership": "Home Ownership Status",
+				"current_address": "Current Address",
+				"domicile_address": "Domicile Address",
+				"emergency_name": "Emergency Contact Name",
+				"emergency_phone": "Emergency Contact Phone",
+				"relationship": "Relationship with Customer",
+				"mother_maiden_name": "Mother's Maiden Name",
+				"job_type": "Type of Job",
+				"company_business": "Company Line of Business",
+				"company_name": "Company Name",
+				"job_title": "Job Title",
+				"company_address": "Company Address",
+				"annual_income": "Annual Income",
+				"source_of_funds": "Source of Funds",
+				"trading_experience": "Experience in Trading",
+				"trading_experience_years": "Year of Trading Experience",
+				"bank_name": "Bank name",
+				"account_holder": "Account Holder Name",
+				"account_number": "Account Number",
+				"id_card_number": "ID Card Number",
+				"npwp_number": "Tax Identification Number (NPWP)",
+				"front_side": "Front Side",
+				"selfie": "Selfie with your Identification",
+				"selfie_full": "Selfie with Identification",
+				"npwp_photo": "NPWP photo",
+				"npwp_photo_full": "NPWP Photo"
+			},
+			"messages": {
+				"no_preview": "No preview available",
+				"file_preview": "File Preview"
+			},
+			"actions": {
+				"view": "View"
+			}
+		},
+		"regulation_document": {
+			"title": "Regulation Document",
+			"breadcrumb": {
+				"home": "Home",
+				"application_list": "Applications",
+				"application_detail": "Application Detail",
+				"current": "Regulation Document"
+			},
+			"pdf": {
+				"loading": "Loading PDF...",
+				"error": "Failed to load PDF",
+				"no_url": "No PDF URL provided"
+			},
+			"declaration": "By filling in the 'Checklist' column below, I declare that I have read, understand and approved the rightfulness of all information and statements in this Form to create Commodity Trading Account in SFI. Thus, I make this statement in a state of awareness, physical and spiritual health and without any coercion from any party."
+		},
+		"tax_compliance_declaration": {
+			"title": "Tax Compliance Declaration",
+			"breadcrumb": {
+				"home": "Home",
+				"application_list": "Applications",
+				"application_detail": "Application Detail",
+				"current": "Tax Compliance Declaration"
+			}
+		},
+		"accounts": {
+			"title": "List Of Accounts",
+			"subtitle": "Manage your trading accounts",
+			"reset": "Reset",
+			"resetting": "Resetting...",
+			"reset_success": "Trial balance reset successfully",
+			"reset_error": "Failed to reset trial balance",
+			"breadcrumb": {
+				"home": "Home",
+				"current": "My Account List"
+			},
+			"tabs": {
+				"live": "Live",
+				"demo": "Demo"
+			},
+			"table": {
+				"columns": {
+					"account_id": "Account ID",
+					"name": "Name",
+					"group": "Group",
+					"balance": "Balance Amount",
+					"equity": "Equity",
+					"margin_used_free": "Margin Used / Free",
+					"upnl": "UPNL",
+					"status": "Status",
+					"created_at": "Created At"
+				}
+			}
+		},
+		"dashboard": {
+			"account_label": "Account",
+			"stats": {
+				"estimated_balance": {
+					"title": "Estimated Balance",
+					"tooltip": "Estimated equity including floating PnL"
+				},
+				"daily_pnl": {
+					"title": "Daily PnL",
+					"tooltip": "Profit/Loss since start of day"
+				},
+				"margin": {
+					"title": "Margin Used / Free",
+					"tooltip": "Used margin vs free margin"
+				},
+				"positions": {
+					"title": "Open / Filled Position",
+					"tooltip": "Open positions vs filled orders"
+				}
+			},
+			"charts": {
+				"equity": {
+					"title": "Equity",
+					"x_axis_label": "Time",
+					"y_axis_label": "Equity",
+					"series_label": "Equity",
+					"error": "Failed to load equity"
+				},
+				"asset": {
+					"title": "Asset Distribution",
+					"no_data": "No data"
+				}
+			}
+		},
+		"positions": {
+			"title": "Positions Details",
+			"breadcrumb": {
+				"home": "Home",
+				"current": "Positions List"
+			},
+			"tabs": {
+				"positions": "Positions",
+				"orders": "Orders",
+				"order_history": "Order History",
+				"trade_history": "Trade History"
+			},
+			"select_account": "Select Account",
+			"order_history": {
+				"search_placeholder": "Search Symbol",
+				"date_range_placeholder": "Select Date Range",
+				"reset": "Reset",
+				"table": {
+					"columns": {
+						"order_id": "Order ID",
+						"symbol": "Symbol",
+						"type": "Type",
+						"volume": "Volume",
+						"price_order": "Price Order",
+						"price_current": "Price Current",
+						"sl": "S/L",
+						"tp": "T/P",
+						"time_setup": "Time Setup",
+						"status": "Status"
+					}
+				},
+				"types": {
+					"buy": "Buy",
+					"sell": "Sell",
+					"buy_limit": "Buy Limit",
+					"sell_limit": "Sell Limit",
+					"buy_stop": "Buy Stop",
+					"sell_stop": "Sell Stop",
+					"buy_stop_limit": "Buy Stop Limit",
+					"sell_stop_limit": "Sell Stop Limit",
+					"other": "Type {value}"
+				},
+				"states": {
+					"started": "Started",
+					"placed": "Placed",
+					"canceled": "Canceled",
+					"partial": "Partial",
+					"filled": "Filled",
+					"rejected": "Rejected",
+					"expired": "Expired",
+					"other": "State {value}"
+				}
+			}
+		},
+		"transactions": {
+			"title": "Transaction",
+			"breadcrumb": {
+				"home": "Home",
+				"current": "Transaction"
+			},
+			"tabs": {
+				"deposit": "Deposit",
+				"withdrawal": "Withdrawal"
+			},
+			"select_account": "Select Account",
+			"withdraw_fund": "Withdraw Fund",
+			"make_deposit": "Make a Deposit",
+			"table": {
+				"search": "Search",
+				"search_placeholder": "Search Reference",
+				"status_filter": {
+					"all": "All Status",
+					"progressing": "Progressing",
+					"approved": "Approved",
+					"rejected": "Rejected"
+				},
+				"date_range_placeholder": "Select Date Range",
+				"reset": "Reset",
+				"columns": {
+					"id": "ID",
+					"date": "Date",
+					"method": "Method",
+					"amount": "Amount",
+					"beneficiary_bank": "Beneficiary Bank",
+					"verify_amount": "Verify Amount",
+					"status": "Status"
+				}
+			}
+		}
+	}
+}

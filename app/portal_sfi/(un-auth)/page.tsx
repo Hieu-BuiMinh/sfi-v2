@@ -1,7 +1,30 @@
-import HomePageView from '@/views/landing-page_sfi/pages/home.page'
+'use client'
 
-function SFIHomePage() {
+import { PortalLayoutLoading } from '@/components/layouts/portal-layout'
+import { PortalUserRole } from '@/dto/enums/user'
+import { useAuth } from '@/hooks/use-auth'
+import useProfile from '@/hooks/use-profile'
+import HomePageView from '@/views/landing-page_sfi/pages/home.page'
+import { useRouter } from 'next/navigation'
+import { useEffect } from 'react'
+
+export default function SFIHomePage() {
+	const { isAuthenticated, isLoading } = useAuth()
+
+	if (isLoading) return <PortalLayoutLoading />
+	if (isAuthenticated) return <AuthenticatedPortalRedirect />
+
 	return <HomePageView />
 }
 
-export default SFIHomePage
+function AuthenticatedPortalRedirect() {
+	const router = useRouter()
+	const { isLoading, user } = useProfile()
+
+	useEffect(() => {
+		if (isLoading) return
+		router.replace(user?.is_staff === PortalUserRole.ADMIN ? '/dashboard' : '/my-dashboard')
+	}, [isLoading, router, user?.is_staff])
+
+	return <PortalLayoutLoading />
+}

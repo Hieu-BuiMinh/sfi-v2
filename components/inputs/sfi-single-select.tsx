@@ -34,6 +34,7 @@ const StyledSelect = styled(MuiSelect)(({ theme }) => ({
 export type SfiSingleSelectProps = Omit<SelectProps, 'multiple'> & {
 	options?: SfiOption[]
 	children?: ReactNode
+	placeholder?: ReactNode
 	menuItemProps?: MenuItemProps
 	containerClassName?: string
 	helperText?: ReactNode
@@ -42,6 +43,7 @@ export type SfiSingleSelectProps = Omit<SelectProps, 'multiple'> & {
 export const SfiSingleSelect = ({
 	options,
 	children,
+	placeholder,
 	menuItemProps,
 	label,
 	id,
@@ -51,6 +53,8 @@ export const SfiSingleSelect = ({
 	containerClassName,
 	error,
 	helperText,
+	displayEmpty,
+	renderValue,
 	...props
 }: SfiSingleSelectProps) => {
 	const generatedLabelId = labelId || (props.name ? `${props.name}-label` : id ? `${id}-label` : undefined)
@@ -61,7 +65,7 @@ export const SfiSingleSelect = ({
 			className={cn(containerClassName)}
 			size={props.size}
 			error={error}
-			margin="dense"
+			margin="none"
 		>
 			{label && (
 				<InputLabel id={generatedLabelId} className="text-mui-text-secondary">
@@ -76,6 +80,22 @@ export const SfiSingleSelect = ({
 				className={className}
 				error={error}
 				multiple={false}
+				displayEmpty={displayEmpty || Boolean(placeholder)}
+				renderValue={
+					placeholder
+						? (selected) => {
+								if (selected === '') {
+									return <span className="text-mui-text-disabled">{placeholder}</span>
+								}
+
+								return (
+									renderValue?.(selected) ??
+									options?.find((option) => option.value === selected)?.label ??
+									String(selected)
+								)
+							}
+						: renderValue
+				}
 				{...props}
 			>
 				{options

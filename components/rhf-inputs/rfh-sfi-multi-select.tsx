@@ -17,7 +17,7 @@ interface RfhSfiMultiSelectProps<T extends FieldValues> {
 	sx?: any
 	disabled?: boolean
 	menuItemProps?: MenuItemProps
-	size?: 'small' | 'medium'
+	size?: 'small' | 'medium' | 'large'
 	children?: ReactNode
 }
 

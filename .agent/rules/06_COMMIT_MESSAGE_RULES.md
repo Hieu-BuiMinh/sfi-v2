@@ -51,11 +51,11 @@ Output **exactly ONE** commit message line in this format:
 ## Example Output
 
 ```
-✨ feat[onboarding]?: add phone prefix input component
-🐞 fix[portal]?: resolve date picker timezone issue
-📗 docs[readme]?: update API documentation
-💊 refactor[services]?: extract common API wrapper
-🔮 chore[deps]?: update React Query version
+✨ feat[onboarding]: add phone prefix input component
+🐞 fix[portal]: resolve date picker timezone issue
+📗 docs[readme]: update API documentation
+💊 refactor[services]: extract common API wrapper
+🔮 chore[deps]: update React Query version
 ```
 
 ---

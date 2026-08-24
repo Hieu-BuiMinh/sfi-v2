@@ -1,1 +1,1497 @@
-{}
+{
+	"common": {
+		"button_text": {
+			"submit": "Kirim",
+			"cancel": "Batal",
+			"confirm": "Konfirmasi",
+			"logout": "Keluar",
+			"login": "Masuk",
+			"register": "Daftar",
+			"go_to_dashboard": "Ke Dasbor",
+			"continue": "Lanjutkan",
+			"previous": "Sebelumnya",
+			"reset": "Atur Ulang"
+		},
+		"alert": {
+			"success": "Sukses",
+			"error": "Gagal",
+			"warning": "Peringatan",
+			"info": "Info"
+		}
+	},
+	"components": {
+		"navigation": {
+			"admin_nav_bar": {},
+			"customer_nav_bar": {},
+			"admin_side_bar": {
+				"dashboard": "Dasbor",
+				"applications": "Aplikasi",
+				"customers_list": "Daftar Pelanggan",
+				"payments": "Pembayaran",
+				"transactions": "Transaksi",
+				"rates": "Kurs",
+				"system_settings": "Pengaturan Sistem",
+				"authority": "Otoritas"
+			},
+			"customer_side_bar": {
+				"dashboard": "Dasbor",
+				"applications": "Aplikasi",
+				"accounts": "Akun",
+				"positions": "Posisi",
+				"deposit_withdrawal": "Deposit/Penarikan"
+			}
+		},
+		"chip": {
+			"transaction_status": {
+				"pending": "Menunggu",
+				"approved": "Disetujui",
+				"processing": "Diproses",
+				"rejected": "Ditolak",
+				"unknown": "Tidak Diketahui"
+			},
+			"staff_status": {
+				"active": "Aktif",
+				"inactive": "Tidak Aktif"
+			},
+			"rate_status": {
+				"enable": "Aktifkan",
+				"disable": "Nonaktifkan"
+			},
+			"application_status": {
+				"not_started": "Belum Dimulai",
+				"pending": "Menunggu",
+				"processing": "Diproses",
+				"approved": "Disetujui",
+				"rejected": "Ditolak",
+				"unknown": "Tidak Diketahui"
+			},
+			"account_status": {
+				"active": "Aktif",
+				"inactive": "Tidak Aktif"
+			},
+			"account_type": {
+				"live": "LIVE",
+				"demo": "DEMO"
+			},
+			"application_type": {
+				"individual": "Individu",
+				"corporate": "Perusahaan"
+			},
+			"staff_log_event": {
+				"created": "Dibuat",
+				"updated": "Diperbarui",
+				"deleted": "Dihapus"
+			}
+		},
+		"noti": {
+			"title": "Notifikasi",
+			"no_notifications": "Tidak ada notifikasi",
+			"no_notifications_desc": "Anda tidak memiliki notifikasi, Silakan periksa kembali nanti."
+		},
+		"app_switcher": {
+			"aria_label": "Buka pengalih aplikasi",
+			"trade": {
+				"title": "Trading",
+				"description": "Trading kontrak - Beli atau jual kapan saja"
+			},
+			"dashboard": {
+				"title": "Dasbor",
+				"description": "Pantau aktivitas dan performa Anda"
+			}
+		}
+	},
+	"admin": {
+		"dashboard": {
+			"title": "Ikhtisar Straits Financial",
+			"recent_applications": "Aplikasi Terbaru",
+			"cards": {
+				"pending_review": {
+					"title": "Aplikasi Menunggu Peninjauan",
+					"subtitle": "Total aplikasi pending baru",
+					"button": "Aplikasi Pending"
+				},
+				"processing": {
+					"title": "Aplikasi Sedang Diproses",
+					"subtitle": "Total aplikasi diproses baru",
+					"button": "Aplikasi Diproses"
+				},
+				"deposit": {
+					"title": "Permintaan Deposit",
+					"subtitle": "Total permintaan deposit baru",
+					"button": "Daftar Deposit"
+				},
+				"withdrawal": {
+					"title": "Permintaan Penarikan",
+					"subtitle": "Total permintaan penarikan baru",
+					"button": "Daftar Penarikan"
+				},
+				"data_change_request": {
+					"title": "Permintaan Perubahan Data",
+					"subtitle": "Total permintaan perubahan data yang tertunda",
+					"button": "Daftar Pelanggan"
+				}
+			}
+		},
+		"applications": {
+			"title": "Aplikasi",
+			"subtitle": "Kelola semua aplikasi klien",
+			"breadcrumb": {
+				"admin": "Admin",
+				"application_list": "Daftar Aplikasi"
+			},
+			"filter": {
+				"search": {
+					"label": "Cari",
+					"placeholder": "Cari ID Aplikasi"
+				},
+				"status": {
+					"all": "Semua Status",
+					"not_started": "Belum Dimulai",
+					"approved": "Disetujui",
+					"rejected": "Ditolak",
+					"pending": "Pending",
+					"processing": "Diproses"
+				},
+				"date_range": {
+					"placeholder": "Pilih Rentang Tanggal"
+				},
+				"reset": "Reset"
+			},
+			"table": {
+				"columns": {
+					"no": "No.",
+					"id": "ID",
+					"status": "Status",
+					"customer_name": "Nama Pelanggan",
+					"email": "Email",
+					"type": "Tipe",
+					"product": "Produk",
+					"create_time": "Waktu Dibuat",
+					"approved_time": "Waktu Disetujui",
+					"actions": "Aksi"
+				},
+				"actions": {
+					"view": "Lihat"
+				}
+			},
+			"detail": {
+				"title": "Detail Aplikasi",
+				"subtitle": "Kelola pengaturan dan detail aplikasi",
+				"breadcrumb": {
+					"admin": "Admin",
+					"application_list": "Daftar Aplikasi",
+					"application_detail": "Detail Aplikasi",
+					"customer_particular": "Data Pelanggan",
+					"regulation_document": "Dokumen Regulasi",
+					"tax_compliance": "Deklarasi Kepatuhan Pajak",
+					"privy_ekyc": "Status & Riwayat e-KYC Privy"
+				},
+				"info": {
+					"application_id": "ID Aplikasi",
+					"email": "Email",
+					"trading_number": "Nomor Trading",
+					"product": "Produk"
+				},
+				"messages": {
+					"submit_success": "Operasi berhasil dikirim",
+					"submit_error": "Gagal mengirim operasi",
+					"update_etp_success": "ID ETP berhasil diperbarui",
+					"update_etp_error": "Gagal memperbarui ID ETP"
+				},
+				"nav": {
+					"customer_particulars": "Data Pelanggan",
+					"regulation_document": "Dokumen Regulasi",
+					"tax_compliance": "Deklarasi Kepatuhan Pajak",
+					"privy_ekyc": "Status & Riwayat e-KYC Privy"
+				},
+				"privy_ekyc": {
+					"title": "Verifikasi & Riwayat e-KYC Privy",
+					"subtitle": "Tinjau detail verifikasi Privy, dokumen, dan riwayat percobaan secara langsung",
+					"back": "Kembali ke detail aplikasi",
+					"load_error": "Informasi e-KYC Privy tidak dapat dimuat",
+					"sync_error": "Status e-KYC Privy tidak dapat disinkronkan",
+					"resend_error": "Tautan e-KYC tidak dapat dikirim ulang",
+					"actions": {
+						"resend": "Kirim Ulang Tautan e-KYC",
+						"sync": "Periksa / Sinkronkan Status",
+						"approve": "OPS Setujui e-KYC",
+						"reject": "OPS Tolak e-KYC"
+					},
+					"overview": {
+						"title": "Ringkasan Status e-KYC",
+						"current_status": "Status Saat Ini",
+						"privy_id": "ID Privy",
+						"reference_id": "Nomor Referensi (ID Percobaan)",
+						"total_attempts": "Total Percobaan",
+						"rejection_reason": "Alasan Penolakan"
+					},
+					"documents": {
+						"title": "Dokumen Verifikasi e-KYC yang Diunggah",
+						"view_ktp": "Lihat Dokumen KTP",
+						"view_selfie": "Lihat Selfie Liveness",
+						"ktp_title": "Dokumen KTP",
+						"selfie_title": "Selfie Liveness"
+					},
+					"override_modal": {
+						"title": "Ubah Status e-KYC oleh OPS ({action})",
+						"description": "Sebagai OPS/Admin, Anda mengganti status verifikasi e-KYC Privy otomatis secara manual.",
+						"note_label": "Catatan / Alasan Perubahan",
+						"note_required": "Masukkan catatan atau alasan perubahan",
+						"submit_error": "Status e-KYC tidak dapat diubah",
+						"approve": {
+							"default_note": "Diverifikasi secara manual oleh OPS setelah pemeriksaan dokumen fisik."
+						},
+						"reject": {
+							"default_note": "Ditolak secara manual oleh OPS (Dokumen atau foto liveness tidak valid)."
+						}
+					},
+					"history": {
+						"title": "Riwayat Percobaan e-KYC",
+						"attempt": "Percobaan #",
+						"date_time": "Tanggal & Waktu",
+						"reference_id": "ID Referensi",
+						"status": "Status",
+						"reason": "Alasan / Catatan",
+						"processed_by": "Diproses Oleh / Sumber",
+						"empty": "Belum ada percobaan e-KYC Privy"
+					}
+				},
+				"approval": {
+					"title": "Detail Persetujuan",
+					"date_time": "Tanggal dan Waktu",
+					"action_required": "Tindakan diperlukan untuk {type}",
+					"approve_by_ops": "Disetujui oleh OPS",
+					"approve_by_risk": "Disetujui oleh Tim Risiko",
+					"options": {
+						"approve": "Setujui",
+						"reject": "Tolak",
+						"revision": "Permintaan Revisi",
+						"save": "Simpan"
+					},
+					"etp": {
+						"title": "Tentukan nomor akun ETP",
+						"description": "Pastikan ID ETP akurat sebelum menyetujui aplikasi pelanggan, karena ini akan ditautkan ke catatan akun perdagangan mereka",
+						"label": "Nomor ID ETP",
+						"placeholder": "Masukkan ID ETP...",
+						"validation_error": "Masukkan ID ETP yang valid sepanjang 11 karakter",
+						"update": "Perbarui"
+					},
+					"modals": {
+						"approval": {
+							"title": "Konfirmasi Persetujuan {type}",
+							"confirm": "Konfirmasi Setujui",
+							"message": "Setelah disetujui, akun perdagangan pelanggan akan diaktifkan, memungkinkan mereka untuk mulai trading. Harap konfirmasi bahwa semua informasi sudah benar sebelum melanjutkan"
+						},
+						"reject": {
+							"title": "Konfirmasi Penolakan {type}",
+							"confirm": "Konfirmasi Tolak",
+							"message": "Peringatan: Tindakan ini akan menolak aplikasi pelanggan secara permanen pada tahap {type}.",
+							"reason_label": "Alasan Penolakan",
+							"reason_placeholder": "Masukkan alasan penolakan..."
+						},
+						"revision": {
+							"title": "Minta Revisi untuk {type}",
+							"confirm": "Kirim Permintaan Revisi",
+							"alert": "Silakan pilih langkah formulir yang ingin Anda perbarui",
+							"sections_title": "Bagian yang Perlu Direvisi:",
+							"instructions_label": "Instruksi Revisi (Wajib):",
+							"instructions_placeholder": "Jelaskan apa yang perlu diperbaiki oleh pengguna..."
+						}
+					},
+					"revision_channels": {
+						"personal_info": "Informasi Pribadi",
+						"job_info": "Informasi Pekerjaan",
+						"bank_account": "Akun Bank",
+						"identity_verification": "Verifikasi Identitas",
+						"tax_compliance": "Deklarasi Kepatuhan Pajak",
+						"regulation_document": "Dokumen Regulasi"
+					}
+				},
+				"customer_particulars": {
+					"title": "Data Pelanggan",
+					"tabs": {
+						"personal_information": "Informasi Pribadi",
+						"job_details": "Detail Pekerjaan",
+						"bank_account": "Akun Bank",
+						"identity_verification": "Verifikasi Identitas"
+					},
+					"sections": {
+						"basic_info": "Info Pribadi Dasar",
+						"residence_info": "Informasi Tempat Tinggal",
+						"emergency_contact": "Kontak Darurat",
+						"employment_info": "Informasi Pekerjaan",
+						"financial_info": "Informasi Keuangan / Trading",
+						"bank_account_info": "Informasi Rekening Bank",
+						"identity_verification_info": "KTP/Paspor untuk verifikasi",
+						"verification_documents": "Dokumen Verifikasi"
+					},
+					"fields": {
+						"full_name": "Nama lengkap (KTP/Paspor)",
+						"dob": "Tanggal Lahir (DOB)",
+						"gender": "Jenis Kelamin",
+						"pob": "Tempat Lahir (POB)",
+						"email": "Email",
+						"phone_number": "Nomor telepon",
+						"registered_address": "Alamat Terdaftar (KTP/Paspor)",
+						"registered_city": "Kota Terdaftar",
+						"registered_postal_code": "Kode Pos Terdaftar",
+						"marriage_status": "Status Pernikahan",
+						"residential_city": "Kota Tempat Tinggal",
+						"residential_postal_code": "Kode Pos Tempat Tinggal",
+						"home_ownership": "Status Kepemilikan Rumah",
+						"current_address": "Alamat Saat Ini",
+						"domicile_address": "Alamat Domisili",
+						"emergency_name": "Nama Kontak Darurat",
+						"emergency_phone": "Nomor Telepon Darurat",
+						"relationship": "Hubungan dengan Pelanggan",
+						"mother_maiden_name": "Nama Gadis Ibu Kandung",
+						"job_type": "Tipe Pekerjaan",
+						"company_business": "Bidang Usaha Perusahaan",
+						"company_name": "Nama Perusahaan",
+						"job_title": "Jabatan",
+						"company_address": "Alamat Perusahaan",
+						"annual_income": "Penghasilan Tahunan",
+						"source_of_funds": "Sumber Dana",
+						"trading_experience": "Pengalaman Trading",
+						"trading_experience_years": "Tahun Pengalaman Trading",
+						"bank_name": "Nama bank",
+						"account_holder": "Nama Pemilik Rekening",
+						"account_number": "Nomor Rekening",
+						"id_card_number": "Nomor Kartu Identitas",
+						"npwp_number": "Nomor Pokok Wajib Pajak (NPWP)",
+						"front_side": "Sisi Depan",
+						"selfie": "Selfie dengan Identitas Anda",
+						"selfie_full": "Selfie dengan Identitas",
+						"npwp_photo": "Foto NPWP",
+						"npwp_photo_full": "Foto NPWP"
+					},
+					"messages": {
+						"no_preview": "Pratinjau tidak tersedia",
+						"file_preview": "Pratinjau Berkas"
+					},
+					"actions": {
+						"view": "Lihat"
+					}
+				},
+				"regulation_document": {
+					"title": "Dokumen Regulasi",
+					"pdf": {
+						"loading": "Memuat PDF...",
+						"error": "Gagal memuat PDF",
+						"no_url": "Tidak ada URL PDF yang disediakan"
+					},
+					"declaration": "Dengan mengisi kolom 'Checklist' di bawah ini, saya menyatakan bahwa saya telah membaca, memahami, dan menyetujui kebenaran semua informasi dan pernyataan dalam Formulir ini untuk membuat Akun Perdagangan Komoditas di SFI. Dengan demikian, saya membuat pernyataan ini dalam keadaan sadar, sehat jasmani dan rohani dan tanpa paksaan dari pihak mana pun."
+				},
+				"tax_compliance_declaration": {
+					"title": "Deklarasi Kepatuhan Pajak",
+					"intro": "Merupakan kebijakan kami untuk menerapkan standar anti-pencucian uang dan standar integritas lainnya dalam bisnis kami. Ini termasuk kepatuhan terhadap US Foreign Account Tax Compliance Act 'FATCA'. Sejalan dengan persyaratan tersebut, kami diharuskan untuk memperoleh informasi mengenai residensi pajak dari pelanggan kami.",
+					"we": "Kami,",
+					"address": "Pada alamat terdaftar",
+					"declare_confirm": "Dengan ini menyatakan dan mengonfirmasi bahwa:",
+					"residency_select": "1. Kami adalah residen pajak dari (silakan pilih negara residensi pajak):",
+					"options": {
+						"indonesia_only": "Indonesia saja",
+						"us_only": "AS saja",
+						"neither": "Bukan Indonesia maupun AS, silakan lengkapi bagian di bawah ini"
+					},
+					"countries_indication": "Kami adalah residen pajak dari negara-negara berikut (tunjukkan jenis dan nomor referensi pajak yang berlaku di masing-masing negara)",
+					"table": {
+						"columns": {
+							"country": "Negara/Yurisdiksi Domisili Pajak",
+							"tin": "Nomor Identifikasi Pajak (TIN) atau yang setara",
+							"reason": "Jika TIN atau yang setara tidak tersedia, silakan pilih alasan A, B atau C*"
+						}
+					},
+					"reasons": {
+						"a": "Alasan A - Negara/yurisdiksi tempat Pemegang Akun berkewajiban membayar pajak tidak menerbitkan TIN kepada penduduknya",
+						"b": "Alasan B - Pemegang Akun tidak dapat memperoleh TIN atau nomor yang setara",
+						"c": "Alasan C - Tidak diperlukan TIN (catatan: hanya pilih alasan ini jika pihak berwenang di negara domisili untuk tujuan pajak tidak mewajibkan pengungkapan TIN)",
+						"explanation_b": "Harap berikan penjelasan untuk Alasan B (Yurisdiksi {index})"
+					},
+					"declarations": {
+						"2": "Kami bertanggung jawab atas urusan pajak kami sendiri dan memastikan bahwa akun kami yang dikelola di SFI mematuhi undang-undang perpajakan dari yurisdiksi terkait yang menjadi subjek pendirian permanen kami, atau tempat kami menjadi residen pajak.",
+						"3": "Sepanjang pengetahuan kami, informasi yang diberikan dalam formulir ini adalah benar, tepat, dan lengkap.",
+						"4": "Atas permintaan SFI, kami setuju untuk memberikan semua dokumentasi atau informasi yang diperlukan kepada SFI, termasuk namun tidak terbatas pada tanggal pendirian, negara pendirian, negara residensi pajak, dan nomor identitas pembayar pajak terkait, yang mungkin diperlukan agar SFI dapat melakukan pertanyaan tentang status pajak kami.",
+						"5": "Kami setuju dan menyetujui bahwa SFI dapat mengumpulkan, memproses, menggunakan, dan menyimpan Informasi Anda untuk tujuan menjalankan kewajibannya berdasarkan FATCA atau undang-undang lain yang berlaku dan untuk tujuan manajemen internal SFI sendiri.",
+						"6": "Kami mengakui bahwa SFI dapat mengambil tindakan apa pun yang dianggap perlu oleh SFI untuk memenuhi persyaratan FATCA atau persyaratan lain yang berlaku.",
+						"7": "Kami akan segera memberi tahu SFI jika ada perubahan pada keadaan yang dinyatakan di atas.",
+						"8": "Kami memahami bahwa SFI akan mengandalkan informasi yang telah kami berikan di atas ketika mempertimbangkan apakah akan menerima aplikasi akun kami atau melanjutkan hubungan pialang-pelanggan dengan kami.",
+						"9": "Kami mengakui dan menyetujui bahwa SFI tidak akan bertanggung jawab kepada kami atas kerugian, biaya, pengeluaran, atau tanggung jawab lain yang mungkin kami alami atau timbul sebagai akibat dari SFI mengambil tindakan apa pun sebagaimana diatur di atas."
+					},
+					"messages": {
+						"submit_success": "Operasi berhasil dikirim",
+						"submit_error": "Gagal mengirim operasi",
+						"update_etp_success": "ID ETP berhasil diperbarui",
+						"update_etp_error": "Gagal memperbarui ID ETP"
+					}
+				}
+			}
+		},
+		"customers": {
+			"list": {
+				"title": "Pelanggan ({total})",
+				"subtitle": "Kelola semua pelanggan",
+				"breadcrumb": {
+					"admin": "Admin",
+					"customer_list": "Daftar Pelanggan"
+				},
+				"filter": {
+					"search": {
+						"label": "Cari",
+						"placeholder": "Cari Nama atau Email"
+					},
+					"date_range": {
+						"label": "Rentang Tanggal",
+						"placeholder": "Pilih Rentang Tanggal"
+					},
+					"reset": "Atur Ulang"
+				},
+				"table": {
+					"columns": {
+						"no": "No.",
+						"email": "Email",
+						"type": "Tipe",
+						"name": "Nama",
+						"nationality": "Kewarganegaraan",
+						"status": "Status Aplikasi",
+						"create_time": "Waktu Dibuat"
+					}
+				}
+			},
+			"detail": {
+				"title": "Detail Pelanggan",
+				"subtitle": "ID Aplikasi: {id}",
+				"breadcrumb": {
+					"admin": "Admin",
+					"customer_list": "Daftar Pelanggan",
+					"customer_detail": "Detail Pelanggan"
+				},
+				"sidebar": {
+					"general_info": "Informasi Umum",
+					"application": "Aplikasi",
+					"login_journal": "Jurnal Login",
+					"accounts": "Akun",
+					"bind_account": "Hubungkan Akun"
+				},
+				"user_info": {
+					"joined": "Bergabung",
+					"application_id": "ID",
+					"unknown_user": "Pengguna Tidak Dikenal",
+					"individual": "Individu"
+				}
+			},
+			"bind_account": {
+				"title": "Hubungkan Akun Baru",
+				"fields": {
+					"platform": "Platform",
+					"type": "Tipe",
+					"account_id": "Nomor Akun Trading",
+					"email": "Email Pelanggan",
+					"group": "Grup Akun",
+					"binding_account": "Akun Penghubung"
+				},
+				"placeholders": {
+					"account_id": "Masukkan nomor akun",
+					"group": "misal: demo\\MAPS\\ACM\\TRIAL\\SFI",
+					"binding_account": "Masukkan akun penghubung"
+				},
+				"validation": {
+					"platform_required": "Platform wajib diisi",
+					"type_required": "Tipe wajib diisi",
+					"account_id_required": "Nomor akun wajib diisi",
+					"email_invalid": "Alamat email tidak valid",
+					"group_required": "Grup akun wajib diisi"
+				},
+				"messages": {
+					"success": "Akun trading berhasil dihubungkan",
+					"error": "Gagal menghubungkan akun",
+					"group_not_found": "Grup {type} tidak ditemukan"
+				}
+			},
+			"tabs": {
+				"summary": "Ringkasan",
+				"funds": "Dana",
+				"history": "Riwayat",
+				"summary_content": {
+					"account_name": "Nama Akun",
+					"account_number": "Nomor Akun",
+					"account_type": "Tipe Akun",
+					"equity": "Ekuitas",
+					"balance": "Saldo",
+					"deposit": "Setoran",
+					"withdrawal": "Penarikan",
+					"credit_facility": "Fasilitas Kredit",
+					"commission": "Komisi",
+					"swaps": "Swap",
+					"account_status": "Status Akun",
+					"leverage": "Leverage",
+					"platform": "Platform",
+					"total_profit": "Total Laba",
+					"profit": "Laba",
+					"volume_lots": "Volume(lot)",
+					"trades": "Transaksi",
+					"profitability": "Profitabilitas(%)",
+					"average_profit": "Rata-rata Laba",
+					"average_loss": "Rata-rata Rugi",
+					"timezone": "Zona Waktu",
+					"created": "Dibuat",
+					"server_name": "Nama Server",
+					"floating_pl": "P/L Mengambang",
+					"closed_pl": "P/L Tertutup",
+					"margin_requirements": "Persyaratan Margin",
+					"free_margin": "Margin Bebas",
+					"margin_level": "Level Margin",
+					"last_trade": "Transaksi Terakhir",
+					"active": "Aktif"
+				},
+				"funds_content": {
+					"table": {
+						"columns": {
+							"time_created": "Waktu dibuat",
+							"id_transaction": "ID transaksi",
+							"account": "Akun",
+							"type": "Tipe",
+							"time_completed": "Waktu selesai",
+							"amount": "Jumlah Transfer",
+							"status": "Status"
+						}
+					},
+					"options": {
+						"deposit": "Setoran",
+						"withdrawal": "Penarikan",
+						"all": "Semua",
+						"pending": "Menunggu",
+						"approved": "Disetujui",
+						"processing": "Diproses",
+						"rejected": "Ditolak"
+					}
+				},
+				"history_content": {
+					"options": {
+						"order_list": "Daftar Order",
+						"deal_list": "Daftar Deal"
+					},
+					"search_placeholder": "Cari Simbol",
+					"table": {
+						"columns": {
+							"symbol": "Simbol",
+							"ticket": "Tiket",
+							"direction": "Arah",
+							"time": "Waktu",
+							"open_time": "Waktu Buka",
+							"closed_time": "Waktu Tutup",
+							"type": "Tipe",
+							"volume": "Volume",
+							"open": "Buka",
+							"close": "Tutup",
+							"price": "Harga",
+							"sl": "S/L",
+							"tp": "T/P",
+							"commission": "Komisi",
+							"swap": "Swap",
+							"chg_percent": "CHG%",
+							"closed_pl": "P/L Tertutup"
+						}
+					}
+				}
+			}
+		},
+		"payments": {
+			"list": {
+				"title": "Metode Pembayaran",
+				"add_new": "Tambah Bank Baru",
+				"breadcrumb": {
+					"admin": "Admin",
+					"customer_list": "Daftar Pelanggan"
+				},
+				"filter": {
+					"accepted_with": "Akun pembayaran yang diterima:",
+					"status": "Status:",
+					"method_options": {
+						"all": "Semua Metode",
+						"wire": "Wire",
+						"domestic": "Domestik"
+					},
+					"account_type_options": {
+						"all": "Semua Tipe",
+						"individual": "Individu",
+						"corporate": "Korporat"
+					},
+					"status_options": {
+						"all": "Semua Status",
+						"active": "Aktif",
+						"inactive": "Tidak Aktif"
+					}
+				},
+				"empty": "Metode pembayaran tidak ditemukan",
+				"delete_dialog": {
+					"title": "Hapus Metode Pembayaran",
+					"description": "Apakah Anda yakin muốn menghapus metode pembayaran ini?",
+					"description_footer": "Tindakan ini tidak dapat dibatalkan.",
+					"confirm": "Hapus",
+					"cancel": "Batal"
+				},
+				"messages": {
+					"delete_success": "Metode pembayaran berhasil dihapus",
+					"delete_error": "Gagal menghapus metode pembayaran"
+				}
+			},
+			"card": {
+				"unknown": "Tidak Diketahui",
+				"view_edit": "Lihat / Edit",
+				"delete": "Hapus",
+				"unknown_bank": "Bank Tidak Diketahui",
+				"account_no": "No. Rekening",
+				"branch": "Cabang",
+				"swift": "SWIFT"
+			},
+			"form": {
+				"create_title": "Berikan instruksi pembayaran",
+				"edit_title": "Edit Instruksi Pembayaran",
+				"sections": {
+					"beneficiary_info": "Informasi bank penerima",
+					"intermediary_info": "Informasi bank perantara/koresponden"
+				},
+				"fields": {
+					"account_type": {
+						"label": "Tipe Akun",
+						"options": {
+							"all": "Semua",
+							"individual": "Individu",
+							"corporate": "Korporat"
+						}
+					},
+					"currency": "Mata Uang",
+					"entity": "Entitas",
+					"method": {
+						"label": "Metode",
+						"options": {
+							"wire": "Wire",
+							"domestic": "Domestik"
+						}
+					},
+					"bank": "Bank",
+					"beneficiary_name": "Nama akun penerima",
+					"beneficiary_number": "Nomor akun penerima",
+					"branch": "Nama cabang bank penerima",
+					"bank_code": "Kode bank",
+					"bank_address": "Alamat bank penerima",
+					"swift_code": "Kode BIC/SWIFT penerima",
+					"intermediary_bank_name": "Nama bank",
+					"intermediary_account": "Nomor akun/IBAN (Opsional)",
+					"intermediary_swift": "Kode BIC/SWIFT",
+					"activation": "Aktivasi bank"
+				},
+				"placeholders": {
+					"beneficiary_name": "Masukkan nama akun",
+					"beneficiary_number": "Masukkan nomor akun",
+					"branch": "Masukkan nama cabang",
+					"bank_code": "Masukkan kode bank",
+					"bank_address": "Masukkan alamat bank",
+					"swift_code": "Masukkan kode SWIFT",
+					"intermediary_bank_name": "Masukkan nama bank perantara",
+					"intermediary_account": "Masukkan IBAN"
+				},
+				"validation": {
+					"account_type_required": "Tipe akun wajib diisi",
+					"currency_required": "Mata uang wajib diisi",
+					"bank_required": "Bank wajib diisi",
+					"entity_required": "Entitas wajib diisi",
+					"user_required": "Pengguna wajib diisi",
+					"beneficiary_name_required": "Nama akun penerima wajib diisi",
+					"beneficiary_number_required": "Nomor akun penerima wajib diisi",
+					"branch_required": "Nama cabang bank penerima wajib diisi",
+					"bank_code_required": "Kode bank wajib diisi",
+					"bank_address_required_wire": "Alamat bank penerima wajib diisi untuk Wire",
+					"swift_code_required_wire": "Kode BIC/SWIFT penerima wajib diisi untuk Wire"
+				},
+				"messages": {
+					"create_success": "Akun bank berhasil ditambahkan",
+					"create_error": "Gagal menambahkan akun bank",
+					"update_success": "Akun bank berhasil diperbarui",
+					"update_error": "Gagal memperbarui akun bank",
+					"not_found": "Metode pembayaran tidak ditemukan"
+				},
+				"actions": {
+					"confirm": "Konfirmasi",
+					"cancel": "Batal",
+					"go_back": "Kembali ke daftar"
+				}
+			}
+		},
+		"transactions": {
+			"list": {
+				"title": "Daftar transaksi",
+				"subtitle": "Kelola transaksi pelanggan",
+				"breadcrumb": {
+					"admin": "Admin",
+					"transaction_list": "Daftar Transaksi"
+				},
+				"tabs": {
+					"deposit": "Setoran",
+					"withdrawal": "Penarikan"
+				},
+				"filter": {
+					"search": {
+						"label": "Cari",
+						"placeholder": "Cari ID Transaksi"
+					},
+					"status": {
+						"all": "Semua Status",
+						"pending": "Menunggu",
+						"approved": "Disetujui",
+						"processing": "Diproses",
+						"rejected": "Ditolak"
+					},
+					"date_range": {
+						"placeholder": "Pilih Rentang Tanggal"
+					},
+					"reset": "Reset"
+				},
+				"table": {
+					"columns": {
+						"no": "No",
+						"tran_id": "TranID",
+						"date_time": "Tanggal dan waktu",
+						"status": "Status",
+						"request": "Permintaan",
+						"process_by": "Diproses Oleh",
+						"trading_account": "Akun trading",
+						"beneficiary_bank": "Bank Penerima",
+						"deposit_amount": "Jumlah setoran",
+						"withdrawal_amount": "Jumlah penarikan",
+						"verified_amount": "Jumlah Terverifikasi (USD)"
+					}
+				}
+			},
+			"detail": {
+				"title": "Detail Transaksi",
+				"breadcrumb": {
+					"admin": "Admin",
+					"transaction_list": "Daftar Transaksi",
+					"deposit": "Detail Setoran",
+					"withdrawal": "Detail Penarikan"
+				},
+				"header": {
+					"created_date": "Tanggal dibuat",
+					"request_type": "Tipe permintaan",
+					"deposit": "Setoran",
+					"withdraw": "Penarikan",
+					"status": "Status transaksi",
+					"approved_date": "Tanggal disetujui",
+					"process_by": "Diproses oleh"
+				},
+				"sections": {
+					"customer_info": "1. Informasi pelanggan",
+					"request_info": "2. Informasi permintaan",
+					"beneficiary_info": "2. Informasi bank penerima",
+					"pod": "3. Bukti setoran (POD)",
+					"fund_info": "Informasi dana"
+				},
+				"fields": {
+					"email": "Email pelanggan",
+					"name": "Nama pelanggan",
+					"trading_account": "Nomor akun trading",
+					"account_type": "Tipe Akun",
+					"bank_info_title": "Informasi bank penerima",
+					"bank_name": "Nama bank penerima",
+					"beneficiary_name": "Nama akun penerima",
+					"beneficiary_number": "Nomor akun penerima",
+					"beneficiary_swift": "Kode BIC/SWIFT penerima",
+					"beneficiary_branch": "Cabang Bank Penerima",
+					"pod_fallback": "Bukti Setoran",
+					"no_file": "Tidak ada file yang diunggah",
+					"payment_details": "Detail pembayaran",
+					"deposit_amount": "Jumlah setoran",
+					"withdrawal_amount": "Jumlah penarikan",
+					"amount_receive": "Jumlah yang akan diterima pelanggan di akun trading mereka",
+					"verified_amount": "Jumlah terverifikasi (USD)"
+				},
+				"actions": {
+					"approve": {
+						"label": "Setujui",
+						"modal_title": "Setujui transaksi ini",
+						"description_deposit": "Setelah disetujui, pelanggan akan diberi tahu, dan dana masuk akan muncul di akun trading mereka.",
+						"description_withdraw": "Setelah disetujui, dana akan diproses untuk ditransfer, dan pengguna akan diberi tahu.",
+						"deposit_amount": "Jumlah setoran:",
+						"withdrawal_amount": "Jumlah penarikan:",
+						"total_received": "Total jumlah yang diterima:",
+						"verified_amount": "Jumlah terverifikasi (USD):",
+						"success_deposit": "Setoran berhasil disetujui",
+						"success_withdraw": "Penarikan berhasil disetujui",
+						"failed": "Gagal menyetujui transaksi"
+					},
+					"reject": {
+						"label": "Tolak",
+						"modal_title": "Tolak transaksi ini",
+						"description_deposit": "Setelah ditolak, transaksi tidak akan diproses lebih lanjut, dan pengguna akan diberi tahu tentang keputusan tersebut.",
+						"description_withdraw": "Anda akan menolak transaksi ini. Tindakan ini akan mencegah pemrosesan lebih lanjut dan memberi tahu pihak-pihak terkait.",
+						"reason_label": "Alasan penolakan *",
+						"reason_placeholder": "Catatan Penolakan *",
+						"reason_required": "Alasan penolakan diperlukan",
+						"success_deposit": "Setoran berhasil ditolak",
+						"success_withdraw": "Penarikan berhasil ditolak",
+						"failed": "Gagal menolak transaksi"
+					},
+					"common": {
+						"confirm": "Konfirmasi",
+						"cancel": "Batal",
+						"something_wrong": "Terjadi kesalahan"
+					}
+				}
+			}
+		},
+		"rates": {
+			"title": "Kurs",
+			"subtitle": "Kelola kurs untuk berbagai mata uang dan metode pembayaran",
+			"breadcrumb": {
+				"admin": "Admin",
+				"rates": "Kurs"
+			},
+			"tabs": {
+				"deposit": "Kurs deposit",
+				"withdrawal": "Kurs penarikan"
+			},
+			"filter": {
+				"view": {
+					"current": "Kurs Saat Ini",
+					"history": "Riwayat Kurs"
+				}
+			},
+			"table": {
+				"columns": {
+					"no": "No.",
+					"base_currency": "Mata Uang Dasar",
+					"quote_currency": "Mata Uang Kutipan",
+					"exchange_rate": "Nilai Tukar",
+					"effective_date": "Tanggal Efektif",
+					"status": "Status",
+					"note": "Catatan",
+					"action": "Aksi"
+				},
+				"actions": {
+					"edit_rate": "Ubah kurs"
+				}
+			},
+			"dialog": {
+				"setup_rate": {
+					"title": {
+						"create": "Atur kurs {type}",
+						"edit": "Ubah kurs"
+					},
+					"fields": {
+						"base_currency": {
+							"label": "Mata Uang Dasar"
+						},
+						"quote_currency": {
+							"label": "Mata Uang Kutipan"
+						},
+						"exchange_rate": {
+							"label": "Nilai Tukar",
+							"placeholder": "0.00"
+						},
+						"effective_date": {
+							"label": "Tanggal Efektif"
+						},
+						"note": {
+							"label": "Catatan",
+							"placeholder": "Tambahkan catatan..."
+						},
+						"status": {
+							"label": "Status"
+						}
+					},
+					"validation": {
+						"required": "Wajib diisi",
+						"must_be_greater_than_0": "Harus lebih besar dari 0"
+					},
+					"actions": {
+						"create": "Buat",
+						"update": "Perbarui",
+						"cancel": "Batal"
+					}
+				}
+			},
+			"messages": {
+				"update_status_success": "Status berhasil diperbarui",
+				"update_status_error": "Gagal memperbarui status",
+				"update_rate_success": "Kurs berhasil diperbarui",
+				"create_rate_success": "Kurs berhasil dibuat",
+				"update_rate_error": "Gagal memperbarui kurs",
+				"create_rate_error": "Gagal membuat kurs"
+			}
+		},
+		"settings": {
+			"authority": {
+				"title": "Otoritas",
+				"subtitle": "Kelola anggota staf và peran/izin mereka",
+				"breadcrumb": {
+					"admin": "Admin",
+					"authority": "Otoritas",
+					"staff": "Staf",
+					"roles": "Peran",
+					"staff_list": "Daftar Staf",
+					"staff_detail": "Detail Staf",
+					"activity_log": "Log Aktivitas",
+					"permission": "Izin",
+					"permission_detail": "Detail Izin"
+				},
+				"tabs": {
+					"staff": "Staf",
+					"roles": "Peran"
+				},
+				"filter": {
+					"search": {
+						"label": "Cari",
+						"placeholder": "Cari Nama atau Email"
+					},
+					"department": {
+						"label": "Filter berdasarkan Departemen"
+					},
+					"location": {
+						"label": "Filter berdasarkan Lokasi"
+					},
+					"actor": {
+						"label": "Aktor",
+						"placeholder": "Cari nama atau email aktor"
+					},
+					"date_range": {
+						"label": "Rentang Tanggal"
+					},
+					"event": {
+						"label": "Event",
+						"options": {
+							"created": "Dibuat",
+							"updated": "Diperbarui",
+							"deleted": "Dihapus"
+						}
+					}
+				},
+				"table": {
+					"columns": {
+						"no": "No.",
+						"email": "Email",
+						"full_name": "Nama Lengkap",
+						"position": "Jabatan",
+						"department": "Departemen",
+						"phone": "Telepon",
+						"location": "Lokasi",
+						"sales_code": "Kode Penjualan",
+						"status": "Status",
+						"created_time": "Waktu dibuat",
+						"role": "Peran",
+						"actor_id": "ID Aktor",
+						"actor_name": "Nama Aktor",
+						"event": "Event",
+						"object_id": "ID Objek",
+						"target": "Target",
+						"ip_address": "Alamat IP",
+						"timestamp": "Stempel Waktu",
+						"old_value": "Nilai Lama",
+						"new_value": "Nilai Baru"
+					},
+					"actions": {
+						"view": "Lihat",
+						"edit": "Ubah",
+						"view_log": "Lihat Log",
+						"reset": "Reset",
+						"add_staff": "Staf",
+						"cancel": "Batal"
+					}
+				},
+				"form": {
+					"add_staff": {
+						"title": "Tambah Staf",
+						"fields": {
+							"email_address": {
+								"label": "Alamat Email",
+								"placeholder": "Masukkan alamat email"
+							},
+							"first_name": {
+								"label": "Nama Depan",
+								"placeholder": "Masukkan nama depan"
+							},
+							"last_name": {
+								"label": "Nama Belakang",
+								"placeholder": "Masukkan nama belakang"
+							},
+							"gender": {
+								"label": "Jenis Kelamin",
+								"options": {
+									"male": "Laki-laki",
+									"female": "Perempuan",
+									"other": "Lainnya"
+								}
+							},
+							"date_of_birth": {
+								"label": "Tanggal Lahir"
+							},
+							"nationality": {
+								"label": "Kewarganegaraan",
+								"placeholder": "Pilih kewarganegaraan"
+							},
+							"phone_number": {
+								"label": "Nomor Telepon",
+								"placeholder": "Masukkan nomor telepon"
+							},
+							"positions": {
+								"label": "Jabatan",
+								"placeholder": "Pilih jabatan"
+							},
+							"location": {
+								"label": "Lokasi",
+								"placeholder": "Pilih lokasi"
+							},
+							"department": {
+								"label": "Departemen",
+								"placeholder": "Pilih departemen",
+								"placeholder_select_location": "Pilih lokasi terlebih dahulu"
+							},
+							"manager": {
+								"label": "Manajer",
+								"placeholder": "Pilih manajer",
+								"placeholder_select_dept": "Pilih departemen terlebih dahulu"
+							},
+							"manager_id": {
+								"label": "ID Manajer",
+								"placeholder": "Terisi otomatis"
+							},
+							"manager_email": {
+								"label": "Email Manajer",
+								"placeholder": "Terisi otomatis"
+							}
+						},
+						"validation": {
+							"invalid_email": "Alamat email tidak valid",
+							"first_name_required": "Nama depan wajib diisi",
+							"last_name_required": "Nama belakang wajib diisi",
+							"gender_required": "Jenis kelamin wajib diisi",
+							"dob_required": "Tanggal lahir wajib diisi",
+							"staff_min_age": "Staf harus berusia minimal 18 tahun",
+							"nationality_required": "Kewarganegaraan wajib diisi",
+							"phone_required": "Nomor telepon wajib diisi",
+							"position_required": "Jabatan wajib diisi",
+							"location_required": "Lokasi wajib diisi",
+							"department_required": "Departemen wajib diisi"
+						}
+					}
+				},
+				"detail": {
+					"staff": {
+						"title": "Detail Staf",
+						"user_info": "Informasi Pengguna",
+						"management_info": "Informasi Manajemen",
+						"no_managers": "Tidak ada manajer yang ditugaskan",
+						"not_found": "Staf tidak ditemukan"
+					},
+					"edit_staff": {
+						"title": "Ubah Staf",
+						"tabs": {
+							"information": "Informasi",
+							"permissions": "Izin"
+						},
+						"fields": {
+							"status": "Status",
+							"update_button": "Perbarui",
+							"assigned_roles": "Peran & Manajer yang Ditugaskan",
+							"manager_label": "Manajer",
+							"no_managers_available": "Tidak ada manajer yang tersedia cho peran ini"
+						},
+						"messages": {
+							"update_success": "Staf berhasil diperbarui",
+							"update_error": "Gagal memperbarui staf",
+							"no_roles_found": "Tidak ada peran yang ditemukan cho staf ini."
+						}
+					},
+					"permission": {
+						"title": "Detail Izin",
+						"role_subtitle": "Peran: {id}",
+						"save_changes": "Simpan Perubahan"
+					},
+					"staff_log": {
+						"title": "Log Aktivitas Staf"
+					}
+				},
+				"permissions": {
+					"groups": {
+						"application": "Aplikasi",
+						"worksheet": "Lembar Kerja",
+						"customer": "Pelanggan",
+						"trading_account": "Akun Trading",
+						"staff": "Staf",
+						"payment": "Pembayaran"
+					},
+					"labels": {
+						"view_application": "Lihat Aplikasi",
+						"add_application": "Tambah Aplikasi",
+						"edit_application": "Ubah Aplikasi",
+						"approve_application": "Setujui Aplikasi",
+						"reject_application": "Tolak Aplikasi",
+						"request_application": "Minta Aplikasi",
+						"view_sales": "Lihat Penjualan",
+						"edit_sales": "Ubah Penjualan",
+						"approve_sales": "Setujui Penjualan",
+						"view_risk": "Lihat Risiko",
+						"edit_risk": "Ubah Risiko",
+						"approve_risk": "Setujui Risiko",
+						"view_onboarding": "Lihat Onboarding",
+						"edit_onboarding": "Ubah Onboarding",
+						"approve_onboarding": "Setujui Onboarding",
+						"view_compliance": "Lihat Kepatuhan",
+						"edit_compliance": "Ubah Kepatuhan",
+						"approve_compliance": "Setujui Kepatuhan",
+						"view_customer": "Lihat Pelanggan",
+						"add_customer": "Tambah Pelanggan",
+						"view_trading_account": "Lihat Akun Trading",
+						"edit_account": "Ubah Akun",
+						"view_staff": "Lihat Staf",
+						"add_staff": "Tambah Staf",
+						"edit_staff": "Ubah Staf",
+						"view_payment": "Lihat Pembayaran",
+						"add_payment": "Tambah Pembayaran",
+						"edit_payment": "Ubah Pembayaran"
+					}
+				},
+				"messages": {
+					"create_staff_success": "Anggota staf berhasil dibuat",
+					"create_staff_error": "Gagal membuat staf",
+					"update_permission_success": "Izin berhasil diperbarui",
+					"update_permission_error": "Gagal memperbarui izin",
+					"error_occurred": "Terjadi kesalahan",
+					"no_data": "Tidak ada data",
+					"copied_to_clipboard": "Disalin ke papan klip",
+					"copy_json": "Salin JSON"
+				}
+			}
+		}
+	},
+	"customer": {
+		"applications": {
+			"title": "Aplikasi",
+			"subtitle": "Kelola aplikasi Anda",
+			"new_application": "Aplikasi Baru",
+			"breadcrumb": {
+				"home": "Beranda",
+				"application_list": "Daftar Aplikasi"
+			},
+			"table": {
+				"columns": {
+					"id": "ID",
+					"type": "Tipe",
+					"entity": "Entitas",
+					"products": "Produk",
+					"status": "Status",
+					"created_at": "Tanggal Dibuat",
+					"actions": "Aksi"
+				},
+				"actions": {
+					"view": "Lihat"
+				}
+			}
+		},
+		"applications_detail": {
+			"title": "Detail Aplikasi",
+			"subtitle": "Kelola pengaturan và detail aplikasi",
+			"breadcrumb": {
+				"home": "Beranda",
+				"application_list": "Daftar Aplikasi",
+				"detail": "Detail Aplikasi"
+			},
+			"info": {
+				"application_id": "ID Aplikasi"
+			},
+			"meta": {
+				"email": "Email",
+				"trading_number": "Nomor Trading",
+				"product": "Produk"
+			},
+			"sections": {
+				"customer_particulars": "Detail Pelanggan",
+				"regulation_document": "Dokumen Regulasi",
+				"tax_compliance_declaration": "Deklarasi Kepatuhan Pajak"
+			}
+		},
+		"customer_particulars": {
+			"title": "Detail Pelanggan",
+			"breadcrumb": {
+				"home": "Beranda",
+				"application_list": "Daftar Aplikasi",
+				"application_detail": "Detail Aplikasi",
+				"current": "Detail Pelanggan"
+			},
+			"tabs": {
+				"personal_information": "Informasi Pribadi",
+				"job_details": "Detail Pekerjaan",
+				"bank_account": "Rekening Bank",
+				"identity_verification": "Verifikasi Identitas"
+			},
+			"sections": {
+				"basic_info": "Info Pribadi Dasar",
+				"residence_info": "Informasi Tempat Tinggal",
+				"emergency_contact": "Kontak Darurat",
+				"employment_info": "Informasi Pekerjaan",
+				"financial_info": "Informasi Keuangan / Trading",
+				"bank_account_info": "Informasi Rekening Bank",
+				"identity_verification_info": "KTP/Paspor untuk verifikasi",
+				"verification_documents": "Dokumen Verifikasi"
+			},
+			"fields": {
+				"full_name": "Nama lengkap (KTP/Paspor)",
+				"dob": "Tanggal Lahir (DOB)",
+				"gender": "Jenis Kelamin",
+				"pob": "Tempat Lahir (POB)",
+				"email": "Email",
+				"phone_number": "Nomor telepon",
+				"registered_address": "Alamat Terdaftar (KTP/Paspor)",
+				"registered_city": "Kota Terdaftar",
+				"registered_postal_code": "Kode Pos Terdaftar",
+				"marriage_status": "Status Pernikahan",
+				"residential_city": "Kota Tempat Tinggal",
+				"residential_postal_code": "Kode Pos Tempat Tinggal",
+				"home_ownership": "Status Kepemilikan Rumah",
+				"current_address": "Alamat Saat Ini",
+				"domicile_address": "Alamat Domisili",
+				"emergency_name": "Nama Kontak Darurat",
+				"emergency_phone": "Nomor Telepon Darurat",
+				"relationship": "Hubungan dengan Pelanggan",
+				"mother_maiden_name": "Nama Gadis Ibu Kandung",
+				"job_type": "Tipe Pekerjaan",
+				"company_business": "Bidang Usaha Perusahaan",
+				"company_name": "Nama Perusahaan",
+				"job_title": "Jabatan",
+				"company_address": "Alamat Perusahaan",
+				"annual_income": "Penghasilan Tahunan",
+				"source_of_funds": "Sumber Dana",
+				"trading_experience": "Pengalaman Trading",
+				"trading_experience_years": "Tahun Pengalaman Trading",
+				"bank_name": "Nama bank",
+				"account_holder": "Nama Pemilik Rekening",
+				"account_number": "Nomor Rekening",
+				"id_card_number": "Nomor Kartu Identitas",
+				"npwp_number": "Nomor Pokok Wajib Pajak (NPWP)",
+				"front_side": "Sisi Depan",
+				"selfie": "Selfie dengan Identitas Anda",
+				"selfie_full": "Selfie dengan Identitas",
+				"npwp_photo": "Foto NPWP",
+				"npwp_photo_full": "Foto NPWP"
+			},
+			"messages": {
+				"no_preview": "Pratinjau tidak tersedia",
+				"file_preview": "Pratinjau Berkas"
+			},
+			"actions": {
+				"view": "Lihat"
+			}
+		},
+		"regulation_document": {
+			"title": "Dokumen Regulasi",
+			"breadcrumb": {
+				"home": "Beranda",
+				"application_list": "Daftar Aplikasi",
+				"application_detail": "Detail Aplikasi",
+				"current": "Dokumen Regulasi"
+			},
+			"pdf": {
+				"loading": "Memuat PDF...",
+				"error": "Gagal memuat PDF",
+				"no_url": "URL PDF tidak tersedia"
+			},
+			"declaration": "Dengan mengisi kolom 'Checklist' di bawah này, saya menyatakan bahwa saya telah membaca, memahami và menyetujui kbenarann semua informasi dan pernyataan dalam Formulir ini untuk membuat Akun Perdagangan Komoditas di SFI. Dengan demikian, saya membuat pernyataan ini dalam keadaan sadar, sehat jasmani và rohani serta tanpa paksaan dari pihak manapun."
+		},
+		"tax_compliance_declaration": {
+			"title": "Deklarasi Kepatuhan Pajak",
+			"breadcrumb": {
+				"home": "Beranda",
+				"application_list": "Daftar Aplikasi",
+				"application_detail": "Detail Aplikasi",
+				"current": "Deklarasi Kepatuhan Pajak"
+			},
+			"intro": "Merupakan kebijakan kami untuk menerapkan standar anti-pencucian uang dan standar integritas lainnya dalam bisnis kami. Ini termasuk kepatuhan terhadap US Foreign Account Tax Compliance Act 'FATCA'. Sejalan dengan persyaratan tersebut, kami diharuskan untuk memperoleh informasi mengenai residensi pajak dari pelanggan kami.",
+			"we": "Kami,",
+			"address": "Pada alamat terdaftar",
+			"declare_confirm": "Dengan ini menyatakan dan mengonfirmasi bahwa:",
+			"residency_select": "1. Kami adalah residen pajak dari (silakan pilih negara residensi pajak):",
+			"options": {
+				"indonesia_only": "Indonesia saja",
+				"us_only": "AS saja",
+				"neither": "Bukan Indonesia maupun AS, silakan lengkapi bagian di bawah ini"
+			},
+			"countries_indication": "Kami adalah residen pajak dari negara-negara berikut (tunjukkan jenis dan nomor referensi pajak yang berlaku di masing-masing negara)",
+			"table": {
+				"columns": {
+					"country": "Negara/Yurisdiksi Domisili Pajak",
+					"tin": "Nomor Identifikasi Pajak (TIN) atau yang setara",
+					"reason": "Jika TIN atau yang setara tidak tersedia, silakan pilih alasan A, B atau C*"
+				}
+			},
+			"reasons": {
+				"a": "Alasan A - Negara/yurisdiksi tempat Pemegang Akun berkewajiban membayar pajak tidak menerbitkan TIN kepada penduduknya",
+				"b": "Alasan B - Pemegang Akun tidak dapat memperoleh TIN atau nomor yang setara",
+				"c": "Alasan C - Tidak diperlukan TIN (catatan: hanya pilih alasan ini jika pihak berwenang di negara domisili untuk tujuan pajak tidak mewajibkan pengungkapan TIN)",
+				"explanation_b": "Harap berikan penjelasan untuk Alasan B (Yurisdiksi {index})"
+			},
+			"declarations": {
+				"2": "Kami bertanggung jawab atas urusan pajak kami sendiri dan memastikan bahwa akun kami yang dikelola di SFI mematuhi undang-undang perpajakan dari yurisdiksi terkait yang menjadi subjek pendirian permanen kami, atau tempat kami menjadi residen pajak.",
+				"3": "Sepanjang pengetahuan kami, informasi yang diberikan dalam formulir ini adalah benar, tepat, dan lengkap.",
+				"4": "Atas permintaan SFI, kami setuju untuk memberikan semua dokumentasi atau informasi yang diperlukan kepada SFI, termasuk namun tidak terbatas pada tanggal pendirian, negara pendirian, negara residensi pajak, dan nomor identitas pembayar pajak terkait, yang mungkin diperlukan agar SFI dapat melakukan pertanyaan tentang status pajak kami.",
+				"5": "Kami setuju dan menyetujui bahwa SFI dapat mengumpulkan, memproses, menggunakan, dan menyimpan Informasi Anda untuk tujuan menjalankan kewajibannya berdasarkan FATCA atau undang-undang lain yang berlaku dan untuk tujuan manajemen internal SFI sendiri.",
+				"6": "Kami mengakui bahwa SFI dapat mengambil tindakan apa pun yang dianggap perlu oleh SFI untuk memenuhi persyaratan FATCA atau persyaratan lain yang berlaku.",
+				"7": "Kami akan segera memberi tahu SFI jika ada perubahan pada keadaan yang dinyatakan di atas.",
+				"8": "Kami memahami bahwa SFI akan mengandalkan informasi yang telah kami berikan di atas ketika mempertimbangkan apakah akan menerima aplikasi akun kami atau melanjutkan hubungan pialang-pelanggan dengan kami.",
+				"9": "Kami mengakui dan menyetujui bahwa SFI tidak akan bertanggung jawab kepada kami atas kerugian, biaya, pengeluaran, atau tanggung jawab lain yang mungkin kami alami atau timbul sebagai akibat dari SFI mengambil tindakan apa pun sebagaimana diatur di atas."
+			}
+		},
+		"accounts": {
+			"title": "Daftar Akun",
+			"subtitle": "Kelola akun perdagangan Anda",
+			"reset": "Atur Ulang",
+			"resetting": "Mengatur ulang...",
+			"reset_success": "Saldo trial berhasil diatur ulang",
+			"reset_error": "Gagal mengatur ulang saldo trial",
+			"breadcrumb": {
+				"home": "Beranda",
+				"current": "Daftar Akun Saya"
+			},
+			"tabs": {
+				"live": "Live",
+				"demo": "Demo"
+			},
+			"table": {
+				"columns": {
+					"account_id": "ID Akun",
+					"name": "Nama",
+					"group": "Grup",
+					"balance": "Jumlah Saldo",
+					"equity": "Ekuitas",
+					"margin_used_free": "Margin Terpakai / Bebas",
+					"upnl": "UPNL",
+					"status": "Status",
+					"created_at": "Tanggal Dibuat"
+				}
+			}
+		},
+		"dashboard": {
+			"account_label": "Akun",
+			"stats": {
+				"estimated_balance": {
+					"title": "Estimasi Saldo",
+					"tooltip": "Estimasi ekuitas termasuk PnL mengambang"
+				},
+				"daily_pnl": {
+					"title": "PnL Harian",
+					"tooltip": "Laba/Rugi sejak awal hari"
+				},
+				"margin": {
+					"title": "Margin Terpakai / Bebas",
+					"tooltip": "Margin terpakai vs margin bebas"
+				},
+				"positions": {
+					"title": "Posisi Terbuka / Terisi",
+					"tooltip": "Posisi terbuka vs pesanan terisi"
+				}
+			},
+			"charts": {
+				"equity": {
+					"title": "Ekuitas",
+					"x_axis_label": "Waktu",
+					"y_axis_label": "Ekuitas",
+					"series_label": "Ekuitas",
+					"error": "Gagal memuat ekuitas"
+				},
+				"asset": {
+					"title": "Distribusi Aset",
+					"no_data": "Tidak ada data"
+				}
+			}
+		},
+		"positions": {
+			"title": "Detail Posisi",
+			"breadcrumb": {
+				"home": "Beranda",
+				"current": "Daftar Posisi"
+			},
+			"tabs": {
+				"positions": "Posisi",
+				"orders": "Pesanan",
+				"order_history": "Riwayat Pesanan",
+				"trade_history": "Riwayat Perdagangan"
+			},
+			"select_account": "Pilih Akun",
+			"order_history": {
+				"search_placeholder": "Cari Simbol",
+				"date_range_placeholder": "Pilih Rentang Tanggal",
+				"reset": "Atur Ulang",
+				"table": {
+					"columns": {
+						"order_id": "ID Pesanan",
+						"symbol": "Simbol",
+						"type": "Tipe",
+						"volume": "Volume",
+						"price_order": "Harga Pesanan",
+						"price_current": "Harga Saat Ini",
+						"sl": "S/L",
+						"tp": "T/P",
+						"time_setup": "Waktu Setup",
+						"status": "Status"
+					}
+				},
+				"types": {
+					"buy": "Beli",
+					"sell": "Jual",
+					"buy_limit": "Buy Limit",
+					"sell_limit": "Sell Limit",
+					"buy_stop": "Buy Stop",
+					"sell_stop": "Sell Stop",
+					"buy_stop_limit": "Buy Stop Limit",
+					"sell_stop_limit": "Sell Stop Limit",
+					"other": "Tipe {value}"
+				},
+				"states": {
+					"started": "Dimulai",
+					"placed": "Ditempatkan",
+					"canceled": "Dibatalkan",
+					"partial": "Parsial",
+					"filled": "Terisi",
+					"rejected": "Ditolak",
+					"expired": "Kedaluwarsa",
+					"other": "Status {value}"
+				}
+			}
+		},
+		"transactions": {
+			"title": "Transaksi",
+			"breadcrumb": {
+				"home": "Beranda",
+				"current": "Transaksi"
+			},
+			"tabs": {
+				"deposit": "Deposit",
+				"withdrawal": "Penarikan"
+			},
+			"select_account": "Pilih Akun",
+			"withdraw_fund": "Tarik Dana",
+			"make_deposit": "Lakukan Deposit",
+			"table": {
+				"search": "Cari",
+				"search_placeholder": "Cari Referensi",
+				"status_filter": {
+					"all": "Semua Status",
+					"progressing": "Sedang Diproses",
+					"approved": "Disetujui",
+					"rejected": "Ditolak"
+				},
+				"date_range_placeholder": "Pilih Rentang Tanggal",
+				"reset": "Atur Ulang",
+				"columns": {
+					"id": "ID",
+					"date": "Tanggal",
+					"method": "Metode",
+					"amount": "Jumlah",
+					"beneficiary_bank": "Bank Penerima",
+					"verify_amount": "Verifikasi Jumlah",
+					"status": "Status"
+				}
+			}
+		}
+	}
+}

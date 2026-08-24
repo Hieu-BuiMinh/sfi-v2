@@ -17,7 +17,7 @@ export function ModeToggle() {
 	if (!mounted) {
 		return (
 			<IconButton size="small" className="shrink-0 opacity-0" aria-label="Toggle color mode">
-				<DarkMode fontSize="small" />
+				<DarkMode fontSize="small" className="text-token-muted-foreground dark:text-mui-text-primary" />
 			</IconButton>
 		)
 	}

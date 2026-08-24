@@ -97,7 +97,7 @@ export function DropdownMenuContent({
 			slotProps={{
 				paper: {
 					className: cn(
-						'min-w-[10rem] overflow-hidden rounded-xl border border-mui-divider bg-mui-bg-paper p-1 text-token-foreground shadow-2xl backdrop-blur-xl',
+						'min-w-40 overflow-hidden rounded-xl border border-mui-divider bg-mui-bg-paper p-1 text-token-foreground shadow-2xl backdrop-blur-xl',
 						className
 					),
 					sx: {
@@ -291,7 +291,9 @@ export function BaseDropdownMenu({ renderTrigger, items, className }: BaseDropdo
 	const handleClose = () => setAnchorEl(null)
 
 	return (
-		<>
+		<DropdownMenuContext.Provider
+			value={{ open, anchorEl, setAnchorEl, close: handleClose }}
+		>
 			{renderTrigger({
 				onClick: (e) => setAnchorEl(e.currentTarget),
 			})}
@@ -304,7 +306,7 @@ export function BaseDropdownMenu({ renderTrigger, items, className }: BaseDropdo
 				slotProps={{
 					paper: {
 						className: cn(
-							'min-w-[10rem] overflow-hidden rounded-xl border border-mui-divider bg-mui-bg-paper p-1 text-token-foreground shadow-2xl backdrop-blur-xl',
+							'min-w-40 overflow-hidden rounded-xl border border-mui-divider bg-mui-bg-paper p-1 text-token-foreground shadow-2xl backdrop-blur-xl',
 							className
 						),
 						sx: {
@@ -336,7 +338,7 @@ export function BaseDropdownMenu({ renderTrigger, items, className }: BaseDropdo
 					</React.Fragment>
 				))}
 			</Menu>
-		</>
+		</DropdownMenuContext.Provider>
 	)
 }
 

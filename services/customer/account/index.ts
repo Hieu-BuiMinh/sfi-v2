@@ -30,7 +30,9 @@ export const customerAccountService = {
 	getAccountDailyEquity: {
 		key: ({ id }: { id: string }) => ['get_customer_account_daily_equity', id] as const,
 		get: async ({ id }: { id: string }) => {
-			const res = await clientApi.get<TApiResponse<CustomerAccountDailyEquity>>(`/api/v2/accounts/${id}/daily-equity`)
+			const res = await clientApi.get<TApiResponse<CustomerAccountDailyEquity>>(
+				`/api/v2/accounts/${id}/daily-equity`
+			)
 			return res.data
 		},
 	},

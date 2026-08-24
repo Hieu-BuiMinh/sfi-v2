@@ -9,7 +9,7 @@ export type UserButtonProps = {
 	mode?: 'light' | 'dark'
 }
 
-function SfsUserButton({ mode }: UserButtonProps) {
+function SfiUserButton({ mode }: UserButtonProps) {
 	const { auth } = useAuth()
 
 	const displayName = auth?.name
@@ -50,4 +50,4 @@ function SfsUserButton({ mode }: UserButtonProps) {
 	)
 }
 
-export default SfsUserButton
+export default SfiUserButton

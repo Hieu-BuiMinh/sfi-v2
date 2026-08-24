@@ -91,6 +91,7 @@ export interface SfiDateRangePickerProps {
 	placeholder?: string
 	format?: string // Display format, default: 'DD/MM/YYYY'
 	disabled?: boolean
+	size?: TextFieldProps['size']
 	minDate?: Date
 	maxDate?: Date
 	disableFuture?: boolean
@@ -161,6 +162,7 @@ export const SfiDateRangePicker = React.forwardRef<HTMLDivElement, SfiDateRangeP
 			placeholder = 'Select date range',
 			format = 'DD/MM/YYYY',
 			disabled = false,
+			size = 'medium',
 			minDate,
 			maxDate,
 			disableFuture = false,
@@ -258,7 +260,7 @@ export const SfiDateRangePicker = React.forwardRef<HTMLDivElement, SfiDateRangeP
 					error={error}
 					helperText={helperText}
 					fullWidth
-					size="small"
+					size={size}
 					slotProps={{
 						input: {
 							readOnly: true,

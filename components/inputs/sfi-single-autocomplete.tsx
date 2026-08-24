@@ -38,7 +38,7 @@ export function SfiSingleAutocomplete<
 	const { label, error, helperText, containerClassName, options = [], ...rest } = props
 
 	return (
-		<FormControl fullWidth error={error} margin="dense" className={cn('w-full', containerClassName)}>
+		<FormControl fullWidth error={error} margin="none" className={cn('w-full', containerClassName)}>
 			<StyledAutocomplete
 				{...(rest as any)}
 				options={options}
@@ -58,7 +58,14 @@ export function SfiSingleAutocomplete<
 					})
 				}
 				renderInput={(params) => (
-					<TextField {...params} label={label as any} variant="outlined" error={error} margin="none" />
+					<TextField
+						{...params}
+						label={label as any}
+						variant="outlined"
+						error={error}
+						margin="none"
+						size={props.size}
+					/>
 				)}
 			/>
 			{helperText && <FormHelperText className="mx-0">{helperText}</FormHelperText>}

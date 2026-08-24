@@ -12,7 +12,7 @@ export const StyledTextField = styled(MuiTextField)(({ theme }) => ({
 }))
 
 export const SfiTextField = React.forwardRef<HTMLDivElement, TextFieldProps>((props, ref) => {
-	return <StyledTextField margin="dense" fullWidth variant="outlined" {...props} ref={ref} />
+	return <StyledTextField margin="none" fullWidth variant="outlined" {...props} ref={ref} />
 })
 
 SfiTextField.displayName = 'SfiTextField'

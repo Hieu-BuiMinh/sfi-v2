@@ -13,7 +13,7 @@ const StyledMuiTelInput = styled(MuiTelInput)({
 })
 
 export function SfiPhoneNumber(props: SfiPhoneNumberProps) {
-	return <StyledMuiTelInput margin="dense" fullWidth variant="outlined" defaultCountry="ID" {...props} />
+	return <StyledMuiTelInput margin="none" fullWidth variant="outlined" defaultCountry="ID" {...props} />
 }
 
 export default SfiPhoneNumber

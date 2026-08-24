@@ -30,6 +30,7 @@ export interface SfiCountrySelectProps {
 	helperText?: React.ReactNode
 	containerClassName?: string
 	disabled?: boolean
+	size?: 'small' | 'medium' | 'large'
 	getCountryCode?: boolean
 	hideCountryPhone?: boolean
 	restrictedCountries?: string[]
@@ -46,6 +47,7 @@ export const SfiCountrySelect = React.forwardRef<HTMLDivElement, SfiCountrySelec
 			helperText,
 			containerClassName,
 			disabled,
+			size = 'medium',
 			getCountryCode = false,
 			hideCountryPhone = false,
 			restrictedCountries,
@@ -67,8 +69,16 @@ export const SfiCountrySelect = React.forwardRef<HTMLDivElement, SfiCountrySelec
 			) || null
 
 		return (
-			<FormControl fullWidth={fullWidth} error={error} margin="dense" className={cn(containerClassName)} ref={ref}>
+			<FormControl
+				fullWidth={fullWidth}
+				error={error}
+				margin="none"
+				size={size}
+				className={cn(containerClassName)}
+				ref={ref}
+			>
 				<StyledAutocomplete
+					size={size}
 					options={filteredCountries}
 					autoHighlight
 					value={selectedCountry}
@@ -100,7 +110,7 @@ export const SfiCountrySelect = React.forwardRef<HTMLDivElement, SfiCountrySelec
 						if ((params as any).inputProps) {
 							;(params as any).inputProps.autoComplete = 'off'
 						}
-						return <TextField {...params} label={label} error={error} margin="none" />
+						return <TextField {...params} label={label} error={error} margin="none" size={size} />
 					}}
 				/>
 				{helperText && <FormHelperText className="mx-0">{helperText}</FormHelperText>}

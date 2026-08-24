@@ -30,7 +30,7 @@ export const auth0Config: Auth0Config = {
 		domain: process.env.SFI_UAT_ISSUER_BASE_URL?.replace(/^https?:\/\//, '') || 'straitsapp.au.auth0.com',
 		authorizationParameters: {
 			scope: 'openid offline_access email profile',
-			audience: process.env.SFID_UAT_AUDIENCE || 'https://maps2-dev.straitsfinancial.com/',
+			audience: process.env.SFI_UAT_AUDIENCE || 'https://maps2-dev.straitsfinancial.com/',
 			connection: 'SFI-DB-UAT',
 		},
 		session: {
@@ -50,7 +50,7 @@ export const auth0Config: Auth0Config = {
 		domain: process.env.SFI_UAT_ISSUER_BASE_URL?.replace(/^https?:\/\//, '') || 'straitsapp.au.auth0.com',
 		authorizationParameters: {
 			scope: 'openid offline_access email profile',
-			audience: process.env.SFID_UAT_AUDIENCE || 'https://maps2-dev.straitsfinancial.com/',
+			audience: process.env.SFI_UAT_AUDIENCE || 'https://maps2-dev.straitsfinancial.com/',
 			connection: 'SFI-DB-UAT',
 		},
 		session: {

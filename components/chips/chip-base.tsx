@@ -3,14 +3,14 @@
 import React from 'react'
 import { cn } from '@/utils/cn'
 
-export type SfsChipBaseVariant = 'success' | 'warning' | 'error' | 'info' | 'secondary' | 'purple' | 'orange'
+export type SfiChipBaseVariant = 'success' | 'warning' | 'error' | 'info' | 'secondary' | 'purple' | 'orange'
 
-export interface SfsChipBaseProps extends React.HTMLAttributes<HTMLDivElement> {
-	variant?: SfsChipBaseVariant
+export interface SfiChipBaseProps extends React.HTMLAttributes<HTMLDivElement> {
+	variant?: SfiChipBaseVariant
 	label?: React.ReactNode
 }
 
-const VARIANT_STYLES: Record<SfsChipBaseVariant, string> = {
+const VARIANT_STYLES: Record<SfiChipBaseVariant, string> = {
 	success:
 		'bg-emerald-100 text-emerald-700 border-emerald-200 dark:bg-emerald-500/10 dark:text-emerald-400 dark:border-emerald-900/50',
 	warning:
@@ -23,7 +23,7 @@ const VARIANT_STYLES: Record<SfsChipBaseVariant, string> = {
 	orange: 'bg-orange-100 text-orange-700 border-orange-200 dark:bg-orange-500/10 dark:text-orange-400 dark:border-orange-900/50',
 }
 
-export default function SfsChipBase({ variant = 'secondary', className, label, children, ...props }: SfsChipBaseProps) {
+export default function SfiChipBase({ variant = 'secondary', className, label, children, ...props }: SfiChipBaseProps) {
 	return (
 		<div
 			className={cn(
