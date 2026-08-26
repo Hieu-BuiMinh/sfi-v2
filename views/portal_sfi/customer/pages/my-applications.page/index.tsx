@@ -7,7 +7,7 @@ import SfiPageTitle from '@/components/wording/page-title'
 import { getAppConfigVariables } from '@/configs'
 import { APPLICATION_STATUS } from '@/dto/enums/application'
 import { useAuth } from '@/hooks/use-auth'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useCustomerApplicationsTableParams } from './hooks/use-customer-applications-table-params'
 import { adminApplicationService } from '@/services/admin/applications'
 import { TApplication } from '@/services/admin/applications/applications-res.dto'
 import VisibilityIcon from '@mui/icons-material/Visibility'
@@ -21,7 +21,7 @@ import React from 'react'
 const PAGINATION_PAGE_SIZE_OPTIONS = [10, 20, 50, 100]
 
 function MyApplicationsPageView() {
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useCustomerApplicationsTableParams()
 	const { auth } = useAuth()
 	const auth0Id = auth?.sub || ''
 	const onboardingPage =

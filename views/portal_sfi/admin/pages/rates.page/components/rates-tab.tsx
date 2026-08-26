@@ -3,8 +3,8 @@
 import React from 'react'
 import { GridColDef } from '@mui/x-data-grid'
 import { SfiTable } from '@/components/table'
-import { useTableParams } from '@/hooks/use-table-params'
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
+import { useRatesTableParams } from '../hooks/use-rates-table-params'
+import { keepPreviousData, useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { adminFinanceRatesService } from '@/services/admin/finance/rates'
 import {
   ERateStatus,
@@ -35,7 +35,7 @@ interface AdminRatesTabProps {
 
 function AdminRatesTab({ type, onEdit }: AdminRatesTabProps) {
   const t = useTranslations('admin.rates')
-  const [params, setParams] = useTableParams()
+  const [params, setParams] = useRatesTableParams()
   const queryClient = useQueryClient()
   const [view, setView] = useQueryState('view', { defaultValue: 'current' })
 
@@ -61,6 +61,7 @@ function AdminRatesTab({ type, onEdit }: AdminRatesTabProps) {
         page: params.page,
         per_page: params.per_page,
       }),
+		placeholderData: keepPreviousData,
   })
 
   const rates = response?.data?.data || []

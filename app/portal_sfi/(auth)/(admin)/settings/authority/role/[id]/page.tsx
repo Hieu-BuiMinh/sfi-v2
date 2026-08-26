@@ -1,4 +1,4 @@
-import PermissionDetailPageView from '@/views/portal_sfi/admin/pages/setting.page/admin-authority.page/permission-detail.page'
+import PermissionDetailPageView from '@/views/portal_sfi/admin/pages/setting.page/pages/admin-authority.page/pages/permission-detail.page'
 import { redirect } from 'next/navigation'
 
 async function PermissionDetailPage({ params }: { params: Promise<{ id: string }> }) {

@@ -9,7 +9,7 @@ export interface RfhFileUploadProps<T extends FieldValues> {
 	control: Control<T>
 	maxSize?: number
 	accept?: Accept
-	label?: string
+	label?: string | React.ReactNode
 	children?: (props: {
 		getRootProps: () => any
 		getInputProps: () => any

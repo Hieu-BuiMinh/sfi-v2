@@ -1,4 +1,4 @@
-import DepositDetailPageView from '@/views/portal_sfi/admin/pages/transactions.page/deposit-detail.page'
+import DepositDetailPageView from '@/views/portal_sfi/admin/pages/transactions.page/pages/deposit-detail.page'
 
 async function AdminDepositDetailPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params

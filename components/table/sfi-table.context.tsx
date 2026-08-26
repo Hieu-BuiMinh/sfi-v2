@@ -1,20 +1,26 @@
 'use client'
 
 import React, { createContext, useContext, ReactNode } from 'react'
-import { TableParams } from '@/hooks/use-table-params'
+
+export interface SfiTableParams {
+	page: number
+	per_page: number
+	sort_by?: string | null
+	sort_order?: 'asc' | 'desc' | null
+}
+
+export type SfiTableParamsSetter = (
+	values: Partial<SfiTableParams>,
+	options?: {
+		history?: 'replace' | 'push'
+		scroll?: boolean
+		shallow?: boolean
+	}
+) => Promise<URLSearchParams>
 
 export interface SfiTableContextProps {
-	params: TableParams
-	setParams: (
-		values: Partial<TableParams> | ((old: TableParams) => Partial<TableParams>),
-		options?:
-			| {
-					history?: 'replace' | 'push' | undefined
-					scroll?: boolean | undefined
-					shallow?: boolean | undefined
-			  }
-			| undefined
-	) => Promise<URLSearchParams>
+	params: SfiTableParams
+	setParams: SfiTableParamsSetter
 	rowCount: number
 	loading?: boolean
 }

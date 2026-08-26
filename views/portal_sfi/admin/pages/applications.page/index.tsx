@@ -2,10 +2,10 @@
 
 import React from 'react'
 import { useTranslations } from 'next-intl'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { adminApplicationService } from '@/services/admin/applications'
 import dayjs from 'dayjs'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useAdminApplicationsTableParams } from './hooks/use-admin-applications-table-params'
 import BreadcrumbSfi from '@/components/navigations/breadcrumb'
 import SfiPageTitle from '@/components/wording/page-title'
 import AdminApplicationFilter from '@/views/portal_sfi/admin/components/application-table/admin-application-filter'
@@ -13,7 +13,7 @@ import AdminApplicationTable from '@/views/portal_sfi/admin/components/applicati
 
 function AdminApplicationsPageView() {
 	const t = useTranslations('admin.applications')
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useAdminApplicationsTableParams()
 
 	const { data: response } = useQuery({
 		queryKey: adminApplicationService.getApplications.key({
@@ -33,6 +33,7 @@ function AdminApplicationsPageView() {
 				created_from: params.from ? dayjs(params.from).format('YYYY-MM-DD') : undefined,
 				created_to: params.to ? `${dayjs(params.to).format('YYYY-MM-DD')} 23:59:59` : undefined,
 			}),
+		placeholderData: keepPreviousData,
 	})
 
 	const statusLabels: Record<string, string> = {

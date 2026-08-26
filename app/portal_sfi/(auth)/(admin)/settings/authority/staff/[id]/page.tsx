@@ -1,4 +1,4 @@
-import AdminStaffDetailPageView from '@/views/portal_sfi/admin/pages/setting.page/admin-authority.page/staff-detail.page'
+import AdminStaffDetailPageView from '@/views/portal_sfi/admin/pages/setting.page/pages/admin-authority.page/pages/staff-detail.page'
 import { redirect } from 'next/navigation'
 import React from 'react'
 

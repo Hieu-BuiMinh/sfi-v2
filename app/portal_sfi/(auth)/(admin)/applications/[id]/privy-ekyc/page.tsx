@@ -1,4 +1,4 @@
-import AdminApplicationPrivyEkycPageView from '@/views/portal_sfi/admin/pages/applications.page/application-detail/privy-ekyc/privy-ekyc.page'
+import AdminApplicationPrivyEkycPageView from '@/views/portal_sfi/admin/pages/applications.page/pages/application-detail.page/pages/privy-ekyc.page'
 
 async function AdminApplicationPrivyEkycPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params

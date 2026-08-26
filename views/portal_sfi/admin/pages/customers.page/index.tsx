@@ -8,13 +8,13 @@ import { SfiTable } from '@/components/table'
 import SfiPageTitle from '@/components/wording/page-title'
 import { DEFAULT_PAGINATION } from '@/constants/components/pagination/pagination.const'
 import { APPLICATION_STATUS } from '@/dto/enums/application'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useAdminCustomersTableParams } from './hooks/use-admin-customers-table-params'
 import { adminCustomerService } from '@/services/admin/users/customers'
 import { TCustomerApplicationListItem } from '@/services/admin/users/customers/customer-res.dto'
 import ReplayIcon from '@mui/icons-material/Replay'
 import { Button, InputAdornment } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { SearchIcon } from 'lucide-react'
 import { useTranslations } from 'next-intl'
@@ -22,7 +22,7 @@ import Link from 'next/link'
 
 function AdminCustomersPageView() {
 	const t = useTranslations('admin.customers.list')
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useAdminCustomersTableParams()
 
 	const { data: response, isLoading } = useQuery({
 		queryKey: adminCustomerService.getCustomers.key({
@@ -40,6 +40,7 @@ function AdminCustomersPageView() {
 				from_date: params.from ? dayjs(params.from).format('YYYY-MM-DD') : undefined,
 				to_date: params.to ? `${dayjs(params.to).format('YYYY-MM-DD')} 23:59:59` : undefined,
 			}),
+		placeholderData: keepPreviousData,
 	})
 
 	const customers = response?.data?.data || []
@@ -74,7 +75,7 @@ function AdminCustomersPageView() {
 			width: 250,
 			renderCell: (params) => (
 				<Link
-					className="text-mui-primary-main font-medium underline"
+					className="text-mui-primary font-medium underline"
 					href={`/customers/${params.row.user?.id}?applicationId=${params.row.id}`}
 				>
 					{params.row.user?.email || '-'}

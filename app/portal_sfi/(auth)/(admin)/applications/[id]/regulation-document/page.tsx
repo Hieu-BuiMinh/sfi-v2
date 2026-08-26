@@ -1,4 +1,4 @@
-import AdminApplicationRegulationDocumentPageView from '@/views/portal_sfi/admin/pages/applications.page/application-detail/regulation-document/regulation-document.page'
+import AdminApplicationRegulationDocumentPageView from '@/views/portal_sfi/admin/pages/applications.page/pages/application-detail.page/pages/regulation-document.page'
 
 async function AdminApplicationRegulationDocumentPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params

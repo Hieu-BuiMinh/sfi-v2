@@ -1,10 +1,7 @@
 'use client'
 
-import SfiPortalLayout, {
-	PortalLayoutLoading,
-	SfiAdminSidebar,
-	SFICustomerSidebar,
-} from '@/components/layouts/portal-layout'
+import SfiPortalLayout, { SfiAdminSidebar, SFICustomerSidebar } from '@/components/layouts/portal-layout'
+import PortalLayoutLoading from '@/components/loading/portal-layout-loading'
 import { PortalUserRole } from '@/dto/enums/user'
 import useProfile from '@/hooks/use-profile'
 

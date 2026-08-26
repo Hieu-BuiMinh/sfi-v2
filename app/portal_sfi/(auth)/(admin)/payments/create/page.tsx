@@ -1,4 +1,4 @@
-import PaymentMethodCreatePageView from '@/views/portal_sfi/admin/pages/payments.page/payment-method-create/payment-method-create.page'
+import PaymentMethodCreatePageView from '@/views/portal_sfi/admin/pages/payments.page/pages/payment-method-create.page/payment-method-create.page'
 
 function PaymentMethodCreatePage() {
 	return (

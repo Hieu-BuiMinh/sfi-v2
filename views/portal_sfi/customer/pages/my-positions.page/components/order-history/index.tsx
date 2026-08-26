@@ -6,11 +6,11 @@ import { formatMoney } from '@/utils/money'
 import { Button, InputAdornment } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { GridColDef } from '@mui/x-data-grid'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { useTranslations } from 'next-intl'
 import dayjs from 'dayjs'
 import React from 'react'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useOrderHistoryTableParams } from '../../hooks/use-order-history-table-params'
 import SfiDebounceTextField from '@/components/inputs/sfi-debounce-textfield'
 import SfiDateRangePicker from '@/components/inputs/sfi-date-range-picker'
 import { SfiTable } from '@/components/table'
@@ -22,7 +22,7 @@ interface OrderHistoryProps {
 
 export default function OrderHistory({ loginId }: OrderHistoryProps) {
 	const t = useTranslations('customer.positions.order_history')
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useOrderHistoryTableParams()
 
 	const { data: response, isLoading } = useQuery({
 		queryKey: adminOrdersService.getOrderHistory.key({
@@ -42,6 +42,7 @@ export default function OrderHistory({ loginId }: OrderHistoryProps) {
 				from: params.from,
 				to: params.to,
 			}),
+		placeholderData: keepPreviousData,
 		enabled: !!loginId,
 	})
 
@@ -63,7 +64,7 @@ export default function OrderHistory({ loginId }: OrderHistoryProps) {
 			field: 'order',
 			headerName: t('table.columns.order_id'),
 			width: 150,
-			renderCell: (params) => <span className="text-mui-primary-main font-semibold">{params.value}</span>,
+			renderCell: (params) => <span className="text-mui-primary font-semibold">{params.value}</span>,
 		},
 		{
 			field: 'symbol',

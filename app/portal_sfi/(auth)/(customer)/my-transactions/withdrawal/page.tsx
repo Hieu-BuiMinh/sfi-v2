@@ -1,4 +1,4 @@
-import WithdrawalPageView from '@/views/portal_sfi/customer/pages/my-transactions.page/withdrawal/withdrawl.page'
+import WithdrawalPageView from '@/views/portal_sfi/customer/pages/my-transactions.page/pages/withdrawal.page'
 
 function WithdrawalPage() {
 	return (

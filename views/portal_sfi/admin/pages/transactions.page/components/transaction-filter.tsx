@@ -3,7 +3,7 @@
 import { InputAdornment, Button } from '@mui/material'
 import SearchIcon from '@mui/icons-material/Search'
 import { useTranslations } from 'next-intl'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useAdminTransactionTableParams } from '../hooks/use-admin-transaction-table-params'
 import { useDevice } from '@/hooks/use-device'
 import SfiDebounceTextField from '@/components/inputs/sfi-debounce-textfield'
 import SfiSingleSelect from '@/components/inputs/sfi-single-select'
@@ -11,8 +11,8 @@ import { TRANSACTION_STATUS } from '@/constants/sfi/transactions.const'
 import SfiDateRangePicker from '@/components/inputs/sfi-date-range-picker'
 
 interface AdminTransactionFilterProps {
-	params: ReturnType<typeof useTableParams>[0]
-	setParams: ReturnType<typeof useTableParams>[1]
+	params: ReturnType<typeof useAdminTransactionTableParams>[0]
+	setParams: ReturnType<typeof useAdminTransactionTableParams>[1]
 }
 
 const AdminTransactionFilter = ({ params, setParams }: AdminTransactionFilterProps) => {

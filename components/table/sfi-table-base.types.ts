@@ -1,28 +1,19 @@
 import { DataGridProps, GridValidRowModel } from '@mui/x-data-grid'
-import { TableParams } from '@/hooks/use-table-params'
+import { SfiTableParams, SfiTableParamsSetter } from './sfi-table.context'
 
 export interface SfiTableBaseProps<T extends GridValidRowModel> extends Omit<
 	DataGridProps<T>,
 	'paginationModel' | 'onPaginationModelChange' | 'sortModel' | 'onSortModelChange'
 > {
 	/**
-	 * Params from useTableParams hook (Optional if used within SfiTableProvider)
+	 * Params from the API-specific table params hook (optional inside SfiTableProvider).
 	 */
-	params?: TableParams
+	params?: SfiTableParams
 
 	/**
-	 * setter from useTableParams hook (Optional if used within SfiTableProvider)
+	 * Setter from the API-specific table params hook (optional inside SfiTableProvider).
 	 */
-	setParams?: (
-		values: Partial<TableParams> | ((old: TableParams) => Partial<TableParams>),
-		options?:
-			| {
-					history?: 'replace' | 'push' | undefined
-					scroll?: boolean | undefined
-					shallow?: boolean | undefined
-			  }
-			| undefined
-	) => Promise<URLSearchParams>
+	setParams?: SfiTableParamsSetter
 
 	/**
 	 * Hide the pagination footer in DataGrid

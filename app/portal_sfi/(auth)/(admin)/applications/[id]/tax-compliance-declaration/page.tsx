@@ -1,4 +1,4 @@
-import TaxComplianceDeclarationPageView from '@/views/portal_sfi/admin/pages/applications.page/application-detail/tax-compliance-declaration/tax-compliance-declaration.page'
+import TaxComplianceDeclarationPageView from '@/views/portal_sfi/admin/pages/applications.page/pages/application-detail.page/pages/tax-compliance-declaration.page'
 
 export default async function TaxComplianceDeclarationPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params

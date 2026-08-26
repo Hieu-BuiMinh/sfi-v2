@@ -1,10 +1,9 @@
-import { SfiDatePicker } from '@/components/inputs/sfi-date-picker'
+import { SfiDatePicker, SfiDatePickerProps } from '@/components/inputs/sfi-date-picker'
 import { cn } from '@/utils/cn'
-import { DatePickerProps } from '@mui/x-date-pickers'
 import dayjs from 'dayjs'
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 
-interface RfhSfiDatePickerProps<T extends FieldValues> extends Omit<DatePickerProps, 'value' | 'onChange'> {
+interface RfhSfiDatePickerProps<T extends FieldValues> extends Omit<SfiDatePickerProps, 'value' | 'onChange'> {
 	name: Path<T>
 	control: Control<T>
 	rules?: object

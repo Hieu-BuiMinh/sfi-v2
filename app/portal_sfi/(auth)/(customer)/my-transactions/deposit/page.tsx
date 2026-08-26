@@ -1,4 +1,4 @@
-import DepositPageView from '@/views/portal_sfi/customer/pages/my-transactions.page/deposit/deposit.page'
+import DepositPageView from '@/views/portal_sfi/customer/pages/my-transactions.page/pages/deposit.page'
 
 function DepositPage() {
 	return (

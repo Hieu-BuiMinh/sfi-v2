@@ -1,4 +1,4 @@
-import ApplicationCustomerParticularPageView from '@/views/portal_sfi/customer/pages/my-applications.page/customer-particular/customer-particular.page'
+import ApplicationCustomerParticularPageView from '@/views/portal_sfi/customer/pages/my-applications.page/pages/customer-particular.page'
 
 async function ApplicationCustomerParticularPage({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params

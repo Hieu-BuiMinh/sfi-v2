@@ -2,7 +2,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
 import { SfiMultiAutocomplete as Autocomplete } from '@/components/inputs/sfi-multi-autocomplete'
-import { ReactNode } from 'react'
+import { AutocompleteRenderOptionState } from '@mui/material'
+import { HTMLAttributes, Key, ReactNode } from 'react'
 import { SfiOption as OptionType } from '@/components/inputs/types'
 
 interface RfhSfiMultiAutocompleteProps<T extends FieldValues, Option = OptionType> {
@@ -17,11 +18,17 @@ interface RfhSfiMultiAutocompleteProps<T extends FieldValues, Option = OptionTyp
 	disableClearable?: boolean
 	freeSolo?: boolean
 	getOptionLabel?: (option: Option) => string
-	renderOption?: (props: object, option: Option) => ReactNode
+	renderOption?: (
+		props: HTMLAttributes<HTMLLIElement> & { key: Key },
+		option: Option,
+		state: AutocompleteRenderOptionState
+	) => ReactNode
 	className?: string
 	sx?: any
 	loading?: boolean
 	disabled?: boolean
+	disableCloseOnSelect?: boolean
+	size?: 'small' | 'medium' | 'large'
 	placeholder?: string
 	onChange?: (values: any[]) => void
 }
@@ -70,6 +77,7 @@ export function RfhSfiMultiAutocomplete<T extends FieldValues, Option = OptionTy
 						containerClassName={containerClassName}
 						disabled={props.disabled}
 						placeholder={props.placeholder}
+						slotProps={{ chip: { variant: 'filled', color: 'primary' } }}
 					/>
 				)
 			}}

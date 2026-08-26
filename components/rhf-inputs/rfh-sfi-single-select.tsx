@@ -6,9 +6,11 @@ import { SfiOption } from '@/components/inputs/types'
 import { ReactNode } from 'react'
 
 interface RfhSfiSingleSelectProps<T extends FieldValues> {
+	id?: string
 	name: Path<T>
 	control: Control<T>
 	label?: string
+	placeholder?: ReactNode
 	options?: SfiOption[]
 	rules?: object
 	helperText?: string
@@ -26,6 +28,7 @@ interface RfhSfiSingleSelectProps<T extends FieldValues> {
  * Single-select Select wrapper for React Hook Form.
  */
 export function RfhSfiSingleSelect<T extends FieldValues>({
+	id,
 	name,
 	control,
 	label,
@@ -56,7 +59,7 @@ export function RfhSfiSingleSelect<T extends FieldValues>({
 					containerClassName={containerClassName}
 					className={className}
 					size={size}
-					id={name}
+					id={id ?? name}
 					value={field.value || ''}
 					fullWidth={props.fullWidth}
 				>

@@ -1,7 +1,7 @@
 'use client'
 
 import React, { useMemo } from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { adminMt5Service } from '@/services/admin/mt5'
 import { formatNumber } from '@/utils/money'
 import dayjs from '@/utils/dayjs'
@@ -9,7 +9,7 @@ import { GridColDef } from '@mui/x-data-grid'
 import { Button, InputAdornment } from '@mui/material'
 import { useTranslations } from 'next-intl'
 import ReplayIcon from '@mui/icons-material/Replay'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useMt5HistoryTableParams } from '../../hooks/use-mt5-history-table-params'
 import { SfiOption } from '@/components/inputs/types'
 import SfiDebounceTextField from '@/components/inputs/sfi-debounce-textfield'
 import SfiDateRangePicker from '@/components/inputs/sfi-date-range-picker'
@@ -24,7 +24,7 @@ import SearchIcon from '@mui/icons-material/Search'
 const HistoryTab = ({ accountNo }: HistoryTabProps) => {
 	const t = useTranslations('admin.customers.tabs.history_content')
 	const commonT = useTranslations('common.button_text')
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useMt5HistoryTableParams()
 	const mode = params.type || 'orders'
 
 	const HISTORY_TYPE_OPTIONS: SfiOption[] = [
@@ -67,6 +67,7 @@ const HistoryTab = ({ accountNo }: HistoryTabProps) => {
 				params: historyParams,
 			})) as any
 		},
+		placeholderData: keepPreviousData,
 		enabled: !!accountNo,
 	})
 

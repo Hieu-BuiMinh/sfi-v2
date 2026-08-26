@@ -2,7 +2,7 @@
 
 import { useTranslations } from 'next-intl'
 import { DashboardSummary } from './components/dashboard-summary'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useAdminApplicationsTableParams } from '@/views/portal_sfi/admin/pages/applications.page/hooks/use-admin-applications-table-params'
 import SfiPageTitle from '@/components/wording/page-title'
 import AdminApplicationFilter from '@/views/portal_sfi/admin/components/application-table/admin-application-filter'
 import AdminApplicationTable from '@/views/portal_sfi/admin/components/application-table/admin-application-table'
@@ -10,7 +10,7 @@ import { d } from '@/utils/dayjs'
 
 function AdminDashboardPageView() {
 	const t = useTranslations('admin.dashboard')
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useAdminApplicationsTableParams()
 
 	return (
 		<div className="flex flex-col gap-5">

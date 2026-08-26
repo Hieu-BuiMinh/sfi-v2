@@ -6,14 +6,14 @@ import { formatMoney } from '@/utils/money'
 import { GridColDef } from '@mui/x-data-grid'
 import { useQuery } from '@tanstack/react-query'
 import { useTranslations } from 'next-intl'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useAccountListTableParams } from '../hooks/use-account-list-table-params'
 import AccountStatusSfiChip from '@/components/chips/account-chip/acount-status-chip'
 import { SfiTable } from '@/components/table'
 import { DEFAULT_PAGINATION } from '@/constants/components/pagination/pagination.const'
 
 export default function LiveAccountList() {
 	const t = useTranslations('customer.accounts')
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useAccountListTableParams('live')
 
 	const { data: response, isLoading } = useQuery({
 		queryKey: customerAccountService.getAccountListByType.key({ type: 'LIVE' }),

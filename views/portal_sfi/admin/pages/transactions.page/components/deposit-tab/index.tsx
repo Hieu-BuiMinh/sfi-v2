@@ -3,13 +3,13 @@
 import React from 'react'
 import Link from 'next/link'
 import { GridColDef } from '@mui/x-data-grid'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { adminFinanceTransactionService } from '@/services/admin/finance/transactions'
 import { TTransaction } from '@/services/admin/finance/transactions/transactions-res.dto'
 import dayjs from 'dayjs'
 import { formatMoney, TCurrency } from '@/utils/money'
 import { useTranslations } from 'next-intl'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useAdminTransactionTableParams } from '../../hooks/use-admin-transaction-table-params'
 import SfiTransactionStatusChip from '@/components/chips/transaction-status-chip'
 import AdminTransactionFilter from '@/views/portal_sfi/admin/pages/transactions.page/components/transaction-filter'
 import { SfiTable } from '@/components/table'
@@ -17,7 +17,7 @@ import { DEFAULT_PAGINATION } from '@/constants/components/pagination/pagination
 
 function AdminDepositGridView() {
 	const t = useTranslations('admin.transactions.list')
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useAdminTransactionTableParams('deposit')
 
 	const { data: response, isLoading } = useQuery({
 		queryKey: adminFinanceTransactionService.getDepositTransactions.key({
@@ -37,6 +37,7 @@ function AdminDepositGridView() {
 				start_date: params.from ? dayjs(params.from).unix() : undefined,
 				end_date: params.to ? dayjs(params.to).unix() : undefined,
 			}),
+		placeholderData: keepPreviousData,
 	})
 
 	const transactions = response?.data?.data || []

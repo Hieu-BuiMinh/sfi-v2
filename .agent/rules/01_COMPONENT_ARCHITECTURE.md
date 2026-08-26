@@ -473,11 +473,43 @@ Manually adding `SearchRoundedIcon` and `InputAdornment` to a `SfsPortalDebounce
 
 # 15) Table Query Parameters Isolation
 
-Do not use a single shared table parameters hook (like a generic `useTableParams`) across multiple different entities.
+Every API-backed DataGrid must use an API-specific query-params hook. A generic shared hook such as `useTableParams` is forbidden.
 
-Each entity page or component must implement its own custom parameters hook containing only the specific query states, parsers, and defaults matching that entity's backend API request DTO.
+Mandatory rules:
 
-For example, use `useSfsTableParams` for generic tables, or implement a dedicated hook (e.g. `useSfsApplicationTableParams`) when dealing with specific business entities like customer applications.
+- Name the hook after the API resource or grid, for example `useAdminApplicationsTableParams`.
+- Store the hook in the owning page's `hooks/` directory, alongside that page's `components/` directory. Do not collect feature table hooks in a global directory such as `hooks/table/`.
+- Example: a grid owned by `views/portal_sfi/admin/pages/applications.page/components/` must keep its params hook at `views/portal_sfi/admin/pages/applications.page/hooks/use-admin-applications-table-params.ts`.
+- Declare only the query states that the API request DTO and that grid actually use.
+- Keep parsers, defaults, reset behavior, and URL key mapping inside the API-specific hook.
+- Use unique `urlKeys` when multiple grids can exist on the same route. Prefix every key with the grid/resource name so pagination and filters cannot overwrite another grid's state.
+- Type filter/table component props from the dedicated hook with `ReturnType<typeof useXxxTableParams>`; do not introduce a shared business params type.
+- The shared `SfiTable` component may know only generic DataGrid controls such as `page` and `per_page`. It must not import a feature/API params hook or own business filters.
+- When an endpoint has no search, filter, date range, or server-sort request field, do not add that state defensively.
+- A reset helper must belong to the same hook file and reset only that hook's states.
+
+Example:
+
+```ts
+const parsers = {
+	page: parseAsInteger.withDefault(1),
+	per_page: parseAsInteger.withDefault(10),
+	status: parseAsString,
+}
+
+export function useAdminApplicationsTableParams() {
+	return useQueryStates(parsers, {
+		history: 'replace',
+		shallow: true,
+		scroll: false,
+		urlKeys: {
+			page: 'applications_page',
+			per_page: 'applications_per_page',
+			status: 'applications_status',
+		},
+	})
+}
+```
 
 ---
 

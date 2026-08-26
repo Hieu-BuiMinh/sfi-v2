@@ -8,12 +8,10 @@ import { useSfiTableContext } from './sfi-table.context'
 export const SfiTableBase = <T extends GridValidRowModel>(props: SfiTableBaseProps<T>) => {
 	const context = useSfiTableContext()
 
-	// Combine props and context
 	const params = props.params || context?.params
 	const setParams = props.setParams || context?.setParams
 	const hidePagination = props.hidePagination || props.hideFooterPagination
 
-	// Guard against missing required state
 	if (!params || !setParams) {
 		throw new Error(
 			'SfiTableBase requires "params" and "setParams". Provide them as props or wrap with SfiTableProvider.'

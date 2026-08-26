@@ -1,6 +1,6 @@
 'use client'
 
-import { PortalLayoutLoading } from '@/components/layouts/portal-layout'
+import PortalLayoutLoading from '@/components/loading/portal-layout-loading'
 import { PortalUserRole } from '@/dto/enums/user'
 import { useAuth } from '@/hooks/use-auth'
 import useProfile from '@/hooks/use-profile'

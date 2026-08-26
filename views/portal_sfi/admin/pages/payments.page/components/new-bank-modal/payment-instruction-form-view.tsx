@@ -30,6 +30,7 @@ import RfhSfiSingleSelect from '@/components/rhf-inputs/rfh-sfi-single-select'
 import RfhSfiTextField from '@/components/rhf-inputs/rfh-sfi-textfield'
 import RfhSfiSwitch from '@/components/rhf-inputs/rfh-sfi-switch'
 import { Button } from '@mui/material'
+import { SfiEntityId } from '@/dto/enums/entity'
 
 export const PaymentInstructionFormView: React.FC<PaymentInstructionFormViewProps> = ({
 	data,
@@ -40,7 +41,7 @@ export const PaymentInstructionFormView: React.FC<PaymentInstructionFormViewProp
 	const t = useTranslations('admin.payments.form')
 	const { user } = useProfile()
 
-	const ENTITY_OPTIONS: SfiOption[] = [{ label: 'SFI', value: '5' }]
+	const ENTITY_OPTIONS: SfiOption[] = [{ label: 'SFI', value: SfiEntityId.SFI }]
 
 	const accountTypeOptions: SfiOption[] = [
 		{ label: t('fields.account_type.options.all'), value: '3' },
@@ -68,7 +69,7 @@ export const PaymentInstructionFormView: React.FC<PaymentInstructionFormViewProp
 					currency: data.currency,
 					method: data.method,
 					bank_id: data.bank_id,
-					entity_id: data.entity_id || '5',
+					entity_id: data.entity_id || SfiEntityId.SFI,
 					user_id: user?.id || data.user_id,
 					beneficiary_account_name: data.beneficiary_account_name,
 					beneficiary_account_number: data.beneficiary_account_number,
@@ -87,7 +88,7 @@ export const PaymentInstructionFormView: React.FC<PaymentInstructionFormViewProp
 				currency: SFI_CURRENCY_OPTIONS[0].value,
 				method: 1,
 				bank_id: '',
-				entity_id: '5',
+				entity_id: SfiEntityId.SFI,
 				user_id: user?.id || '',
 				beneficiary_account_name: '',
 				beneficiary_account_number: '',

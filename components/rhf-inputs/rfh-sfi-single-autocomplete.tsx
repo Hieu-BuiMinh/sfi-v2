@@ -23,6 +23,7 @@ interface RfhSfiSingleAutocompleteProps<T extends FieldValues, Option = OptionTy
 	loading?: boolean
 	disabled?: boolean
 	fullWidth?: boolean
+	size?: 'small' | 'medium' | 'large'
 	placeholder?: string
 	onChange?: (value: any) => void
 }

@@ -1,19 +1,19 @@
 'use client'
 
 import React from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { adminAuth0Service } from '@/services/admin/auth0'
 import { GridColDef, GridRenderCellParams } from '@mui/x-data-grid'
 import { Box, Typography } from '@mui/material'
 import dayjs from 'dayjs'
-import { TableParams, useTableParams } from '@/hooks/use-table-params'
+import { useLoginJournalTableParams } from '@/views/portal_sfi/admin/pages/customers.page/hooks/use-login-journal-table-params'
 import { SfiTable } from '@/components/table'
 import { DEFAULT_PAGINATION } from '@/constants/components/pagination/pagination.const'
 
 interface LoginJournalTableProps {
 	auth0Id: string | undefined
-	params: TableParams
-	setParams: ReturnType<typeof useTableParams>[1]
+	params: ReturnType<typeof useLoginJournalTableParams>[0]
+	setParams: ReturnType<typeof useLoginJournalTableParams>[1]
 }
 
 export const LoginJournalTable = ({ auth0Id, params, setParams }: LoginJournalTableProps) => {
@@ -33,6 +33,7 @@ export const LoginJournalTable = ({ auth0Id, params, setParams }: LoginJournalTa
 					per_page: params.per_page || 10,
 				},
 			}),
+		placeholderData: keepPreviousData,
 		enabled: !!auth0Id,
 	})
 

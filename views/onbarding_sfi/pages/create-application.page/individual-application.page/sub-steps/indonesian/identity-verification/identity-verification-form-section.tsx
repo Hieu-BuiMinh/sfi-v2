@@ -135,7 +135,7 @@ function IdentityVerificationFormSection({ onProcessingChange }: IdentityVerific
 	return (
 		<div className="flex flex-col gap-6">
 			<div className="flex flex-col gap-1">
-				<p className="text-mui-primary-main text-lg font-semibold">Upload KTP/Passport for verification</p>
+				<p className="text-mui-primary text-lg font-semibold">Upload KTP/Passport for verification</p>
 				<p className="text-mui-text-secondary text-sm">
 					Clear copies of Government issued Identity Document / Passport that contains a photo & has at least
 					6 months validity
@@ -188,7 +188,7 @@ function IdentityVerificationFormSection({ onProcessingChange }: IdentityVerific
 
 			<div className="mt-4 flex flex-col gap-4">
 				<div className="flex flex-col gap-1">
-					<p className="text-mui-primary-main text-lg font-semibold">Tax Identification Number(NPWP)</p>
+					<p className="text-mui-primary text-lg font-semibold">Tax Identification Number(NPWP)</p>
 					<p className="text-mui-text-secondary text-sm">Upload a clear photo of your NPWP</p>
 				</div>
 

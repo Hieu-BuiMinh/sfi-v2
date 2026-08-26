@@ -1,4 +1,4 @@
-import AdminAuthorityPageView from '@/views/portal_sfi/admin/pages/setting.page/admin-authority.page'
+import AdminAuthorityPageView from '@/views/portal_sfi/admin/pages/setting.page/pages/admin-authority.page'
 
 function AdminAuthorityPage() {
 	return (

@@ -5,14 +5,14 @@ import SfiDateRangePicker from '@/components/inputs/sfi-date-range-picker'
 import SfiDebounceTextField from '@/components/inputs/sfi-debounce-textfield'
 import SfiSingleSelect from '@/components/inputs/sfi-single-select'
 import { useDevice } from '@/hooks/use-device'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useAdminApplicationsTableParams } from '@/views/portal_sfi/admin/pages/applications.page/hooks/use-admin-applications-table-params'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button, InputAdornment } from '@mui/material'
 import { useTranslations } from 'next-intl'
 
 interface AdminApplicationFilterProps {
-	params: ReturnType<typeof useTableParams>[0]
-	setParams: ReturnType<typeof useTableParams>[1]
+	params: ReturnType<typeof useAdminApplicationsTableParams>[0]
+	setParams: ReturnType<typeof useAdminApplicationsTableParams>[1]
 }
 
 const AdminApplicationFilter = ({ params, setParams }: AdminApplicationFilterProps) => {

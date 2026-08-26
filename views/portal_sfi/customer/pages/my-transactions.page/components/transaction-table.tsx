@@ -9,14 +9,14 @@ import SfiSingleSelect from '@/components/inputs/sfi-single-select'
 import { SfiTable } from '@/components/table'
 import { DEFAULT_PAGINATION } from '@/constants/components/pagination/pagination.const'
 import { useDevice } from '@/hooks/use-device'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useCustomerTransactionsTableParams } from '../hooks/use-customer-transactions-table-params'
 import { customerFinanceTransactionsService } from '@/services/customer/finance/transactions'
 import { TransactionItem } from '@/services/customer/finance/transactions/transactions-res.dto'
 import { formatMoney } from '@/utils/money'
 import SearchIcon from '@mui/icons-material/Search'
 import { Button, InputAdornment } from '@mui/material'
 import { GridColDef } from '@mui/x-data-grid'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import dayjs from 'dayjs'
 import { useTranslations } from 'next-intl'
 
@@ -28,7 +28,7 @@ interface TransactionTableProps {
 export default function TransactionTable({ loginId, type }: TransactionTableProps) {
 	const t = useTranslations('customer.transactions.table')
 	const { isMobile, isTablet } = useDevice()
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useCustomerTransactionsTableParams(type)
 
 	const service =
 		type === 'deposit'
@@ -59,6 +59,7 @@ export default function TransactionTable({ loginId, type }: TransactionTableProp
 						? `${dayjs(params.from).format('YYYY-MM-DD')}|${dayjs(params.to).format('YYYY-MM-DD')} 23:59:59`
 						: null,
 			}),
+		placeholderData: keepPreviousData,
 		enabled: !!loginId,
 	})
 
@@ -81,7 +82,7 @@ export default function TransactionTable({ loginId, type }: TransactionTableProp
 			field: 'id',
 			headerName: t('columns.id'),
 			width: 100,
-			renderCell: (params) => <span className="text-mui-primary-main font-semibold">#{params.value}</span>,
+			renderCell: (params) => <span className="text-mui-primary font-semibold">#{params.value}</span>,
 		},
 		{
 			field: 'created_at',

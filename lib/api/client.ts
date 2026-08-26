@@ -50,7 +50,7 @@ export const clientApi = new AxiosBuilder()
 		if (status === 401 && typeof window !== 'undefined') {
 			// Token or Session expired / invalid -> Clear memory token and redirect to login
 			tokenManager.clearToken()
-			window.location.href = '/api/auth/login'
+			window.location.href = '/auth/login'
 			return Promise.reject(error)
 		}
 

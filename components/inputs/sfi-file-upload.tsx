@@ -25,7 +25,7 @@ export interface FileUploadProps {
 		error?: boolean
 	}) => React.ReactNode
 
-	label?: string
+	label?: string | React.ReactNode
 	helperText?: string
 	error?: boolean
 	disabled?: boolean

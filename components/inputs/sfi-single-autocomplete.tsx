@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	Autocomplete as MuiAutocomplete,
 	AutocompleteProps as MuiAutocompleteProps,
@@ -13,9 +12,23 @@ import { ReactNode } from 'react'
 import { SfiOption } from './types'
 import { cn } from '@/utils/cn'
 
-const StyledAutocomplete = styled(MuiAutocomplete)(({ theme }) => ({
-	'& .MuiOutlinedInput-root': {
+const autocompleteHeights = {
+	small: 32,
+	medium: 38,
+	large: 50,
+}
+
+const StyledAutocomplete = styled(MuiAutocomplete)(({ size = 'medium' }) => ({
+	'& .MuiOutlinedInput-root.MuiAutocomplete-inputRoot': {
+		height: autocompleteHeights[size],
+		minHeight: autocompleteHeights[size],
+		paddingTop: 0,
+		paddingBottom: 0,
 		backgroundColor: 'var(--token-input-background)',
+	},
+	'& .MuiAutocomplete-inputRoot .MuiAutocomplete-input': {
+		paddingTop: '0 !important',
+		paddingBottom: '0 !important',
 	},
 })) as typeof MuiAutocomplete
 

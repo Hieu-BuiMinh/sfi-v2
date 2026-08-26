@@ -381,9 +381,9 @@ export default SfiDateRangePicker
  * />
  * ```
  *
- * Example 2: With URL params (useTableParams)
+ * Example 2: With API-specific URL params
  * ```tsx
- * const [params, setParams] = useTableParams()
+ * const [params, setParams] = useOrdersTableParams()
  *
  * <SfiDateRangePicker
  *   value={{

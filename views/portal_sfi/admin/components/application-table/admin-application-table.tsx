@@ -13,13 +13,13 @@ import SfiApplicationChip from '@/components/chips/application-chip'
 import { SfiTable } from '@/components/table'
 import { DEFAULT_PAGINATION } from '@/constants/components/pagination/pagination.const'
 import { APPLICATION_STATUS } from '@/dto/enums/application'
-import { TableParams, useTableParams } from '@/hooks/use-table-params'
+import { useAdminApplicationsTableParams } from '@/views/portal_sfi/admin/pages/applications.page/hooks/use-admin-applications-table-params'
 import { adminApplicationService } from '@/services/admin/applications'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 
 interface AdminApplicationTableProps {
-	params: TableParams
-	setParams: ReturnType<typeof useTableParams>[1]
+	params: ReturnType<typeof useAdminApplicationsTableParams>[0]
+	setParams: ReturnType<typeof useAdminApplicationsTableParams>[1]
 	pageSizeOptions?: number[]
 }
 
@@ -48,6 +48,7 @@ const AdminApplicationTable = ({
 				created_from: params.from ? dayjs(params.from).format('YYYY-MM-DD') : undefined,
 				created_to: params.to ? `${dayjs(params.to).format('YYYY-MM-DD')} 23:59:59` : undefined,
 			}),
+		placeholderData: keepPreviousData,
 	})
 
 	const applications = response?.data?.data || []
@@ -71,7 +72,7 @@ const AdminApplicationTable = ({
 			headerName: t('columns.id'),
 			width: 150,
 			renderCell: (params) => (
-				<Link className="text-mui-primary-main font-medium underline" href={`/applications/${params.row.id}`}>
+				<Link className="text-mui-primary font-medium underline" href={`/applications/${params.row.id}`}>
 					{params.value}
 				</Link>
 			),

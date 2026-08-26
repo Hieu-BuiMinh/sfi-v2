@@ -47,6 +47,23 @@ const StyledSwitch = styled(MuiSwitch)(({ theme }) => ({
 			duration: 500,
 		}),
 	},
+	'&.MuiSwitch-sizeSmall': {
+		width: 34,
+		height: 20,
+		'& .MuiSwitch-switchBase': {
+			margin: 2,
+			'&.Mui-checked': {
+				transform: 'translateX(14px)',
+			},
+		},
+		'& .MuiSwitch-thumb': {
+			width: 16,
+			height: 16,
+		},
+		'& .MuiSwitch-track': {
+			borderRadius: 10,
+		},
+	},
 }))
 
 export type SfiSwitchProps = SwitchProps & {

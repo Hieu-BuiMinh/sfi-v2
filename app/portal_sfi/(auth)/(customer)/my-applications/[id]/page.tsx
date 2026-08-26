@@ -1,4 +1,4 @@
-import CustomerApplicationDetailPageView from '@/views/portal_sfi/customer/pages/my-applications.page/application-detail/application-detail.page'
+import CustomerApplicationDetailPageView from '@/views/portal_sfi/customer/pages/my-applications.page/pages/application-detail.page/application-detail.page'
 
 async function CustomerApplicationDetail({ params }: { params: Promise<{ id: string }> }) {
 	const { id } = await params

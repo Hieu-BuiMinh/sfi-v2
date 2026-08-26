@@ -1,14 +1,14 @@
 'use client'
 
 import React from 'react'
-import { useQuery } from '@tanstack/react-query'
+import { keepPreviousData, useQuery } from '@tanstack/react-query'
 import { adminFinanceTransactionService } from '@/services/admin/finance/transactions'
 import { formatNumber } from '@/utils/money'
 import dayjs from '@/utils/dayjs'
 import { GridColDef } from '@mui/x-data-grid'
 import { Button } from '@mui/material'
 import { useTranslations } from 'next-intl'
-import { useTableParams } from '@/hooks/use-table-params'
+import { useCustomerFundTableParams } from '../../hooks/use-customer-fund-table-params'
 import { SfiOption } from '@/components/inputs/types'
 import SfiTransactionStatusChip from '@/components/chips/transaction-status-chip'
 import SfiDateRangePicker from '@/components/inputs/sfi-date-range-picker'
@@ -23,7 +23,7 @@ interface FundTabProps {
 const FundTab = ({ accountNo }: FundTabProps) => {
 	const t = useTranslations('admin.customers.tabs.funds_content')
 	const commonT = useTranslations('common.button_text')
-	const [params, setParams] = useTableParams()
+	const [params, setParams] = useCustomerFundTableParams()
 
 	const PAYMENT_TYPE_OPTIONS: SfiOption[] = [
 		{ label: t('options.deposit'), value: 'deposit' },
@@ -62,6 +62,7 @@ const FundTab = ({ accountNo }: FundTabProps) => {
 					end_date: params.to ? dayjs(params.to).unix() : null,
 				},
 			}),
+		placeholderData: keepPreviousData,
 		enabled: !!accountNo,
 	})
 

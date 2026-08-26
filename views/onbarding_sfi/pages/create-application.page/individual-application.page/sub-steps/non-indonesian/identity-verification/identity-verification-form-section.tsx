@@ -78,7 +78,7 @@ function NonIndoIdentityVerificationFormSection({ onProcessingChange }: Props) {
 	return (
 		<div className="flex flex-col gap-6">
 			<div className="flex flex-col gap-1">
-				<p className="text-mui-primary-main text-lg font-semibold">Upload Passport for verification</p>
+				<p className="text-mui-primary text-lg font-semibold">Upload Passport for verification</p>
 				<p className="text-mui-text-secondary text-sm">
 					Upload a clear passport image for OCR and a selfie with your passport for identity verification.
 				</p>
