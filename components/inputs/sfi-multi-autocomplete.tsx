@@ -41,8 +41,10 @@ const autocompleteHeights = {
 const StyledAutocomplete = styled(MuiAutocomplete)(({ size = 'medium' }) => ({
 	'& .MuiOutlinedInput-root.MuiAutocomplete-inputRoot': {
 		minHeight: autocompleteHeights[size],
-		paddingTop: 0,
-		paddingBottom: 0,
+		paddingTop: 8,
+		paddingBottom: 8,
+		paddingLeft: 6,
+		paddingRight: 6,
 	},
 	'& .MuiAutocomplete-inputRoot .MuiAutocomplete-input': {
 		paddingTop: '0 !important',
@@ -83,8 +85,8 @@ export function SfiMultiAutocomplete<
 				slotProps={{
 					...props.slotProps,
 					chip: {
-						...(props.slotProps?.chip as object),
 						size: 'small',
+						...(props.slotProps?.chip as object),
 					},
 				}}
 				options={options}

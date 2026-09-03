@@ -9,7 +9,7 @@ const StyledSwitch = styled(MuiSwitch)(({ theme }) => ({
 	'& .MuiSwitch-switchBase': {
 		padding: 0,
 		margin: 2,
-		color: theme.palette.mode === 'light' ? theme.palette.grey[300] : theme.palette.grey[100],
+		color: 'var(--mui-palette-grey-500)',
 		transitionDuration: '300ms',
 		'&.Mui-checked': {
 			transform: 'translateX(16px)',
@@ -28,10 +28,10 @@ const StyledSwitch = styled(MuiSwitch)(({ theme }) => ({
 			border: '6px solid #fff',
 		},
 		'&.Mui-disabled .MuiSwitch-thumb': {
-			color: theme.palette.mode === 'light' ? theme.palette.grey[100] : theme.palette.grey[600],
+			color: 'var(--mui-palette-action-disabled)',
 		},
 		'&.Mui-disabled + .MuiSwitch-track': {
-			opacity: theme.palette.mode === 'light' ? 0.7 : 0.3,
+			opacity: 1,
 		},
 	},
 	'& .MuiSwitch-thumb': {
@@ -41,7 +41,7 @@ const StyledSwitch = styled(MuiSwitch)(({ theme }) => ({
 	},
 	'& .MuiSwitch-track': {
 		borderRadius: 26 / 2,
-		backgroundColor: theme.palette.mode === 'light' ? '#E9E9EA' : '#39393D',
+		backgroundColor: 'var(--mui-palette-action-disabledBackground)',
 		opacity: 1,
 		transition: theme.transitions.create(['background-color'], {
 			duration: 500,

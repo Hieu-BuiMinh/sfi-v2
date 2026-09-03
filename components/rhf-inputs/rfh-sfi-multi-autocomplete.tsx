@@ -1,7 +1,10 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Control, Controller, FieldValues, Path } from 'react-hook-form'
-import { SfiMultiAutocomplete as Autocomplete } from '@/components/inputs/sfi-multi-autocomplete'
+import {
+	SfiMultiAutocomplete as Autocomplete,
+	SfiMultiAutocompleteProps,
+} from '@/components/inputs/sfi-multi-autocomplete'
 import { AutocompleteRenderOptionState } from '@mui/material'
 import { HTMLAttributes, Key, ReactNode } from 'react'
 import { SfiOption as OptionType } from '@/components/inputs/types'
@@ -31,6 +34,7 @@ interface RfhSfiMultiAutocompleteProps<T extends FieldValues, Option = OptionTyp
 	size?: 'small' | 'medium' | 'large'
 	placeholder?: string
 	onChange?: (values: any[]) => void
+	slotProps?: SfiMultiAutocompleteProps<Option>['slotProps']
 }
 
 /**
@@ -77,7 +81,15 @@ export function RfhSfiMultiAutocomplete<T extends FieldValues, Option = OptionTy
 						containerClassName={containerClassName}
 						disabled={props.disabled}
 						placeholder={props.placeholder}
-						slotProps={{ chip: { variant: 'filled', color: 'primary' } }}
+						slotProps={{
+							...props.slotProps,
+							chip: {
+								variant: 'filled',
+								color: 'primary',
+								size: 'small',
+								...(props.slotProps?.chip as object),
+							},
+						}}
 					/>
 				)
 			}}

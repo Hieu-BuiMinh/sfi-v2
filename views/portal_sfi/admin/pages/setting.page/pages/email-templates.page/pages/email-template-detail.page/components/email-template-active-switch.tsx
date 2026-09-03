@@ -9,7 +9,8 @@ import { useEmailTemplateContext } from './providers/email-template-detail-provi
 
 function EmailTemplateActiveSwitch() {
 	const [open, setOpen] = useState(false)
-	const { template } = useEmailTemplateContext()
+	const { detailQuery } = useEmailTemplateContext()
+	const template = detailQuery.data?.data
 
 	if (!template) return null
 
@@ -30,7 +31,7 @@ function EmailTemplateActiveSwitch() {
 				onClose={() => setOpen(false)}
 				title={
 					<span className="text-mui-primary flex items-center gap-2">
-						<WarningAmberRoundedIcon className="text-mui-text-primary" />
+						<WarningAmberRoundedIcon className="text-mui-primary" />
 						{action} Email Template?
 					</span>
 				}

@@ -9,13 +9,15 @@ import EmailTemplateFrom from './components/sections/email-template-form'
 import EmailTemplateDetailProvider, {
 	useEmailTemplateContext,
 } from './components/providers/email-template-detail-provider'
+import EmailTemplateActions from '@/views/portal_sfi/admin/pages/setting.page/pages/email-templates.page/pages/email-template-detail.page/components/email-template-actions'
 
 interface EmailTemplateDetailPageViewProps {
 	id: string
 }
 
 function EmailTemplateDetailContent() {
-	const { template, isLoading } = useEmailTemplateContext()
+	const { detailQuery } = useEmailTemplateContext()
+	const template = detailQuery.data?.data
 
 	return (
 		<div className="flex flex-col gap-5">
@@ -25,11 +27,16 @@ function EmailTemplateDetailContent() {
 
 			<div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
 				<SfiPageTitle title={template?.name ?? 'Email Template Detail'} />
-				{template && <EmailTemplateActiveSwitch />}
+				{template && (
+					<div className="flex flex-wrap items-center gap-3 sm:justify-end">
+						<EmailTemplateActiveSwitch />
+						<EmailTemplateActions />
+					</div>
+				)}
 			</div>
 
 			<section className="border-mui-divider bg-mui-bg-paper rounded-lg border p-5">
-				{isLoading ? (
+				{detailQuery.isLoading ? (
 					<Skeleton variant="rectangular" height={160} className="rounded" />
 				) : (
 					<div className="grid grid-cols-1 items-center gap-2 sm:grid-cols-[120px_minmax(0,1fr)]">
