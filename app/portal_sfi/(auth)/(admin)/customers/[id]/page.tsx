@@ -1,4 +1,4 @@
-import AdminCustomerDetailView from '@/views/portal_sfi/admin/pages/customers.page/customer-detail/admin-customer-detail.page'
+import AdminCustomerDetailView from '@/views/portal_sfi/admin/pages/customers.page/pages/customer-detail.page'
 import React from 'react'
 
 export default async function CustomerDetailPage({
