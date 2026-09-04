@@ -4,7 +4,8 @@ import { useEmailTemplateContext } from '@/views/portal_sfi/admin/pages/setting.
 import type { JSONTemplate, UnlayerEditor } from '@unlayer/types'
 import FullscreenExitRoundedIcon from '@mui/icons-material/FullscreenExitRounded'
 import FullscreenRoundedIcon from '@mui/icons-material/FullscreenRounded'
-import { CircularProgress, IconButton, Portal, Tooltip } from '@mui/material'
+import SaveRoundedIcon from '@mui/icons-material/SaveRounded'
+import { Button, CircularProgress, IconButton, Portal, Tooltip } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useLocale } from 'next-intl'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -21,10 +22,13 @@ const EmailEditor = dynamic(() => import('react-email-editor'), {
 })
 
 function VisualDragAndDropBuilder() {
-	const { form, detailQuery, registerVisualEditorExporter } = useEmailTemplateContext()
+	const { form, detailQuery, registerVisualEditorExporter, setIsUpdateModalOpen, updateMutation } =
+		useEmailTemplateContext()
 	const template = detailQuery.data?.data
 	const locale = useLocale()
 	const editorRef = useRef<EditorRef>(null)
+	const latestExportRef = useRef(0)
+	const exportTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 	const [isFullscreen, setIsFullscreen] = useState(false)
 	const projectId = template?.unlayer_project_id ? Number(template.unlayer_project_id) : undefined
 	const targetLocale =
@@ -39,25 +43,31 @@ function VisualDragAndDropBuilder() {
 	const exportEditor = useCallback(
 		() =>
 			new Promise<void>((resolve) => {
+				if (exportTimeoutRef.current) clearTimeout(exportTimeoutRef.current)
 				const editor = editorRef.current?.editor
 				if (!editor) {
 					resolve()
 					return
 				}
 
+				const exportId = ++latestExportRef.current
 				editor.exportHtml(({ design, html }) => {
-					form.setValue('blade_content', html, { shouldDirty: true })
-					form.setValue('unlayer_design', design as Record<string, unknown>, { shouldDirty: true })
+					if (exportId === latestExportRef.current) {
+						form.setValue('blade_content', html, { shouldDirty: true })
+						form.setValue('unlayer_design', design as Record<string, unknown>, { shouldDirty: true })
+					}
 					resolve()
 				})
 			}),
 		[form]
 	)
-
 	useEffect(() => {
 		registerVisualEditorExporter(exportEditor)
 
-		return () => registerVisualEditorExporter(null)
+		return () => {
+			if (exportTimeoutRef.current) clearTimeout(exportTimeoutRef.current)
+			registerVisualEditorExporter(null)
+		}
 	}, [exportEditor, registerVisualEditorExporter])
 
 	useEffect(() => {
@@ -73,6 +83,12 @@ function VisualDragAndDropBuilder() {
 
 	const handleReady = (editor: UnlayerEditor<'email'>) => {
 		editorRef.current = { editor }
+		editor.addEventListener('design:loaded', () => {
+			editor.addEventListener('design:updated', () => {
+				if (exportTimeoutRef.current) clearTimeout(exportTimeoutRef.current)
+				exportTimeoutRef.current = setTimeout(() => void exportEditor(), 400)
+			})
+		})
 		editor.setTheme('modern_dark')
 		editor.setLocale(targetLocale)
 		editor.setMergeTags(
@@ -127,7 +143,6 @@ function VisualDragAndDropBuilder() {
 					key={`${template?.id ?? 'editor'}-${targetLocale}`}
 					ref={editorRef}
 					onReady={handleReady}
-					onDesignUpdated={exportEditor}
 					minHeight={isFullscreen ? 'calc(100vh - 32px)' : '650px'}
 					options={{
 						projectId,
@@ -137,6 +152,19 @@ function VisualDragAndDropBuilder() {
 						features: { preview: false },
 					}}
 				/>
+
+				{!isFullscreen && (
+					<div className="border-mui-divider flex justify-end border-t p-3">
+						<Button
+							variant="contained"
+							startIcon={<SaveRoundedIcon fontSize="small" />}
+							loading={updateMutation.isPending}
+							onClick={() => setIsUpdateModalOpen(true)}
+						>
+							Update Template
+						</Button>
+					</div>
+				)}
 			</div>
 		</Portal>
 	)

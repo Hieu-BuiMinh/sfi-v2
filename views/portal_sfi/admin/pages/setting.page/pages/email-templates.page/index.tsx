@@ -16,6 +16,7 @@ const tabs: SfiTabItem[] = [
 	{ key: 'all', label: 'All', content: null },
 	{ key: 'email', label: 'Emails', content: null },
 	{ key: 'snippet', label: 'Snippets', content: null },
+	{ key: 'trading', label: 'Trading', content: null },
 ]
 
 function EmailTemplatesPageView() {
@@ -55,7 +56,9 @@ function EmailTemplatesPageView() {
 			<SfiTabs
 				items={tabs}
 				value={params.category}
-				onChange={(category) => setParams({ category: category as 'all' | 'email' | 'snippet', page: 1 })}
+				onChange={(category) =>
+					setParams({ category: category as 'all' | 'email' | 'snippet' | 'trading', page: 1 })
+				}
 				endAdornment={
 					<div className="flex items-center gap-2">
 						<SfiSingleSelect

@@ -6,7 +6,7 @@ import { parseAsInteger, parseAsString, parseAsStringLiteral, useQueryStates } f
 const parsers = {
 	page: parseAsInteger.withDefault(DEFAULT_PAGE),
 	per_page: parseAsInteger.withDefault(15),
-	category: parseAsStringLiteral(['all', 'email', 'snippet'] as const).withDefault('all'),
+	category: parseAsStringLiteral(['all', 'email', 'snippet', 'trading'] as const).withDefault('all'),
 	language: parseAsStringLiteral(['all', 'eng', 'idn'] as const).withDefault('all'),
 	search: parseAsString,
 	sort_by: parseAsString.withDefault('category'),

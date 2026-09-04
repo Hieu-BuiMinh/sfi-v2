@@ -6,7 +6,7 @@ import SfiCommonModal from '@/components/modals/common-modal'
 import toastUtil from '@/utils/toast'
 import SaveRoundedIcon from '@mui/icons-material/SaveRounded'
 import SendRoundedIcon from '@mui/icons-material/SendRounded'
-import { IconButton } from '@mui/material'
+import { Button } from '@mui/material'
 import { useState } from 'react'
 import { z } from 'zod'
 import { useEmailTemplateContext } from './providers/email-template-detail-provider'
@@ -14,7 +14,6 @@ import { parseSampleData } from '../utils/sample-data'
 const emailSchema = z.string().email()
 
 function EmailTemplateActions() {
-	const [isSaveModalOpen, setIsSaveModalOpen] = useState(false)
 	const [recipientEmail, setRecipientEmail] = useState('')
 	const [includeCcBcc, setIncludeCcBcc] = useState(false)
 	const {
@@ -25,6 +24,9 @@ function EmailTemplateActions() {
 		exportVisualEditor,
 		isSendTestModalOpen,
 		setIsSendTestModalOpen,
+		isUpdateModalOpen,
+		setIsUpdateModalOpen,
+		editorMode,
 	} = useEmailTemplateContext()
 	const template = detailQuery.data?.data
 	const recipientEmailValue = recipientEmail.trim()
@@ -76,7 +78,6 @@ function EmailTemplateActions() {
 			return
 		}
 		form.setValue('sample_data_json', JSON.stringify(parsedSampleData.data, null, 2))
-
 		try {
 			await updateMutation.mutateAsync({
 				name: template.name,
@@ -91,9 +92,10 @@ function EmailTemplateActions() {
 				unlayer_design: values.unlayer_design,
 				is_active: template.is_active,
 				sample_data: parsedSampleData.data,
-				change_note: 'Updated via Visual Drag & Drop Builder',
+				change_note:
+					editorMode === 'code-editor' ? 'Updated via Code Editor' : 'Updated via Visual Drag & Drop Builder',
 			})
-			setIsSaveModalOpen(false)
+			setIsUpdateModalOpen(false)
 			toastUtil.success('Email template saved and published successfully.')
 		} catch {
 			toastUtil.error('Failed to save and publish email template.')
@@ -107,24 +109,25 @@ function EmailTemplateActions() {
 	return (
 		<>
 			<div className="flex flex-wrap items-center gap-2">
-				<IconButton
-					color="primary"
-					size="medium"
+				<Button
+					size="small"
+					variant="outlined"
+					startIcon={<SendRoundedIcon fontSize="small" />}
 					onClick={() => setIsSendTestModalOpen(true)}
-					aria-label="Send Test Email"
-					className="border-mui-primary sm:hidden"
+					className="hidden sm:inline-flex"
 				>
-					<SendRoundedIcon fontSize="small" />
-				</IconButton>
-				<IconButton
-					color="primary"
-					size="medium"
-					onClick={() => setIsSaveModalOpen(true)}
-					aria-label="Save & Publish Live"
-					className="bg-mui-primary text-mui-primary-contrastText hover:bg-mui-primary-dark sm:hidden"
+					Send Test Email
+				</Button>
+				<Button
+					size="small"
+					variant="contained"
+					startIcon={<SaveRoundedIcon fontSize="small" />}
+					onClick={() => setIsUpdateModalOpen(true)}
+					loading={updateMutation.isPending}
+					className="hidden sm:inline-flex"
 				>
-					<SaveRoundedIcon fontSize="small" />
-				</IconButton>
+					Update
+				</Button>
 			</div>
 
 			<SfiCommonModal
@@ -170,19 +173,19 @@ function EmailTemplateActions() {
 			</SfiCommonModal>
 
 			<SfiCommonModal
-				open={isSaveModalOpen}
-				onClose={() => setIsSaveModalOpen(false)}
-				title="Save & Publish Email Template"
+				open={isUpdateModalOpen}
+				onClose={() => setIsUpdateModalOpen(false)}
+				title="Update Email Template"
 				maxWidth="sm"
 				confirmBtn={{
-					label: 'Save & Publish',
+					label: 'Update',
 					startIcon: <SaveRoundedIcon />,
 					onClick: handleSave,
 					loading: updateMutation.isPending,
 				}}
 				cancelBtn={{
 					label: 'Cancel',
-					onClick: () => setIsSaveModalOpen(false),
+					onClick: () => setIsUpdateModalOpen(false),
 					disabled: updateMutation.isPending,
 				}}
 			>

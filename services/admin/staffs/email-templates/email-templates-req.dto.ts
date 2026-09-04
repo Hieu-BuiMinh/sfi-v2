@@ -1,4 +1,4 @@
-export type TEmailTemplateCategory = 'snippet' | 'email'
+export type TEmailTemplateCategory = 'snippet' | 'email' | 'trading'
 
 export interface TGetEmailTemplatesParams {
 	page: number

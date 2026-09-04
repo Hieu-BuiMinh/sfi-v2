@@ -16,7 +16,7 @@ interface EmailTemplateDetailPageViewProps {
 }
 
 function EmailTemplateDetailContent() {
-	const { detailQuery } = useEmailTemplateContext()
+	const { detailQuery, isFormInitialized } = useEmailTemplateContext()
 	const template = detailQuery.data?.data
 
 	return (
@@ -58,7 +58,7 @@ function EmailTemplateDetailContent() {
 				)}
 			</section>
 
-			{template && <EmailTemplateFrom />}
+			{template && isFormInitialized && <EmailTemplateFrom />}
 		</div>
 	)
 }

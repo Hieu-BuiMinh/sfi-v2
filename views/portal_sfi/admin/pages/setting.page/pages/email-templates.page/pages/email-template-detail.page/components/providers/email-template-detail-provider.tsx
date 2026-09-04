@@ -1,10 +1,12 @@
 'use client'
 
 import { createContext, ReactNode, useCallback, useContext, useEffect, useRef, useState } from 'react'
-import { useForm, UseFormReturn } from 'react-hook-form'
+import { useForm, UseFormReturn, useWatch } from 'react-hook-form'
 import { useEmailTemplate } from '../../hooks/use-email-template'
 
 export interface EmailTemplateFormValues {
+	initialized_template_id: string
+	initialized_template_updated_at: string
 	subject: string
 	description: string
 	to: string[]
@@ -20,12 +22,19 @@ export type EmailEditorMode = 'visual-builder' | 'code-editor'
 
 type EmailTemplateDetailContextValue = ReturnType<typeof useEmailTemplate> & {
 	form: UseFormReturn<EmailTemplateFormValues>
+	isFormInitialized: boolean
 	registerVisualEditorExporter: (exporter: (() => Promise<void>) | null) => void
 	exportVisualEditor: () => Promise<void>
 	isSendTestModalOpen: boolean
 	setIsSendTestModalOpen: (open: boolean) => void
+	isUpdateModalOpen: boolean
+	setIsUpdateModalOpen: (open: boolean) => void
 	editorMode: EmailEditorMode
-	setEditorMode: (mode: EmailEditorMode) => void
+	isChangingEditorMode: boolean
+	changeEditorMode: (mode: EmailEditorMode) => Promise<void>
+	markCodeContentChanged: () => void
+	hasCodeContentChanges: () => boolean
+	previewRevision: number
 }
 
 interface EmailTemplateDetailProviderProps {
@@ -47,9 +56,14 @@ export function useEmailTemplateContext() {
 
 function EmailTemplateDetailProvider({ id, children }: EmailTemplateDetailProviderProps) {
 	const [isSendTestModalOpen, setIsSendTestModalOpen] = useState(false)
+	const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false)
 	const [editorMode, setEditorMode] = useState<EmailEditorMode>('visual-builder')
+	const [isChangingEditorMode, setIsChangingEditorMode] = useState(false)
+	const [previewRevision, setPreviewRevision] = useState(0)
 	const form = useForm<EmailTemplateFormValues>({
 		defaultValues: {
+			initialized_template_id: '',
+			initialized_template_updated_at: '',
 			subject: '',
 			description: '',
 			to: [],
@@ -61,7 +75,13 @@ function EmailTemplateDetailProvider({ id, children }: EmailTemplateDetailProvid
 			unlayer_design: null,
 		},
 	})
+	const initializedTemplateId = useWatch({ control: form.control, name: 'initialized_template_id' })
+	const initializedTemplateUpdatedAt = useWatch({
+		control: form.control,
+		name: 'initialized_template_updated_at',
+	})
 	const visualEditorExporterRef = useRef<(() => Promise<void>) | null>(null)
+	const codeContentChangedRef = useRef(false)
 	const emailTemplate = useEmailTemplate(id)
 	const template = emailTemplate.detailQuery.data?.data
 	const registerVisualEditorExporter = useCallback((exporter: (() => Promise<void>) | null) => {
@@ -70,11 +90,40 @@ function EmailTemplateDetailProvider({ id, children }: EmailTemplateDetailProvid
 	const exportVisualEditor = useCallback(async () => {
 		await visualEditorExporterRef.current?.()
 	}, [])
+	const markCodeContentChanged = useCallback(() => {
+		codeContentChangedRef.current = true
+	}, [])
+	const hasCodeContentChanges = useCallback(() => codeContentChangedRef.current, [])
+	const changeEditorMode = useCallback(
+		async (mode: EmailEditorMode) => {
+			if (mode === editorMode || isChangingEditorMode) return
+
+			setIsChangingEditorMode(true)
+			try {
+				if (editorMode === 'visual-builder') {
+					await exportVisualEditor()
+				}
+
+				codeContentChangedRef.current = false
+				setEditorMode(mode)
+				setPreviewRevision((current) => current + 1)
+			} finally {
+				setIsChangingEditorMode(false)
+			}
+		},
+		[editorMode, exportVisualEditor, isChangingEditorMode]
+	)
 
 	useEffect(() => {
-		if (!template) return
+		if (
+			!template ||
+			(initializedTemplateId === template.id && initializedTemplateUpdatedAt === template.updated_at)
+		)
+			return
 
 		form.reset({
+			initialized_template_id: template.id,
+			initialized_template_updated_at: template.updated_at,
 			subject: template.subject ?? '',
 			description: template.description,
 			to: template.to,
@@ -85,18 +134,27 @@ function EmailTemplateDetailProvider({ id, children }: EmailTemplateDetailProvid
 			blade_content: template.blade_content,
 			unlayer_design: template.unlayer_design,
 		})
-	}, [form, template])
+		codeContentChangedRef.current = false
+	}, [form, initializedTemplateId, initializedTemplateUpdatedAt, template])
 
 	return (
 		<EmailTemplateDetailContext.Provider
 			value={{
 				form,
+				isFormInitialized:
+					initializedTemplateId === template?.id && initializedTemplateUpdatedAt === template?.updated_at,
 				registerVisualEditorExporter,
 				exportVisualEditor,
 				isSendTestModalOpen,
 				setIsSendTestModalOpen,
+				isUpdateModalOpen,
+				setIsUpdateModalOpen,
 				editorMode,
-				setEditorMode,
+				isChangingEditorMode,
+				changeEditorMode,
+				markCodeContentChanged,
+				hasCodeContentChanges,
+				previewRevision,
 				...emailTemplate,
 			}}
 		>

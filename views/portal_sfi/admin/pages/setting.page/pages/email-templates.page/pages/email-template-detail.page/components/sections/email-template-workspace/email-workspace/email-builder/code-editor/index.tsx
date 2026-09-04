@@ -2,26 +2,31 @@
 
 import toastUtil from '@/utils/toast'
 import { useEmailTemplateContext } from '@/views/portal_sfi/admin/pages/setting.page/pages/email-templates.page/pages/email-template-detail.page/components/providers/email-template-detail-provider'
-import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded'
-import FormatAlignLeftRoundedIcon from '@mui/icons-material/FormatAlignLeftRounded'
-import FullscreenExitRoundedIcon from '@mui/icons-material/FullscreenExitRounded'
-import FullscreenRoundedIcon from '@mui/icons-material/FullscreenRounded'
-import { Button, Chip, CircularProgress, Portal, Tooltip } from '@mui/material'
+import SaveRoundedIcon from '@mui/icons-material/SaveRounded'
+import { Button, CircularProgress, Portal, useColorScheme } from '@mui/material'
 import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
 import { useWatch } from 'react-hook-form'
 import type { OnMount } from '@monaco-editor/react'
-import { EMAIL_CODE_SNIPPETS } from './snippets'
+import AvailableVariablesSection from './available-variables-section'
+import CodeEditorToolbar from './code-editor-toolbar'
+import CodeSnippetsSection from './code-snippets-section'
 
 const MonacoEditor = dynamic(() => import('@monaco-editor/react'), {
 	ssr: false,
-	loading: () => <div className="flex h-145 items-center justify-center"><CircularProgress size={32} /></div>,
+	loading: () => (
+		<div className="flex h-145 items-center justify-center">
+			<CircularProgress size={32} />
+		</div>
+	),
 })
 
 type MonacoInstance = Parameters<OnMount>[0]
 
 function EmailBuilderCodeEditor() {
-	const { form, detailQuery } = useEmailTemplateContext()
+	const { mode } = useColorScheme()
+	const { form, detailQuery, markCodeContentChanged, setIsUpdateModalOpen, updateMutation } =
+		useEmailTemplateContext()
 	const template = detailQuery.data?.data
 	const bladeContent = useWatch({ control: form.control, name: 'blade_content' })
 	const editorRef = useRef<MonacoInstance | null>(null)
@@ -31,7 +36,9 @@ function EmailBuilderCodeEditor() {
 		if (!isFullscreen) return
 		const previousOverflow = document.body.style.overflow
 		document.body.style.overflow = 'hidden'
-		return () => { document.body.style.overflow = previousOverflow }
+		return () => {
+			document.body.style.overflow = previousOverflow
+		}
 	}, [isFullscreen])
 
 	const insertAtCursor = (content: string) => {
@@ -53,32 +60,65 @@ function EmailBuilderCodeEditor() {
 	}
 
 	const content = (
-		<div className={isFullscreen ? 'bg-mui-bg-paper fixed inset-0 overflow-auto p-4' : 'flex flex-col gap-4'} style={isFullscreen ? { zIndex: 1500 } : undefined}>
-			<div className="flex flex-wrap items-center justify-between gap-2">
-				<div className="flex min-w-0 flex-wrap gap-2">
-					{template?.available_variables.map((variable) => (
-						<Chip key={variable.key} label={`${variable.label}: ${variable.key}`} variant="outlined" onClick={() => insertAtCursor(variable.key)} onDelete={() => { void navigator.clipboard.writeText(variable.key); toastUtil.info(`Copied ${variable.key}`) }} deleteIcon={<ContentCopyRoundedIcon />} />
-					))}
-				</div>
-				<div className="flex shrink-0 gap-2">
-					<Button size="small" variant="outlined" startIcon={<FormatAlignLeftRoundedIcon fontSize="small" />} onClick={() => void editorRef.current?.getAction('editor.action.formatDocument')?.run()}>Format Code</Button>
-					<Button size="small" variant="outlined" startIcon={<ContentCopyRoundedIcon fontSize="small" />} onClick={() => { void navigator.clipboard.writeText(bladeContent); toastUtil.info('Code copied to clipboard!') }}>Copy</Button>
-					<Tooltip title={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen Code Editor'}>
-						<Button size="small" variant="outlined" aria-label={isFullscreen ? 'Exit Fullscreen' : 'Fullscreen Code Editor'} sx={{ minWidth: 36, px: 1 }} onClick={() => setIsFullscreen((current) => !current)}>
-							{isFullscreen ? <FullscreenExitRoundedIcon fontSize="small" /> : <FullscreenRoundedIcon fontSize="small" />}
-						</Button>
-					</Tooltip>
-				</div>
-			</div>
+		<div
+			className={isFullscreen ? 'bg-mui-bg-paper fixed inset-0 overflow-auto p-4' : 'flex flex-col gap-4'}
+			style={isFullscreen ? { zIndex: 1500 } : undefined}
+		>
+			<CodeEditorToolbar
+				content={bladeContent}
+				isFullscreen={isFullscreen}
+				onFormat={() => void editorRef.current?.getAction('editor.action.formatDocument')?.run()}
+				onToggleFullscreen={() => setIsFullscreen((current) => !current)}
+			/>
 
-			<div className="flex flex-wrap gap-2">
-				{EMAIL_CODE_SNIPPETS.map((snippet) => (
-					<Button key={snippet.label} size="small" variant="outlined" onClick={() => { insertAtCursor(snippet.content); toastUtil.info('Snippet inserted into editor!') }}>+ {snippet.label}</Button>
-				))}
+			<div className="grid grid-cols-1 items-start gap-3 xl:grid-cols-2">
+				<AvailableVariablesSection variables={template?.available_variables ?? []} onInsert={insertAtCursor} />
+				<CodeSnippetsSection
+					onInsert={(value) => {
+						insertAtCursor(value)
+						toastUtil.info('Snippet inserted into editor!')
+					}}
+				/>
 			</div>
 
 			<div className="border-mui-divider overflow-hidden rounded-lg border">
-				<MonacoEditor height={isFullscreen ? 'calc(100vh - 180px)' : '580px'} language="html" theme="vs-dark" value={bladeContent} onChange={(value) => form.setValue('blade_content', value ?? '', { shouldDirty: true })} onMount={(editor) => { editorRef.current = editor }} options={{ minimap: { enabled: false }, fontSize: 13, wordWrap: 'on', automaticLayout: true, scrollBeyondLastLine: false, tabSize: 2, formatOnPaste: true, formatOnType: true }} />
+				<MonacoEditor
+					height={isFullscreen ? 'calc(100vh - 180px)' : '580px'}
+					language="html"
+					theme={mode === 'dark' ? 'vs-dark' : 'light'}
+					value={bladeContent}
+					onChange={(value) => {
+						const nextValue = value ?? ''
+						if (nextValue === form.getValues('blade_content')) return
+
+						form.setValue('blade_content', nextValue, { shouldDirty: true })
+						markCodeContentChanged()
+					}}
+					onMount={(editor) => {
+						editorRef.current = editor
+					}}
+					options={{
+						minimap: { enabled: false },
+						fontSize: 13,
+						wordWrap: 'on',
+						automaticLayout: true,
+						scrollBeyondLastLine: false,
+						tabSize: 2,
+						formatOnPaste: true,
+						formatOnType: true,
+					}}
+				/>
+			</div>
+
+			<div className="flex justify-end">
+				<Button
+					variant="contained"
+					startIcon={<SaveRoundedIcon fontSize="small" />}
+					loading={updateMutation.isPending}
+					onClick={() => setIsUpdateModalOpen(true)}
+				>
+					Update Template
+				</Button>
 			</div>
 		</div>
 	)
